@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title '' %}GetInspired - Accueil</title>
+        
+        {% block stylesheets %}
+            {# Lien vers le thème Bootstrap #}
+            <link href="{{ asset('css/bootstrap_css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+            {# asset() génère un chemin pour les fichiers qui se trouvent dans le répertoire web #}
+            <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />        
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        
+        
+        
+        {% block javascripts %}
+            {# CDN jQuery #}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="{{ asset('js/bootstrap_js/bootstrap.min.js')}}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
