@@ -1,2 +1,4 @@
 /vendor/
-/nbproject//src/parameters.php/
+
+/nbproject/
+/src/parameters.php/
