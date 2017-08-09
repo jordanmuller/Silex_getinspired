@@ -36,4 +36,30 @@ $app->register(
 // cela renregistre $app['session'] prédéfini dans Silex
 $app->register(new SessionServiceProvider());
 
+//*************************CONTROLLERS***************************//
+
+/////////////////////////////FRONT////////////////////////////////
+
+$app['user.controller'] = function() use ($app)
+{
+    return new Controller\UserController($app); 
+};
+
+////////////////////////////BACK//////////////////////////////////
+
+
+//*************************REPOSITORIES***************************//
+
+$app['user.repository'] = function() use ($app)
+{
+    return new \Repository\UserRepository($app); 
+};
+
+//*************************USER MANAGER***************************//
+$app['user.manager'] = function() use ($app)
+{
+    return new \Service\UserManager($app['session']); 
+};
+
+
 return $app;
