@@ -11,6 +11,31 @@
         {% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <a class="navbar-brand" href="">Get Inspired</a>    
+                <ul class="nav navbar-nav">
+                    <li class="icon">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </li>
+                    <li>
+                        <a href="">Films</a>
+                    </li>
+                    <li>
+                        <a href="">Sections articles</a>
+                    </li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="">Créer un compte</a>
+                    </li>
+                    <li>
+                        <a href="">Se connecter</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         {% block content %}{% endblock %}
         
         
@@ -18,7 +43,7 @@
         {% block javascripts %}
             {# CDN jQuery #}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="{{ asset('js/bootstrap_js/bootstrap.min.js')}}"></script>
+            <script src="{{ asset('js/bootstrap.min.js')}}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
     </body>
