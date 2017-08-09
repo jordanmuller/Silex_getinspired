@@ -1,4 +1,35 @@
+body {
+  box-sizing: border-box;
+}
 /*** NAVBAR ***/
 nav.navbar.navbar-default {
+    font-size: 1.3em;
+    height: 60px;
+    margin: 0;
+}
+
+div.navbar-header {
+    margin-right: 30px !important;
+}
+
+ul.nav.navbar-nav li a, div.navbar-header {
+  height: 60px;
+  padding-top: 20px;
+}
+
+a.navbar-brand {
     font-size: 1.5em;
+    font-weight: bold;
+    font-style: italic;
+    margin-right: 20px;
+    padding: 0;
+}
+
+span.glyphicon.glyphicon-search {
+    font-size: 1.3em;
+}
+
+footer {
+    padding: 20px;
+    background: #191970;
 }
