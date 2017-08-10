@@ -1,0 +1,38 @@
+/*********** BANNIERE *****************/
+div.inscription {
+    text-align: center;
+}
+
+div.inscription h1 {
+    font-size: 4em;
+}
+
+div.inscription h2 {
+    font-size: 3em;
+}
+
+div.inscription p {
+    font-size: 2em;
+}
+
+div.inscription button.btn-lg {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/************* SECTION ACTIONS ****************/
+section.actions {
+    padding: 20px;
+    padding-top: 40px;
+}
+
+span.glyphicon {
+    font-size: 3em;
+}
+
+/************ SECTION VISUAL ******************/
+section.visual {
+    padding: 20px;
+    padding-top: 40px;
+    background: #DF691A;
+}

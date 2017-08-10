@@ -14,8 +14,17 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
-//******************************FRONT********************************//
+//****************************** FRONT OFFICE ********************************//
 
+/***************************** MOVIES *************************************/
+$app
+    ->get('/films/affichage', 'movie.controller:listAction')
+    ->bind('movies_list')
+;
+
+
+
+/************************** USER ************************************/
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')
 ->bind('user_register')
@@ -29,6 +38,11 @@ $app
 $app
 ->match('/utilisateur/deconnexion', 'user.controller:logoutAction')
 ->bind('user_logout')
+;
+//******************************  ADMIN  *************************************//
+$app
+->match('/admin/box/register', 'box.controller:registerBoxAction')
+->bind('box_register')
 ;
 
 //*****************************BACK*********************************//

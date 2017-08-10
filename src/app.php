@@ -2,6 +2,10 @@
 
 // Les namespaces que l'on a créé
 
+use Controller\MovieController;
+use Controller\UserController;
+use Repository\MovieRepository;
+
 // Les namespaces natifs à Silex, que l'on rajoute selon l'application
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
@@ -18,8 +22,8 @@ $app->register(new TwigServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
+    // pour accéder au Usermanager dans les templates twig 
     $twig->addGlobal('user_manager', $app['user.manager']); 
-    
     return $twig;
 });
 
@@ -39,25 +43,42 @@ $app->register(new SessionServiceProvider());
 
 //*************************CONTROLLERS***************************//
 
-/////////////////////////////FRONT////////////////////////////////
+/////////////////////////////FRONT - OFFICE////////////////////////////////
 
 $app['user.controller'] = function() use ($app)
 {
-    return new Controller\UserController($app); 
+    return new UserController($app); 
 };
 
-////////////////////////////BACK//////////////////////////////////
+$app['movie.controller'] = function() use ($app)
+{
+    return new MovieController($app);
+};
+////////////////////////////BACK - OFFICE//////////////////////////////////
 
+$app['box.controller'] = function() use ($app)
+{
+    return new Controller\Admin\BoxAdminController($app);
+};
 
-//*************************REPOSITORIES***************************//
+//*************************REPOSITORIES APPEL A LA BDD ***************************//
 
 $app['user.repository'] = function() use ($app)
 {
     return new \Repository\UserRepository($app); 
 };
 
-//*************************USER MANAGER***************************//
+$app['box.repository'] = function() use ($app)
+{
+    return new \Repository\BoxRepository($app); 
+};
 
+$app['movie.repository'] = function() use($app)
+{
+    return new MovieRepository($app);
+};
+
+//*************************USER MANAGER***************************//
 $app['user.manager'] = function() use ($app)
 {
     return new \Service\UserManager($app['session']); 
