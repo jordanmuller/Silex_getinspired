@@ -31,6 +31,19 @@ $app
 ->bind('user_logout')
 ;
 
+//*****************************BACK*********************************//
+
+// crée un groupe de routes
+$admin = $app['controllers_factory'];
+
+$admin->before(function () use ($app)
+{
+    if(!$app['user.manager']->isAdmin())
+    {
+        $app->abort(403, 'Accès refusé'); 
+    }
+});
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

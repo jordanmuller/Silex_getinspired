@@ -11,21 +11,33 @@ class UserController extends ControllerAbstract
         $user = new User(); 
         $errors = []; 
         
+        $birthdate_year = $birthdate_month = $birthdate_day = '';
+        
         if(!empty($_POST))
         {
+            $birthdate_year = $_POST['birthdate_year'];
+            $birthdate_month = $_POST['birthdate_month'];
+            $birthdate_day = $_POST['birthdate_day'];
+            
             $user
-               ->setId_user($_POST['id_user'])
-               ->setCivility($_POST['civility'])        
                ->setLastname($_POST['lastname'])
                ->setFirstname($_POST['firstname'])
-               ->setPseudo($_POST['$pseudo'])
+               ->setPseudo($_POST['pseudo'])
                ->setEmail($_POST['email'])
-               ->setBirthdate_day($_POST['$birthdate_day'])
-               ->setBirthdate_month($_POST['$birthdate_month'])
-               ->setBirthdate_year($_POST['birthdate_year'])
-               ->setPassword($_POST['$password'])
+               ->setBirthdate($_POST['birthdate_year'] . '-' . $_POST['birthdate_month'] . '-' . $_POST['birthdate_day'])
+               ->setPassword($_POST['password'])
+              // ->setPassword_confirm($_POST['$password_confirm'])
             ;
             
+            if(isset($_POST['civility'])) {
+                $user->setCivility($_POST['civility']);
+            }
+
+            if(empty($_POST['civility']))
+            {
+                $errors['civility'] = 'Veuillez cocher le champ civilité'; 
+            }
+
             if(empty($_POST['lastname']))
             {
                 $errors['lastname'] = 'Le nom est obligatoire'; 
@@ -44,6 +56,15 @@ class UserController extends ControllerAbstract
                  $errors['firstname'] = 'Le prénom ne doit pas dépasser les 100 caractères';
             }
             
+            if(empty($_POST['pseudo']))
+            {
+                $errors['pseudo'] = 'Le pseudo est obligatoire'; 
+            }
+            elseif(strlen($_POST['pseudo'])>100)
+            {
+                 $errors['pseudo'] = 'Le pseudo ne doit pas dépasser les 100 caractères';
+            }
+            
             if(empty($_POST['email']))
             {
                 $errors['email'] = 'L\'email est obligatoire'; 
@@ -55,6 +76,11 @@ class UserController extends ControllerAbstract
             elseif (!empty($this->app['user.repository']->findByEmail($_POST['email'])))
             {
                 $errors['email'] = 'L\'email est déjà utilisé';
+            }
+            
+            if(empty($_POST['birthdate_day']) || empty($_POST['birthdate_month']) || empty($_POST['birthdate_year']))
+            {
+                $errors['birthdate'] = 'La date de naissance est obligatoire';
             }
             
             if(empty($_POST['password']))
@@ -77,8 +103,17 @@ class UserController extends ControllerAbstract
                 $errors['password_confirm'] = 'La confirmation n\'est pas identique au mot de passe'; 
             }
             
+            if(isset($_POST['cgu'])) {
+                $user->setCivility($_POST['cgu']);
+            }
+
+            if(empty($_POST['cgu']))
+            {
+                $errors['cgu'] = 'Veuillez accepter les conditions générales de vente'; 
+            }
             if(empty($errors))
             {
+                $birthday = $_POST['birthdate_year'] . '-' . $_POST['birthdate_month'] . '-' . $_POST['birthdate_day'];
                 $user->setPassword($this->app['user.manager']->encodePassword($_POST['password'])); 
                 $this->app['user.repository']->save($user); 
                 
@@ -95,8 +130,48 @@ class UserController extends ControllerAbstract
         return $this->render(
             'user/register.html.twig',
             [
-                'user' => $user
+                'user' => $user,
+                'birthdate_day' => $birthdate_day,
+                'birthdate_month' => $birthdate_month,
+                'birthdate_year' => $birthdate_year,
             ]
         );
     } 
+    
+    public function loginAction()
+    {
+        $email = ''; 
+        
+        if(!empty($_POST))
+        {
+            $email = $_POST['email']; 
+            
+            $user = $this->app['user.repository']->findByEmail($email); 
+            
+            if(!is_null($user))
+            {
+                if($this->app['user.manager']->verifyPassword($_POST['password'], $user->getPassword()))
+                {
+                    $this->app['user.manager']->login($user); 
+                    
+                    return $this->redirectRoute('homepage');
+                }
+            }
+            
+            $this->addFlashMessage('Identification incorrecte', 'error'); 
+        }
+        
+        return $this->render(
+            'user/login.html.twig', 
+            ['email' => $email]
+        ); 
+    }
+    
+    public function logoutAction()
+    {
+        $this->app['user.manager']->logout(); 
+        
+        return $this->redirectRoute('homepage');
+    }
+    
 }
