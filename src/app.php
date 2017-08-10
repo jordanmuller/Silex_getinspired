@@ -47,12 +47,21 @@ $app['user.controller'] = function() use ($app)
 
 ////////////////////////////BACK - OFFICE//////////////////////////////////
 
+$app['box.controller'] = function() use ($app)
+{
+    return new Controller\Admin\BoxAdminController($app);
+};
 
 //*************************REPOSITORIES***************************//
 
 $app['user.repository'] = function() use ($app)
 {
     return new \Repository\UserRepository($app); 
+};
+
+$app['box.repository'] = function() use ($app)
+{
+    return new \Repository\BoxRepository($app); 
 };
 
 //*************************USER MANAGER***************************//

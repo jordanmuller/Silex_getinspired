@@ -31,6 +31,12 @@ $app
 ->bind('user_logout')
 ;
 
+//******************************  ADMIN  *************************************//
+$app
+->match('/admin/box/register', 'box.controller:registerBoxAction')
+->bind('box_register')
+;
+        
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;
