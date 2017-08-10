@@ -2,6 +2,10 @@
 
 // Les namespaces que l'on a créé
 
+use Controller\MovieController;
+use Controller\UserController;
+use Repository\MovieRepository;
+
 // Les namespaces natifs à Silex, que l'on rajoute selon l'application
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
@@ -42,17 +46,26 @@ $app->register(new SessionServiceProvider());
 
 $app['user.controller'] = function() use ($app)
 {
-    return new Controller\UserController($app); 
+    return new UserController($app); 
 };
 
+$app['movie.controller'] = function() use ($app)
+{
+    return new MovieController($app);
+};
 ////////////////////////////BACK - OFFICE//////////////////////////////////
 
 
-//*************************REPOSITORIES***************************//
+//*************************REPOSITORIES APPEL A LA BDD ***************************//
 
 $app['user.repository'] = function() use ($app)
 {
     return new \Repository\UserRepository($app); 
+};
+
+$app['movie.repository'] = function() use($app)
+{
+    return new MovieRepository($app);
 };
 
 //*************************USER MANAGER***************************//

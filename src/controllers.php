@@ -16,6 +16,15 @@ $app->get('/', function () use ($app) {
 
 //****************************** FRONT OFFICE ********************************//
 
+/***************************** MOVIES *************************************/
+$app
+    ->get('/films/affichage', 'movie.controller:listAction')
+    ->bind('movies_list')
+;
+
+
+
+/************************** USER ************************************/
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')
 ->bind('user_register')
