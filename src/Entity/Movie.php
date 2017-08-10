@@ -6,7 +6,7 @@ class Movie
 {
     private $id;
     private $title;
-    private $production_year;
+    private $productionYear;
     private $nationality;
     private $synopsis;
     private $director;
@@ -15,6 +15,7 @@ class Movie
     private $trailer;
     private $poster;
     private $mark;
+    private $price;
     
     function getId() {
         return $this->id;
@@ -24,8 +25,8 @@ class Movie
         return $this->title;
     }
 
-    function getProduction_year() {
-        return $this->production_year;
+    function getProductionYear() {
+        return $this->productionYear;
     }
 
     function getNationality() {
@@ -60,6 +61,10 @@ class Movie
         return $this->mark;
     }
 
+    function getPrice() {
+        return $this->price;
+    }
+
     function setId($id) {
         $this->id = $id;
         return $this;
@@ -70,8 +75,8 @@ class Movie
         return $this;
     }
 
-    function setProduction_year($production_year) {
-        $this->production_year = $production_year;
+    function setProductionYear($productionYear) {
+        $this->productionYear = $productionYear;
         return $this;
     }
 
@@ -114,5 +119,10 @@ class Movie
         $this->mark = $mark;
         return $this;
     }
-    
+
+    function setPrice($price) {
+        $this->price = $price;
+        return $this;
+    }
+
 }
