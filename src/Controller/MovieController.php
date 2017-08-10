@@ -13,4 +13,16 @@ class MovieController extends ControllerAbstract
                 ['movies' => $movies]
         );
     }
+    
+    public function ficheMovie($id) 
+    {
+        $movie = $this->app['movie.repository']->find($id);
+        
+        return $this->render(
+            'movie_detail.html.twig',
+            [
+                'movie' => $movie
+            ]
+        );
+    }
 }

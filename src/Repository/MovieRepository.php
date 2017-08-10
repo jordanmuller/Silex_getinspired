@@ -51,4 +51,10 @@ class MovieRepository extends RepositoryAbstract
         
         return $movies;
     }
+    
+    public function find($id) 
+    {
+        $query = "SELECT * FROM movies WHERE id = :id";
+        
+    }
 }
