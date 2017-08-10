@@ -14,7 +14,7 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
-//******************************FRONT********************************//
+//****************************** FRONT OFFICE ********************************//
 
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')
