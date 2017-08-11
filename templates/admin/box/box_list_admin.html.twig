@@ -18,11 +18,11 @@
                 <thead>
                     <tr>
                         <th>Id</th>  
-                        <th>Title</th>
-                        <th>Content</th>
-                        <th>Price</th>
+                        <th>Titre</th>
+                        <th>Contenu</th>
+                        <th>Prix</th>
                         <th>Stock</th>
-                        <th>Actions</th>
+                        <th class="action" colspan="2">Actions</th>
                     </tr>
                 </thead><hr>
                 <tbody>
@@ -34,8 +34,10 @@
                         <td>{{ box.price }}€</td>
                         <td>{{ box.stock }}</td>
                         <td>
-                            <a href="{{ path('box_register', {id: box.id}) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ path('box_delete_admin', {id: box.id}) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ path('box_register', {id: box.id}) }}" class="btn btn-primary">Modifier</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('box_delete_admin', {id: box.id}) }}" class="btn btn-danger">Supprimer</a>
                         </td> 
                     </tr>
                 {% endfor%}

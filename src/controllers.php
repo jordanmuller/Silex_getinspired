@@ -28,6 +28,18 @@ $app
     ->bind('movie_detail')
 ;
 
+/***************************** BOX *************************************/
+$app
+    ->get('/box/affichage', 'box.controller:listBoxAction')
+    ->bind('box_list')
+;
+
+$app
+    ->get('/box/{id}', 'detail.box.controller:detailBoxAction')
+    ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
+    ->bind('box_detail')
+;
+
 
 /************************** USER ************************************/
 $app

@@ -2,11 +2,15 @@
 
 // Les namespaces que l'on a créé
 
+
+// Les namespaces natifs à Silex, que l'on rajoute selon l'application
+
+
+use Controller\BoxController;
 use Controller\MovieController;
 use Controller\UserController;
 use Repository\MovieRepository;
-
-// Les namespaces natifs à Silex, que l'on rajoute selon l'application
+use Service\UserManager;
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -54,6 +58,16 @@ $app['movie.controller'] = function() use ($app)
 {
     return new MovieController($app);
 };
+
+$app['box.controller'] = function() use ($app)
+{
+    return new BoxController($app);
+};
+
+$app['detail.box.controller'] = function() use ($app)
+{
+    return new \Controller\DetailBoxController($app);
+};
 ////////////////////////////BACK - OFFICE//////////////////////////////////
 
 $app['admin.box.controller'] = function() use ($app)
@@ -85,7 +99,7 @@ $app['movie.repository'] = function() use($app)
 //*************************USER MANAGER***************************//
 $app['user.manager'] = function() use ($app)
 {
-    return new \Service\UserManager($app['session']); 
+    return new UserManager($app['session']); 
 };
 
 

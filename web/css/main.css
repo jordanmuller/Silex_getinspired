@@ -6,7 +6,6 @@ nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     font-size: 1.3em;
     height: 60px;
     margin: 0;
-    margin-bottom: 20px;
 }
 
 div.navbar-header {
@@ -35,7 +34,18 @@ footer {
     background: #546575;
 }
 
+/******  FLASH MESSAGE  ******/
+.flash-msg{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
 /***** FORM GENERAL *******/
+form{
+    margin-bottom: 30px;
+}
+
 textarea{
     resize: vertical;
 }

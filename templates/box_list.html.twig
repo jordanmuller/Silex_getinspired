@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Box - ' %}
+
+{# {% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+   {# <link href="{{asset('css/admin/box_list_admin.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %} #}
+
+{% block content %}
+    <div class="container">
+        <h1>Découvrez nos Box</h1>
+
+        <div class="col-sm-9 col-sm-offset-1">
+            <div class="row">              
+                {% set compteur = 0 %}
+                {% for box in boxes %} 
+                    {% if compteur % 3 == 0 %}                    
+                        </div><div class="row">
+                    {% endif %}
+                    <div class="col-sm-4">
+                        <div class="panel panel-default panel-box">
+                            <div class="panel-heading"><img src="{{ asset('img/chest.png') }}" class="img-responsive img-box" /></div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><strong>{{ box.title }}</strong></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="text-right"><strong>{{ box.price }}€</strong></p>
+                                    </div> 
+                                </div>
+                                    <p>{{ (box.content|slice(0, 50))|nl2br }}...</p>
+                                <div class="row">                                    
+                                    <div class="col-sm-6">
+                                        <a href="" class="pull-right"><span class="glyphicon glyphicon-search" style="font-size: 1em;"></span> Voir</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    {% set compteur = compteur + 1 %}
+                {% endfor %}
+              
+                
+            </div><!-- /.row -->
+        </div><!-- /.col-sm-9 -->
+    </div>
+{% endblock  %}
