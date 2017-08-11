@@ -54,7 +54,27 @@ class MovieRepository extends RepositoryAbstract
     
     public function find($id) 
     {
-        $query = "SELECT * FROM movies WHERE id = :id";
+        $query = "SELECT * FROM movies WHERE id_movie = :id";
         
+        $dbMovie = $this->db->fetchAssoc(
+            $query,
+            [
+                ':id' => $id
+            ]
+        );
+        
+        if(!empty($dbMovie))
+        {
+            return $this->buildEntity($dbMovie);
+        }
+    }
+    
+    public function delete(Movie $movie) 
+    {
+        // Méthode delete de Doctrine, 1er argument le nom de la table, deuxieme argument le champ correspondant pour entrainer la suppression
+        $this->db->delete(
+            'movies',
+            ['id_movie' => $movie->getId()]
+        );
     }
 }

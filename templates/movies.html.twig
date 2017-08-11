@@ -22,11 +22,12 @@
                             </div><div class="row">                        
                         {% endif %}
                                 <div class="col-xs-2">
-                                    <a href=""><img src="{{ movie.poster }}"></a>
+                                    <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{ movie.poster }}" alt="Affiche du film"></a>
                                 </div>
                             
                             {% set compteur = compteur + 1 %}
                     {% endfor %}
+                </div>
             </div>
         </div>
     </div>
