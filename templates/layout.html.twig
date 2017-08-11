@@ -11,7 +11,34 @@
         {% endblock %}
     </head>
     <body>
-
+        {% if user_manager.admin %}
+        <nav class="navbar navbar-inverse">
+            <div class="container">            
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{path('homepage')}}">DashBoard</a>                    
+                    <a href=""><span class="glyphicon glyphicon-search"></span></a>  
+                 </div><!-- /.navbar-header -->
+                    
+                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{path('admin_movies')}}">Gestion Films</a></li>
+                        <li><a href="{{path('box_list_admin')}}">Gestion Box</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                         
+                       
+                       
+                    </ul>      
+                </div><!-- /.navbar-collapse -->   
+            </div>
+        </nav>
+        {% endif %}
         <nav class="navbar navbar-default">
             <div class="container">
                 
@@ -30,7 +57,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="{{path('movies_list')}}">Films</a></li>
-                        <li><a href="{{path('box_register')}}">Box</a></li>
+                        <li><a href="">Box</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if user_manager.user %}{# si un utilisateur est connecté #}

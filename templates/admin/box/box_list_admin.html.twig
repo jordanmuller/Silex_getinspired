@@ -1,0 +1,46 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Box Admin - ' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/admin/box_list_admin.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Gestion Box</h1>
+
+        <p><a href="{{ path('box_register') }}" class="ajout-box" ><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une Box</a></p>
+        
+        <div class="row">
+            <table class="table table-striped table-hover table-admin">
+                <thead>
+                    <tr>
+                        <th>Id</th>  
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead><hr>
+                <tbody>
+                {% for box in boxes %}
+                    <tr>
+                        <td>{{ box.id }}</td>  
+                        <td>{{ box.title }}</td>  
+                        <td>{{ box.content|nl2br }}</td>
+                        <td>{{ box.price }}€</td>
+                        <td>{{ box.stock }}</td>
+                        <td>
+                            <a href="{{ path('box_register', {id: box.id}) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ path('box_delete_admin', {id: box.id}) }}" class="btn btn-danger">Delete</a>
+                        </td> 
+                    </tr>
+                {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock  %}

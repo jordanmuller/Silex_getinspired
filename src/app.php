@@ -56,9 +56,13 @@ $app['movie.controller'] = function() use ($app)
 };
 ////////////////////////////BACK - OFFICE//////////////////////////////////
 
-$app['box.controller'] = function() use ($app)
+$app['admin.box.controller'] = function() use ($app)
 {
     return new Controller\Admin\BoxAdminController($app);
+};
+
+$app['admin.movie.controller'] = function() use($app) {
+  return new \Controller\Admin\MovieAdminController($app);  
 };
 
 //*************************REPOSITORIES APPEL A LA BDD ***************************//

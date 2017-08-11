@@ -6,19 +6,42 @@ use Controller\ControllerAbstract;
 use Entity\Box;
 
 class BoxAdminController extends ControllerAbstract {
-    
-    public function registerBoxAction()
+    public function listBoxAction()
     {
-        $box = new Box(); 
+        $boxes = $this->app['box.repository']->findAll();
+        
+        return $this->render(
+            'admin/box/box_list_admin.html.twig',
+            [
+                'boxes' => $boxes
+            ]
+        );
+    }
+    
+    
+    public function registerBoxAction($id = null)
+    {
+        if(!is_null($id)){
+            // on va chercher la catégorie en BDD
+            $box = $this->app['box.repository']->find($id);
+            
+            if(!$box instanceof Box){
+                $this->app->abort(404);
+            }
+        }
+        else{
+            // nouvelle catégorie
+            $box = new Box();
+        } 
         $errors = []; 
         
         if(!empty($_POST))
         {
             $box
-               ->setId($_POST['id_box'])
                ->setTitle($_POST['title'])        
                ->setContent($_POST['content'])
                ->setPrice($_POST['price'])
+               ->setStock($_POST['stock'])
                
             ;
             
@@ -36,12 +59,16 @@ class BoxAdminController extends ControllerAbstract {
                 $errors['content'] = 'Le contenu doit avoir un minimum de 50 caractères';
             }
             
-            var_dump($errors);
+            if(empty($_POST['stock']))
+            {
+                $errors['stock'] = 'Le stock est obligatoire'; 
+            }
+            
             if(empty($errors))
             { 
                 $this->app['box.repository']->save($box); 
                 
-                //return $this->redirectRoute('list_box');
+                return $this->redirectRoute('box_list_admin');
             }
             else
             {
@@ -57,5 +84,19 @@ class BoxAdminController extends ControllerAbstract {
                 'box' => $box
             ]
         );
-    } 
+    }
+    
+    public function deleteAction($id) {
+        $box = $this->app['box.repository']->find($id);
+        
+        if(!$box instanceof Box){
+            $this->app->abort(404);
+        }
+        
+        $this->app['box.repository']->delete($box);
+                
+        $this->addFlashMessage('La box est supprimée');            
+        return $this->redirectRoute('box_list_admin');
+        
+    }
 }

@@ -1,0 +1,67 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Ajouter un film' %}
+    
+    {% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+{#    <link href="{{asset('css/admin/admin_movies.css')}}" rel="stylesheet" type="text/css" />#}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-6">
+                    {% if movie.id is null %}
+                        <h1>Ajouter un film</h1>
+                    {% else %}
+                        <h1>Modification d'un film</h1>
+                    {% endif %}
+                    <form method="post">
+                        
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input type="text" id="title" name="title" value="{{ movie.title }}" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Année</label>
+                            <input type="text" id="production_year" name="production_year" value="{{ movie.productionYear }}" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Nationalité</label>
+                            <input type="text" id="nationality" name="nationality" value="{{ movie.nationality }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Synopsis</label>
+                            <textarea name="synopsis" id="synopsis" rows="7" cols="66" resize="vertical">{{ movie.synopsis }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Réalisateur</label>
+                            <input type="text" id="director" name="director" value="{{ movie.director }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Synopsis</label>
+                            <input type="text" id="actors" name="actors" value="{{ movie.actors }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <input type="text" id="gnder" name="gender" value="{{ movie.gender }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Prix</label>
+                            <input type="text" name="price" value="{{ movie.price }}" class="form-control">
+                        </div>        
+
+                        <button type="submit" class="btn btn-primary form-control">Enregistrer</button>                       
+        
+                    </form>
+                </div>  
+            </div>
+        </div>
+{% endblock %}

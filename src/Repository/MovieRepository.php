@@ -14,8 +14,7 @@ class MovieRepository extends RepositoryAbstract
     private function buildEntity(array $data)
     {
         $movie = new Movie();
-        
-        
+               
         $movie
             ->setId($data['id_movie'])
             ->setTitle($data['title'])
@@ -52,7 +51,64 @@ class MovieRepository extends RepositoryAbstract
         return $movies;
     }
     
-    public function findby(array $filters)
+    public function find($id) 
+    {
+        $query = "SELECT * FROM movies WHERE id_movie = :id";
+        
+        $dbMovie = $this->db->fetchAssoc(
+            $query,
+            [
+                ':id' => $id
+            ]
+        );
+        
+        if(!empty($dbMovie))
+        {
+            return $this->buildEntity($dbMovie);
+        }
+    }
+    
+    public function save(Movie $movie) 
+    {
+        // les données à enregistrer en BDD
+        $data = ['titre' => $movie->getTitle(),
+                 'productionYear' => $movie->getProductionYear(),
+                 'nationality' => $movie->getNationality(),
+                 'synopsis' => $movie->getSynopsis(),
+                 'director' => $movie->getDirector(),
+                 'actors' => $movie->getActors(),
+                 'gender' => $movie->getGender(),
+                 'trailer' => $movie->getTrailer(),
+                 'poster' => $movie->getPoster(),
+                 'mark' => $movie->getMark(),
+                 'price' => $movie->getPrice()
+                ];
+
+        
+        // si la catégorie a un id, on est en update
+        // sinon en insert
+        $where = !empty($movie->getId())
+            ? ['id_movie' => $movie->getId()]
+            : null
+        ;
+        
+        // appel à la méthode de RepositoryAbstract pour enregistrer
+        $this->persist($data, $where);
+        
+        if(empty($movie->getId())){
+            $movie->setId($this->db->lastInsertId());
+        }
+    }
+    
+    public function delete(Movie $movie) 
+    {
+        // Méthode delete de Doctrine, 1er argument le nom de la table, deuxieme argument le champ correspondant pour entrainer la suppression
+        $this->db->delete(
+            'movies',
+            ['id_movie' => $movie->getId()]
+        );
+    }
+    public function findBy(array $filters)
     {
         $query = "SELECT * FROM movies WHERE true";
                 
@@ -90,3 +146,8 @@ class MovieRepository extends RepositoryAbstract
         return $movies;
     }
 }
+
+
+
+    
+   

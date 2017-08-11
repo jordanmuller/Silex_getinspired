@@ -21,6 +21,11 @@ $app
     ->get('/films/affichage', 'movie.controller:listAction')
     ->bind('movies_list')
 ;
+$app
+    ->get('/film/{id}', 'movie.controller:ficheMovie')
+    ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
+    ->bind('movie_detail')
+;
 
 /************************** USER ************************************/
 $app
@@ -54,10 +59,15 @@ $app
 ->bind('box_register')
 ;
 
-//*****************************BACK*********************************//
+
+//*****************************BACK OFFICE*********************************//
 
 // crée un groupe de routes
 $admin = $app['controllers_factory'];
+
+// toutes les routes définies par $admin
+// auront une URL commençant par /admin sans avoir à l'ajouter dans chaque route
+$app->mount('/admin', $admin);
 
 $admin->before(function () use ($app)
 {
@@ -66,6 +76,44 @@ $admin->before(function () use ($app)
         $app->abort(403, 'Accès refusé'); 
     }
 });
+
+
+//*************************  ADMIN  *****************************//
+/******  BOX  *******/
+$admin
+->get('/box/list', 'admin.box.controller:listBoxAction')
+->bind('box_list_admin')
+;
+
+$admin
+->match('/box/register/{id}', 'admin.box.controller:registerBoxAction')
+->value('id', null)
+->bind('box_register')
+;
+
+$admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
+->assert('id', '\d+') // id doit être un nombre
+->bind('box_delete_admin')
+;
+
+/********************** MOVIES *********************************/
+
+$admin
+    ->get('/films/', 'admin.movie.controller:listAction')
+    ->bind('admin_movies')
+;
+
+$admin
+->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
+->value('id', null)
+->bind('admin_movie_register')
+;
+
+$admin
+    ->get('/film/suppression/{id}', 'admin.movie.controller:deleteAction')
+    ->assert('id', '\d+')
+    ->bind('admin_movie_delete')
+;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

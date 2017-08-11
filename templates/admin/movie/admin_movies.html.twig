@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Gestion films' %}
+    
+    {% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/admin/admin_movies.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    
+        <div class="container">
+            <section>
+            <h1>Gestion Films</h1>
+            <p><a href="{{ path('admin_movie_register') }}" class="ajout-box" ><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un film</a></p>
+            <hr>
+            
+            <table class="table table-striped table-hover text-center table-admin">
+                <tr class="text-center">
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Titre</th>
+                    <th class="text-center">Année</th>
+                    <th class="text-center">Nationalité</th>
+                    <th class="text-center">Synopsis</th>
+                    <th class="text-center">Genre</th>
+                    <th class="text-center">Affiche</th>
+                    <th class="text-center">Prix</th>
+                    <th class="text-center" colspan="3">Actions</th>
+                </tr>
+            {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.id }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.productionYear }}</td>
+                    <td>{{ movie.nationality }}</td>
+                    <td>{{ (movie.synopsis|slice(0, 40) ~ ' (...)')|raw}}</td>
+                    <td>{{ movie.gender }}</td>
+                    <td><img src="{{ movie.poster }}" alt="Affiche du film" class="img-responsive"></td>
+                    <td>{{ movie.price }}€</td>
+                    <td><a href="{{ path('movie_detail', {id: movie.id})}}" class="btn btn-success">Details</a></td>
+                    <td><a href="{{ path('admin_movie_register', {id: movie.id})}}" class="btn btn-primary">Modifier</a></td>
+                    <td><a href="{{ path('admin_movie_delete', {id: movie.id})}}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </table>
+        </section>
+        </div>
+    
+    
+{% endblock %}
