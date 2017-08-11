@@ -61,6 +61,10 @@ $app['admin.box.controller'] = function() use ($app)
     return new Controller\Admin\BoxAdminController($app);
 };
 
+$app['admin.movie.controller'] = function() use($app) {
+  return new \Controller\Admin\MovieAdminController($app);  
+};
+
 //*************************REPOSITORIES APPEL A LA BDD ***************************//
 
 $app['user.repository'] = function() use ($app)

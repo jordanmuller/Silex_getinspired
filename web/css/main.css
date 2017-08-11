@@ -2,7 +2,7 @@ body {
   box-sizing: border-box;
 }
 /*** NAVBAR ***/
-nav.navbar.navbar-default {
+nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     font-size: 1.3em;
     height: 60px;
     margin: 0;
@@ -32,7 +32,7 @@ span.glyphicon.glyphicon-search {
 
 footer {
     padding: 20px;
-    margin-top: 20px;
+    background: #546575;
 }
 
 /***** FORM GENERAL *******/

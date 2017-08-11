@@ -22,6 +22,11 @@ $app
     ->bind('movies_list')
 ;
 
+$app
+    ->get('/film/{id}', 'movie.controller:ficheMovie')
+    ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
+    ->bind('movie_detail')
+;
 
 
 /************************** USER ************************************/
@@ -39,7 +44,9 @@ $app
 ->match('/utilisateur/deconnexion', 'user.controller:logoutAction')
 ->bind('user_logout')
 ;
-//***************************** BACK OFFICE *********************************//
+
+
+//*****************************BACK OFFICE*********************************//
 
 // crée un groupe de routes
 $admin = $app['controllers_factory'];
@@ -56,7 +63,9 @@ $admin->before(function () use ($app)
     }
 });
 
+
 //*************************  ADMIN  *****************************//
+/******  BOX  *******/
 $admin
 ->get('/box/list', 'admin.box.controller:listBoxAction')
 ->bind('box_list_admin')
@@ -71,6 +80,19 @@ $admin
 $admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
 ->assert('id', '\d+') // id doit être un nombre
 ->bind('box_delete_admin')
+;
+
+/********************** MOVIES *********************************/
+
+$admin
+    ->get('/films/', 'admin.movie.controller:listAction')
+    ->bind('admin_movies')
+;
+
+$admin
+    ->get('/film/suppression/{id}', 'admin.movie.controller:deleteAction')
+    ->assert('id', '\d+')
+    ->bind('admin_movie_delete')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
