@@ -7,6 +7,7 @@ class Box {
     private $title;
     private $content;
     private $price;
+    private $stock;
     
     function getId() {
         return $this->id_box;
@@ -22,6 +23,10 @@ class Box {
 
     function getPrice() {
         return $this->price;
+    }
+    
+    function getStock() {
+        return $this->stock;
     }
 
     function setId($id_box) {
@@ -43,6 +48,11 @@ class Box {
         if (!empty($price)) {
             $this->price = $price;
         }
+        return $this;
+    }    
+    
+    function setStock($stock) {
+        $this->stock = $stock;
         return $this;
     }
 }

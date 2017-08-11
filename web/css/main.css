@@ -6,6 +6,7 @@ nav.navbar.navbar-default {
     font-size: 1.3em;
     height: 60px;
     margin: 0;
+    margin-bottom: 20px;
 }
 
 div.navbar-header {
@@ -32,4 +33,9 @@ span.glyphicon.glyphicon-search {
 footer {
     padding: 20px;
     margin-top: 20px;
+}
+
+/***** FORM GENERAL *******/
+textarea{
+    resize: vertical;
 }

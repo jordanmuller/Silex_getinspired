@@ -39,16 +39,14 @@ $app
 ->match('/utilisateur/deconnexion', 'user.controller:logoutAction')
 ->bind('user_logout')
 ;
-//******************************  ADMIN  *************************************//
-$app
-->match('/admin/box/register', 'box.controller:registerBoxAction')
-->bind('box_register')
-;
-
-//*****************************BACK*********************************//
+//***************************** BACK OFFICE *********************************//
 
 // crée un groupe de routes
 $admin = $app['controllers_factory'];
+
+// toutes les routes définies par $admin
+// auront une URL commençant par /admin sans avoir à l'ajouter dans chaque route
+$app->mount('/admin', $admin);
 
 $admin->before(function () use ($app)
 {
@@ -57,6 +55,23 @@ $admin->before(function () use ($app)
         $app->abort(403, 'Accès refusé'); 
     }
 });
+
+//*************************  ADMIN  *****************************//
+$admin
+->get('/box/list', 'admin.box.controller:listBoxAction')
+->bind('box_list_admin')
+;
+
+$admin
+->match('/box/register/{id}', 'admin.box.controller:registerBoxAction')
+->value('id', null)
+->bind('box_register')
+;
+
+$admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
+->assert('id', '\d+') // id doit être un nombre
+->bind('box_delete_admin')
+;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

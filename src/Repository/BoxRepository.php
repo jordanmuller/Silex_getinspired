@@ -10,10 +10,40 @@ class BoxRepository extends RepositoryAbstract{
         return 'box';
     }
     
+    public function findAll() {
+        $query = 'SELECT * FROM box';
+        
+        $dbBoxes = $this->db->fetchAll($query);
+        
+        $boxes = [];
+        
+        foreach($dbBoxes as $dbBox){
+            $box = $this->buildEntity($dbBox);
+            
+            $boxes[] = $box;            
+        }
+        
+        return $boxes;
+    }
+    
+    public function find($id) {
+        $dbBox = $this->db->fetchAssoc(
+            'SELECT * FROM box WHERE id_box=:id',
+            [
+                ':id' => $id
+            ]
+        );
+        
+        if(!empty($dbBox)){
+            return $this->buildEntity($dbBox);
+        }
+    }
+    
     public function save(Box $box) {
         // les données à enregistrer en BDD
         $data = ['titre' => $box->getTitle(),
                  'contenu' => $box->getContent(),
+                 'stock' => $box->getStock()
                 ];
 
         if (!empty($box->getPrice())) {
@@ -30,19 +60,26 @@ class BoxRepository extends RepositoryAbstract{
         // appel à la méthode de RepositoryAbstract pour enregistrer
         $this->persist($data, $where);
         
-        // on set l'id quand on est en insert
         if(empty($box->getId())){
             $box->setId($this->db->lastInsertId());
         }
+    }
+    
+    public function delete(Box $box) {
+        $this->db->delete(
+            'box',
+            ['id_box' => $box->getId()]
+        );
     }
     
     private function buildEntity(array $data) {
         $box = new Box();
         
         $box    ->setId($data['id_box'])
-                ->setTitle($data['title'])
-                ->setContent($data['content'])
-                ->setPrice($data['price'])
+                ->setTitle($data['titre'])
+                ->setContent($data['contenu'])
+                ->setPrice($data['prix'])
+                ->setStock($data['stock'])
         ;
         
         return $box;
