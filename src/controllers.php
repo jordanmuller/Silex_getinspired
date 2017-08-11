@@ -22,7 +22,6 @@ $app
     ->bind('movies_list')
 ;
 
-
 /************************** USER ************************************/
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')
@@ -38,6 +37,17 @@ $app
 ->match('/utilisateur/deconnexion', 'user.controller:logoutAction')
 ->bind('user_logout')
 ;
+
+$app
+->match('/utilisateur/profil', 'user.controller:profileAction')
+->bind('user_profile')
+;
+
+$app
+    ->get('/utilisateur/suppression', 'user.controller:deleteAction')
+    ->bind('user_profile_delete')
+;
+
 //******************************  ADMIN  *************************************//
 $app
 ->match('/admin/box/register', 'box.controller:registerBoxAction')

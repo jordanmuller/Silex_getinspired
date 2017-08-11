@@ -26,6 +26,28 @@ class UserRepository extends RepositoryAbstract
         }
     }
     
+    public function findByPseudo($pseudo)
+    {
+        $dbUser = $this->db->fetchAssoc(
+            'SELECT * FROM users WHERE pseudo = :pseudo', 
+            [
+                ':pseudo' => $pseudo
+            ]    
+        );
+        
+        if(!empty($dbUser))
+        {
+            return $this->buildEntity($dbUser);
+        }
+    }
+    
+    public function findByProfile()
+    {
+        $dbUser = $this->db->fetchAssoc(
+            'SELECT pseudo, lastname, firstname, email, civility birthdate FROM users'
+        );
+    }
+    
     public function save(User $user)
     {
         // les données à enregistrer en BDD
@@ -71,5 +93,14 @@ class UserRepository extends RepositoryAbstract
             ->setRole($data['role'])
         ;
         return $user; 
+    }
+    
+    public function delete(User $user)
+    {
+        $this->db->delete(
+            'users', 
+             ['id_user' => $user->getId_user()]
+        );  
+        
     }
 }
