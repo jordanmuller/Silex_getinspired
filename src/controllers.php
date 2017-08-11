@@ -29,7 +29,6 @@ $app
 ;
 
 
-
 /************************** USER ************************************/
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')

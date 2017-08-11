@@ -14,8 +14,7 @@ class MovieRepository extends RepositoryAbstract
     private function buildEntity(array $data)
     {
         $movie = new Movie();
-        
-        
+               
         $movie
             ->setId($data['id_movie'])
             ->setTitle($data['title'])
@@ -77,4 +76,46 @@ class MovieRepository extends RepositoryAbstract
             ['id_movie' => $movie->getId()]
         );
     }
+    public function findBy(array $filters)
+    {
+        $query = "SELECT * FROM movies WHERE true";
+                
+        if(!empty($_GET['title']))
+        {
+            $query .= " AND title  LIKE '%" . addslashes($_GET['title']) . "%'";
+        }
+        if(!empty($_GET['actors']))
+        {
+            $query .= " AND actors LIKE '%" . addslashes($_GET['actors']) . "%'";
+        }
+        if(!empty($_GET['production_year']))
+        {
+            $query .= " AND production_year LIKE '%" . addslashes($_GET['production_year']) . "%'";
+        }
+        if(!empty($_GET['gender']))
+        {
+            $query .= " AND gender LIKE '%" . addslashes($_GET['gender']) . "%'";
+        }
+        
+        // Preparation de la requete
+        // 
+        // exécution de la requete
+        $dbMovies = $this->db->fetchAll($query);
+        
+        $movies = [];
+        
+        foreach($dbMovies AS $dbMovie)
+        {
+            $movie = $this->buildEntity($dbMovie);
+            
+            $movies[] = $movie;
+        }
+        
+        return $movies;
+    }
 }
+
+
+
+    
+   
