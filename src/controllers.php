@@ -21,7 +21,6 @@ $app
     ->get('/films/affichage', 'movie.controller:listAction')
     ->bind('movies_list')
 ;
-
 $app
     ->get('/film/{id}', 'movie.controller:ficheMovie')
     ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
@@ -55,6 +54,22 @@ $app
 $app
 ->match('/utilisateur/deconnexion', 'user.controller:logoutAction')
 ->bind('user_logout')
+;
+
+$app
+->match('/utilisateur/profil', 'user.controller:profileAction')
+->bind('user_profile')
+;
+
+$app
+    ->get('/utilisateur/suppression', 'user.controller:deleteAction')
+    ->bind('user_profile_delete')
+;
+
+//******************************  ADMIN  *************************************//
+$app
+->match('/admin/box/register', 'box.controller:registerBoxAction')
+->bind('box_register')
 ;
 
 
@@ -99,6 +114,12 @@ $admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
 $admin
     ->get('/films/', 'admin.movie.controller:listAction')
     ->bind('admin_movies')
+;
+
+$admin
+->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
+->value('id', null)
+->bind('admin_movie_register')
 ;
 
 $admin

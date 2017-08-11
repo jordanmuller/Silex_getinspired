@@ -8,6 +8,7 @@ nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     margin: 0;
 }
 
+
 div.navbar-header {
     margin-right: 30px !important;
 }
@@ -30,6 +31,7 @@ span.glyphicon.glyphicon-search {
 }
 
 footer {
+    margin-top: 30px;
     padding: 20px;
     background: #546575;
 }

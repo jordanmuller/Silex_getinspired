@@ -26,7 +26,6 @@ class UserController extends ControllerAbstract
                ->setEmail($_POST['email'])
                ->setBirthdate($_POST['birthdate_year'] . '-' . $_POST['birthdate_month'] . '-' . $_POST['birthdate_day'])
                ->setPassword($_POST['password'])
-              // ->setPassword_confirm($_POST['$password_confirm'])
             ;
             
             if(isset($_POST['civility'])) {
@@ -63,6 +62,10 @@ class UserController extends ControllerAbstract
             elseif(strlen($_POST['pseudo'])>100)
             {
                  $errors['pseudo'] = 'Le pseudo ne doit pas dépasser les 100 caractères';
+            }
+            elseif (!empty($this->app['user.repository']->findByPseudo($_POST['pseudo'])))
+            {
+                $errors['pseudo'] = 'Le pseudo est déjà utilisé';
             }
             
             if(empty($_POST['email']))
@@ -103,21 +106,19 @@ class UserController extends ControllerAbstract
                 $errors['password_confirm'] = 'La confirmation n\'est pas identique au mot de passe'; 
             }
             
-            if(isset($_POST['cgu'])) {
-                $user->setCivility($_POST['cgu']);
-            }
-
             if(empty($_POST['cgu']))
             {
                 $errors['cgu'] = 'Veuillez accepter les conditions générales de vente'; 
             }
+            
             if(empty($errors))
             {
                 $birthday = $_POST['birthdate_year'] . '-' . $_POST['birthdate_month'] . '-' . $_POST['birthdate_day'];
                 $user->setPassword($this->app['user.manager']->encodePassword($_POST['password'])); 
                 $this->app['user.repository']->save($user); 
                 
-                return $this->redirectRoute('homepage');
+                $this->addFlashMessage('Vous êtes bien inscrit!'); 
+                return $this->redirectRoute('user_login');
             }
             else
             {
@@ -174,4 +175,28 @@ class UserController extends ControllerAbstract
         return $this->redirectRoute('homepage');
     }
     
+    public function profileAction()
+    {
+        //$this->app['user.controller']; 
+        
+        return $this->render(
+            'user/profil.html.twig',
+            [
+                'user' => $this->app['user.manager']->getUser()
+            ]
+        ); 
+    }  
+    
+    public function deleteAction()
+    {
+        $user = $this->app['user.manager']->getUser(); 
+        
+        $this->app['user.repository']->delete($user);
+        $this->app['user.manager']->logout();
+        
+        $this->addFlashMessage('Votre compté a bien été supprimée'); 
+        
+        //return new \Symfony\Component\HttpFoundation\Response('');
+        return $this->redirectRoute('homepage');
+    }
 }
