@@ -90,6 +90,12 @@ $admin
 ;
 
 $admin
+->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
+->value('id', null)
+->bind('admin_movie_register')
+;
+
+$admin
     ->get('/film/suppression/{id}', 'admin.movie.controller:deleteAction')
     ->assert('id', '\d+')
     ->bind('admin_movie_delete')

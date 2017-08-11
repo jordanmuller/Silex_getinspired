@@ -8,9 +8,13 @@
 {% endblock %}
 
 {% block content %}
-    <section>
+    
         <div class="container">
-            <h1 class="text-center">Gestion Films</h1>
+            <section>
+            <h1>Gestion Films</h1>
+            <p><a href="{{ path('admin_movie_register') }}" class="ajout-box" ><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un film</a></p>
+            <hr>
+            
             <table class="table table-striped table-hover text-center table-admin">
                 <tr class="text-center">
                     <th class="text-center">ID</th>
@@ -18,13 +22,10 @@
                     <th class="text-center">Année</th>
                     <th class="text-center">Nationalité</th>
                     <th class="text-center">Synopsis</th>
-                    <th class="text-center">Réalisateur</th>
-                    <th class="text-center">Acteurs</th>
                     <th class="text-center">Genre</th>
-                    <th class="text-center">Trailer</th>
                     <th class="text-center">Affiche</th>
-                    <th class="text-center">Note</th>
                     <th class="text-center">Prix</th>
+                    <th class="text-center" colspan="3">Actions</th>
                 </tr>
             {% for movie in movies %}
                 <tr>
@@ -32,18 +33,18 @@
                     <td>{{ movie.title }}</td>
                     <td>{{ movie.productionYear }}</td>
                     <td>{{ movie.nationality }}</td>
-                    <td>{{ movie.synopsis}}</td>
-                    <td>{{ movie.director }}</td>
-                    <td>{{ movie.actors }}</td>
+                    <td>{{ (movie.synopsis|slice(0, 40) ~ ' (...)')|raw}}</td>
                     <td>{{ movie.gender }}</td>
-                    <td>{{ movie.trailer }}</td>
                     <td><img src="{{ movie.poster }}" alt="Affiche du film" class="img-responsive"></td>
-                    <td>{{ movie.mark }}</td>
-                    <td>{{ movie.price }}</td>
+                    <td>{{ movie.price }}€</td>
+                    <td><a href="{{ path('movie_detail', {id: movie.id})}}" class="btn btn-success">Details</a></td>
+                    <td><a href="{{ path('admin_movie_register', {id: movie.id})}}" class="btn btn-primary">Modifier</a></td>
+                    <td><a href="{{ path('admin_movie_delete', {id: movie.id})}}" class="btn btn-danger">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </table>
+        </section>
         </div>
-    </section>
+    
     
 {% endblock %}
