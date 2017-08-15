@@ -4,7 +4,7 @@
     
     {% block stylesheets %}
     {{ parent() }} {# reprend le contenu du bloc parent #}
-{#    <link href="{{asset('css/admin/admin_movies.css')}}" rel="stylesheet" type="text/css" />#}
+    <link href="{{asset('css/admin/admin_movies.css')}}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
                     {% else %}
                         <h1>Modification d'un film</h1>
                     {% endif %}
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         
                         <div class="form-group">
                             <label>Titre</label>
@@ -44,13 +44,31 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Synopsis</label>
+                            <label>Acteurs</label>
                             <input type="text" id="actors" name="actors" value="{{ movie.actors }}" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label>Gender</label>
-                            <input type="text" id="gnder" name="gender" value="{{ movie.gender }}" class="form-control">
+                            <label>Genre</label>
+                            <input type="text" id="gender" name="gender" value="{{ movie.gender }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bande annonce</label>
+                            <input type="text" id="trailer" name="trailer" value="{{ movie.trailer }}" class="form-control">
+                        </div>
+                        
+                        {% if movie.poster is not null %}
+                        <div class="form-group">
+                            <label>Affiche actuelle</label>
+                             <img src="{{asset('photos/' ~ movie.poster)}}" class="img-thumbnail" width="130px" height='170px'>
+                             <input type="hidden" name="old_poster" value="{{movie.poster}}" />
+                        </div>
+                        {% endif %}
+                        
+                        <div class="form-group">
+                            <label>Affiche</label>
+                            <input type="file" id="poster" name="poster" class="form-control">
                         </div>
 
                         <div class="form-group">
