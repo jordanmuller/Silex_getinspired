@@ -13,7 +13,9 @@ class User {
     private $birthdate; 
     private $role; 
     private $password; 
-    
+    private $avatar;
+    private $bio;
+            
     function getId_user() {
         return $this->id_user;
     }
@@ -104,4 +106,24 @@ class User {
     {
         return $this->role == 'admin'; 
     }
+    
+    public function getAvatar() {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar) {
+        $this->avatar = $avatar;
+        return $this;
+    }
+    
+    public function getBio() {
+        return $this->bio;
+    }
+
+    public function setBio($bio) {
+        $this->bio = $bio;
+        return $this;
+    }
+
+
 }

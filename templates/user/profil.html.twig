@@ -6,24 +6,44 @@
 
     <div class="container">
         <div class="starter-template">
-            <h1 style="text-align:center;"><span class="glyphicon glyphicon-user" style="margin-right: 20px;"></span>Profil</h1>
+            <h1 style="text-align:center;"><span class="glyphicon glyphicon-user" style="margin-right: 20px;"></span>Profil</h1><hr/>
         </div>
     </div><!-- /.container -->
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
+            <div class="col-sm-offset-1 col-sm-4">
+                <div class="container-fluid">
+                    {% if user.avatar is not empty %}
+                            <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width:200px;" >
+                        {% endif %}
+                </div> 
+                <div><br/> 
+                    <label for="file" class="btn btn-tertiary btn-primary  js-labelFile" style="margin-left: 15px;">
+                        <a href="{{ path("user_profile_edit",{'pseudo':user.pseudo}) }}" style="color:white;"> Modifier votre profil</a>    
+                    </label>
+                </div>
+                <div><br/> 
+                    <label for="file" class="btn btn-tertiary btn-primary  js-labelFile" style="margin-left: 15px;">
+                        <a href="{{ path("user_profile_password",{'pseudo':user.pseudo}) }}" style="color:white;"> Modifier votre mot de passe</a>    
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-6">
                 <div class="form-group">
                     <ul class="list-group" >
                         <li class="list-group-item active" style="text-align: center; margin: 1px;"><h4>Vos informations</h4></li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Pseudo : {{ user.pseudo }}</li>
+                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Civilité : {{ user.civility }}</span></li>
                         <li class="list-group-item active" style="padding: 20px; margin: 1px;">Nom : {{ user.lastname }}</li>
                         <li class="list-group-item active" style="padding: 20px; margin: 1px;">Prenom : {{ user.firstname }}</li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Civilité : {{ user.civility }}</span></li><br/>
-                        <a href="{{ path("user_profile_delete") }}">Voulez-vous vous désinscrire de GetInspired?</a>
+                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Pseudo : {{ user.pseudo }}</li>
+                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Mail : {{ user.email }}</li>
+                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Bio : {{ user.bio }}</li>
+                        <br/>
+                        <a href="{{ path("user_profile_delete") }}" style="margin-left:130px;">Voulez-vous vous désinscrire de GetInspired?</a>
                     </ul>
                 </div>
-            </div>
+            </div>       
         </div>                    
     </div><!-- /.container -->		
 

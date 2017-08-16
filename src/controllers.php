@@ -62,8 +62,18 @@ $app
 ;
 
 $app
-    ->get('/utilisateur/suppression', 'user.controller:deleteAction')
-    ->bind('user_profile_delete')
+->match('/utilisateur/edit_profil/{pseudo}', 'user.controller:editAction')
+->bind('user_profile_edit')
+;
+
+$app
+->match('/utilisateur/password_profil/{pseudo}', 'user.controller:passwordAction')
+->bind('user_profile_password')
+;
+
+$app
+->get('/utilisateur/suppression', 'user.controller:deleteAction')
+->bind('user_profile_delete')
 ;
 
 //******************************  ADMIN  *************************************//

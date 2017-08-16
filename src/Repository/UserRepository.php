@@ -11,13 +11,21 @@ class UserRepository extends RepositoryAbstract
         return 'users'; 
     }
     
-    public function findByEmail($email)
+    public function findByEmail($email, $idUser = null)
     {
-        $dbUser = $this->db->fetchAssoc(
-            'SELECT * FROM users WHERE email = :email', 
-            [
+        $query = 'SELECT * FROM users WHERE email = :email';
+        $parameters = [
                 ':email' => $email
-            ]    
+            ];  
+        
+        if (!is_null($idUser)) {
+            $query .= ' AND id_user != :id';
+            $parameters[':id'] = $idUser;
+        }
+        
+        $dbUser = $this->db->fetchAssoc(
+            $query, 
+            $parameters    
         );
         
         if(!empty($dbUser))
@@ -26,13 +34,21 @@ class UserRepository extends RepositoryAbstract
         }
     }
     
-    public function findByPseudo($pseudo)
+    public function findByPseudo($pseudo, $idUser = null)
     {
-        $dbUser = $this->db->fetchAssoc(
-            'SELECT * FROM users WHERE pseudo = :pseudo', 
-            [
+        $query = 'SELECT * FROM users WHERE pseudo = :pseudo';
+        $parameters = [
                 ':pseudo' => $pseudo
-            ]    
+            ];
+        
+        if (!is_null($idUser)) {
+            $query .= ' AND id_user != :id';
+            $parameters[':id'] = $idUser;
+        }
+        
+        $dbUser = $this->db->fetchAssoc(
+            $query, 
+            $parameters    
         );
         
         if(!empty($dbUser))
@@ -55,17 +71,19 @@ class UserRepository extends RepositoryAbstract
             'civility'  => $user->getCivility(),
             'lastname'  => $user->getLastname(),
             'firstname' => $user->getFirstname(),
+            'bio'       => $user->getBio(),
             'pseudo'    => $user->getPseudo(), 
+            'avatar'    => $user->getAvatar(), 
             'email'     => $user->getEmail(),
             'birthdate' => $user->getBirthdate(), 
-            'password'  => $user->getPassword()
+            'password'  => $user->getPassword(),
         ];
         
         // si la catégorie a un id, on est en update
         // sinon en insert
         $where = !empty($user->getId_user())
-        ? ['id' => $user->getId_user()]
-        : null;
+        ? ['id_user' => $user->getId_user()]
+        : null; 
         
         // appel à la méthode en Repository\Abstract pour enregistrer
         $this->persist($data, $where);
@@ -86,7 +104,8 @@ class UserRepository extends RepositoryAbstract
             ->setCivility($data['civility'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
-            ->setPseudo($data['pseudo'])    
+            ->setPseudo($data['pseudo'])   
+            ->setBio($data['bio'])
             ->setEmail($data['email'])
             ->setBirthdate($data['birthdate'])    
             ->setPassword($data['password'])
