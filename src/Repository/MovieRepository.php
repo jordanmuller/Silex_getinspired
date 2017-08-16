@@ -12,7 +12,7 @@ class MovieRepository extends RepositoryAbstract
     }
     
     private function buildEntity(array $data)
-    {
+    {        
         $movie = new Movie();
                
         $movie
@@ -71,8 +71,8 @@ class MovieRepository extends RepositoryAbstract
     public function save(Movie $movie) 
     {
         // les données à enregistrer en BDD
-        $data = ['titre' => $movie->getTitle(),
-                 'productionYear' => $movie->getProductionYear(),
+        $data = ['title' => $movie->getTitle(),
+                 'production_year' => $movie->getProductionYear(),
                  'nationality' => $movie->getNationality(),
                  'synopsis' => $movie->getSynopsis(),
                  'director' => $movie->getDirector(),
@@ -85,7 +85,7 @@ class MovieRepository extends RepositoryAbstract
                 ];
 
         
-        // si la catégorie a un id, on est en update
+        // si le film a un id, on est en update
         // sinon en insert
         $where = !empty($movie->getId())
             ? ['id_movie' => $movie->getId()]
@@ -133,6 +133,29 @@ class MovieRepository extends RepositoryAbstract
         // 
         // exécution de la requete
         $dbMovies = $this->db->fetchAll($query);
+        
+        $movies = [];
+        
+        foreach($dbMovies AS $dbMovie)
+        {
+            $movie = $this->buildEntity($dbMovie);
+            
+            $movies[] = $movie;
+        }
+        
+        return $movies;
+    }
+    
+    public function findByBoxId($id) 
+    {
+        $dbMovies = $this->db->fetchAll(
+            'SELECT m.* FROM movies m '
+                . 'JOIN detail_box db ON m.id_movie = db.id_movie'
+                . ' WHERE db.id_box = :id',
+            [
+                ':id' => $id
+            ]
+        );
         
         $movies = [];
         

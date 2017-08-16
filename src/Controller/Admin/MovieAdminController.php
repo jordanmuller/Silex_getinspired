@@ -60,6 +60,46 @@ class MovieAdminController extends ControllerAbstract
         
         if(!empty($_POST))
         {
+            if(isset($_POST['old_poster']))
+            {
+              $poster_bdd = $_POST['old_poster'];
+            }
+            // vérification si l'utilisateur a chargé une image
+            if(!empty($_FILES['poster']['name']))
+            {
+                // si ce n'est pas vide alors un fichier a bien été chargé via le formulaire
+                
+                
+              // vérification de l'extension de l'image (jpg, jpeg, png, gif)
+              $extension = strrchr($_FILES['poster']['name'], '.'); // cette fonction prédéfinie permet de découper une chaîne
+              // selon le caractère fourni en 2ème argument ('.'). Attention, cette fonction découpera la chaîne à partir de
+              //  la dernière occurance du 2ème argument.
+
+              $extension = strtolower($extension); // on transforme $extension afin que tous les caractères soient en minuscule
+              $extension = substr($extension, 1); // ex: .jpg -> jpg
+              $tab_extension_valide = array('jpg', 'jpeg', 'png', 'gif'); // les extensions acceptées
+
+              // on va maintenant vérifier l'extension
+              $verif_extension = in_array($extension, $tab_extension_valide); // in_array vérifie si une valeur fournie en 1er argument
+              // fait partie des valeurs contenues dans un tableau array fournie en 2ème argument
+              
+               if($verif_extension)
+               {
+                   
+                 $poster_bdd = $_FILES['poster']['name'];
+                 // si $verif_extension est égal à true
+                 $poster_dossier = $this->app['photo_dir'] . $poster_bdd;
+
+                 copy($_FILES['poster']['tmp_name'], $poster_dossier); // copy() permet de copier un fichier depuis un emplacement fourni en premier argument 
+                 // vers un autre emplacement fourni en deuxième argument
+                 
+               }
+               elseif(!$verif_extension)
+               {
+                 $errors['poster'] = 'Attention, l\'extension n\'est pas au bon format';                 
+               }
+            }
+            
             $movie
                 ->setTitle($_POST['title'])
                 ->setProductionYear($_POST['production_year'])
@@ -69,7 +109,7 @@ class MovieAdminController extends ControllerAbstract
                 ->setActors($_POST['actors'])
                 ->setGender($_POST['gender'])
                 ->setTrailer($_POST['trailer'])
-                ->setPoster($_POST['poster'])
+                ->setPoster($poster_bdd)
                 ->setPrice($_POST['price'])
             ;
             
@@ -117,7 +157,7 @@ class MovieAdminController extends ControllerAbstract
                 $errors['trailer'] = 'Veuillez ajouter la bande-annonce du film'; 
             }
             
-            if(empty($_POST['poster']))
+            if(is_null($poster_bdd))
             {
                 $errors['poster'] = 'Veuillez ajouter l\'affiche du film'; 
             }

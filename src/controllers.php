@@ -34,7 +34,7 @@ $app
 ;
 
 $app
-    ->get('/box/{id}', 'detail.box.controller:detailBoxAction')
+    ->get('/box/{id}', 'box.controller:detailBoxAction')
     ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
     ->bind('box_detail')
 ;
@@ -74,6 +74,12 @@ $app
 $app
 ->get('/utilisateur/suppression', 'user.controller:deleteAction')
 ->bind('user_profile_delete')
+;
+
+/************************* LISTE *************************************/
+$app
+    ->match('/listes/register', 'liste.controller:registerListAction')
+    ->bind('list_register')
 ;
 
 //******************************  ADMIN  *************************************//
