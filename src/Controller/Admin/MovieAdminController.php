@@ -86,6 +86,7 @@ class MovieAdminController extends ControllerAbstract
                if($verif_extension)
                {
                    
+                 $poster_bdd = $_FILES['poster']['name'];
                  // si $verif_extension est égal à true
                  $poster_dossier = $this->app['photo_dir'] . $poster_bdd;
 

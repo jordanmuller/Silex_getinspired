@@ -66,6 +66,12 @@ $app
     ->bind('user_profile_delete')
 ;
 
+/************************* LISTE *************************************/
+$app
+    ->match('/listes/register', 'liste.controller:registerListAction')
+    ->bind('list_register')
+;
+
 //******************************  ADMIN  *************************************//
 $app
 ->match('/admin/box/register', 'box.controller:registerBoxAction')
