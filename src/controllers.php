@@ -67,8 +67,14 @@ $app
 ;
 
 /************************* LISTE *************************************/
+
 $app
-    ->match('/listes/register', 'liste.controller:registerListAction')
+    ->get('listes/affichage', 'liste.controller:listAction')
+    ->bind('lists_list')
+    ;
+
+$app
+    ->match('/listes/register', 'liste.controller:registerListeAction')
     ->bind('list_register')
 ;
 

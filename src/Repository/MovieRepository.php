@@ -145,7 +145,31 @@ class MovieRepository extends RepositoryAbstract
         
         return $movies;
     }
+    
+    public function findByListeId($id) 
+    {
+        $dbMovies = $this->db->fetchAll(
+            "SELECT m.* FROM movies m "
+            . "LEFT JOIN list_detail ld ON m.id_movie = ld.id_movie "
+            . "WHERE ld.id_list = :id",
+            [
+                ':id' => $id
+            ]
+        );
+        
+        $movies = [];
+        
+        foreach($dbMovies AS $dbMovie)
+        {
+            $movie = $this->buildEntity($dbMovie);
+            
+            $movies[] = $movie;
+        }
+        return $movies;
+    }
 }
+
+
 
 
 

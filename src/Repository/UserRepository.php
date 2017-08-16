@@ -11,6 +11,24 @@ class UserRepository extends RepositoryAbstract
         return 'users'; 
     }
     
+    public function findAll() 
+    {
+        $query = 'SELECT * FROM users'
+        ;
+                
+        $dbUsers = $this->db->fetchAll($query);
+        
+        $users = [];
+        
+        foreach($dbUsers AS $dbUser)
+        {
+            $user = $this->buildEntity($dbUser);
+            
+            $users[] = $user;
+        }
+        return $users;
+    }
+    
     public function findByEmail($email)
     {
         $dbUser = $this->db->fetchAssoc(

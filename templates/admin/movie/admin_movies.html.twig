@@ -35,7 +35,11 @@
                     <td>{{ movie.nationality }}</td>
                     <td>{{ (movie.synopsis|slice(0, 40) ~ ' (...)')|raw}}</td>
                     <td>{{ movie.gender }}</td>
+                    {% if movie.hasPhotoLocale %}
+                    <td><img src="{{asset('photos/' ~ movie.poster)}}" alt="Affiche du film" class="img-responsive"></td>
+                    {% else %}    
                     <td><img src="{{ movie.poster }}" alt="Affiche du film" class="img-responsive"></td>
+                    {% endif %}
                     <td>{{ movie.price }}€</td>
                     <td><a href="{{ path('movie_detail', {id: movie.id})}}" class="btn btn-success">Details</a></td>
                     <td><a href="{{ path('admin_movie_register', {id: movie.id})}}" class="btn btn-primary">Modifier</a></td>

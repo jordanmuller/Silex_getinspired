@@ -12,7 +12,11 @@
         <section>
             <div class="row">
                 <div class="col-sm-3 image">
+                    {% if movie.hasPhotoLocale %}
+                        <div><img src="{{asset('photos/' ~ movie.poster)}}" alt="Icone du film" class="img-thumbnail"></div>
+                    {% else %}
                     <div><img src="{{ movie.poster }}" alt="Icone du film" class="img-thumbnail"></div>
+                    {% endif %}
                     <div class="liens">
                         <input type="button" class="form-control btn btn-default" value="Ajouter à ma whishlist">
                         <input type="button" class="form-control btn btn-success" value="Voir la Bande-annonce">

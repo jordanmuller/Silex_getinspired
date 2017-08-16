@@ -34,8 +34,15 @@ class MovieAdminController extends ControllerAbstract
             $this->app->abort(404);
         }
         
+        $path_poster = $this->app['photo_dir'] . $movie->getPoster();
+        if(file_exists($path_poster))
+        {
+            unlink($path_poster);
+        }
         // La méthode delete va être définie dans CategoryRepository 
         $this->app['movie.repository']->delete($movie);
+        
+        
         
         $this->addFlashMessage('Le film a été supprimé');
         

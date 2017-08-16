@@ -9,6 +9,7 @@
 use Controller\BoxController;
 use Controller\MovieController;
 use Controller\UserController;
+use Repository\ListeRepository;
 use Repository\MovieRepository;
 use Service\UserManager;
 use Silex\Application;
@@ -66,7 +67,7 @@ $app['box.controller'] = function() use ($app)
 
 $app['liste.controller'] = function() use ($app)
 {
-    return new ListeController($app);
+    return new \Controller\ListeController($app);
 };
 
 $app['detail.box.controller'] = function() use ($app)
@@ -99,6 +100,11 @@ $app['box.repository'] = function() use ($app)
 $app['movie.repository'] = function() use($app)
 {
     return new MovieRepository($app);
+};
+
+$app['liste.repository'] = function() use ($app)
+{
+    return new ListeRepository($app);
 };
 
 //*************************USER MANAGER***************************//
