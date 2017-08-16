@@ -22,7 +22,7 @@ class BoxAdminController extends ControllerAbstract {
     public function registerBoxAction($id = null)
     {
         if(!is_null($id)){
-            // on va chercher la catégorie en BDD
+            // on va chercher la box en BDD
             $box = $this->app['box.repository']->find($id);
             
             if(!$box instanceof Box){
@@ -33,6 +33,8 @@ class BoxAdminController extends ControllerAbstract {
             // nouvelle catégorie
             $box = new Box();
         } 
+        
+        $movies = $this->app['movie.repository']->findAll();
         $errors = []; 
         
         if(!empty($_POST))
@@ -68,6 +70,8 @@ class BoxAdminController extends ControllerAbstract {
             { 
                 $this->app['box.repository']->save($box); 
                 
+                $this->app['box.repository']->saveMovies($box, $_POST['movie']);
+                
                 return $this->redirectRoute('box_list_admin');
             }
             else
@@ -81,7 +85,8 @@ class BoxAdminController extends ControllerAbstract {
         return $this->render(
             'admin/box/box_register.html.twig',
             [
-                'box' => $box
+                'box' => $box,
+                'movies' => $movies
             ]
         );
     }

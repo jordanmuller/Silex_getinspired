@@ -34,7 +34,7 @@ $app
 ;
 
 $app
-    ->get('/box/{id}', 'detail.box.controller:detailBoxAction')
+    ->get('/box/{id}', 'box.controller:detailBoxAction')
     ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
     ->bind('box_detail')
 ;
