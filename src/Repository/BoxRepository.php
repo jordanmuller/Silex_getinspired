@@ -65,6 +65,21 @@ class BoxRepository extends RepositoryAbstract{
         }
     }
     
+    public function saveMovies(Box $box, array $movieIds)
+    {
+        $this->db->delete('detail_box', ['id_box' => $box->getId()]);
+        
+        foreach ($movieIds as $movieId) {
+            $this->db->insert(
+                'detail_box', 
+                [
+                    'id_box' => $box->getId(),
+                    'id_movie' => $movieId
+                ]
+            );
+        }
+    }
+    
     public function delete(Box $box) {
         $this->db->delete(
             'box',

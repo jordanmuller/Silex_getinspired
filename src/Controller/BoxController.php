@@ -14,4 +14,17 @@ class BoxController extends ControllerAbstract {
             ]
         );
     }
+    
+    public function detailBoxAction($id) {
+        $box = $this->app['box.repository']->find($id);
+        $movies = $this->app['movie.repository']->findByBoxId($id);
+        
+        return $this->render(
+            'box_detail.html.twig',
+            [
+                'box' => $box,
+                'movies' => $movies
+            ]
+        );
+    }
 }

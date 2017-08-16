@@ -1,0 +1,90 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Edit Profile' %}
+    
+{% block content %}
+
+    <div class="container">
+        <div class="starter-template">
+            <h1 style="text-align:center;"><span class="glyphicon glyphicon-user" style="margin-right: 20px;"></span>Modifier votre profil</h1><hr/>
+        </div>
+    </div><!-- /.container -->
+
+    <div class="container">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="row">
+                
+                <div class="col-sm-offset-1 col-sm-4">
+                    <h4 style="margin-left:15px;">Image de profil</h4>
+                    <div class="container-fluid">
+                        {% if user.avatar is not empty %}
+                            <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width: 200px;"><br/><br/>
+                        {% endif %}
+                        
+                        <div class="form-group">
+                            <input type="file" name="avatar" id="file" class="input-file">
+                            <label for="file" class="btn btn-tertiary btn-primary  js-labelFile">
+                                <span class="js-fileName">
+                                    <span class="glyphicon glyphicon-open "></span> Choisir une image
+                                </span>
+                            </label>
+                        </div>
+                    </div> 
+                </div>
+                        
+                <div class="col-sm-6">
+                    <div class="center-block">
+                        <div class="radio radio-info radio-inline" style="margin-top: 0; padding-right: 10px; ">
+                            <input type="radio" id="m" name="civility" value="m" style="padding-left: 5px;"{% if user.civility == 'm' %}checked{% endif %}>
+                            <label for="m">M &nbsp</label>
+                        </div>
+                        <div class="radio radio-info radio-inline" style="margin-top: 0; padding-right: 10px;">
+                            <input type="radio" id="mme" name="civility" value="mme" style="padding-left: 5px;" {% if user.civility == 'mme' %}checked{% endif %}>
+                            <label for="mme">Mme &nbsp</label>
+                        </div>
+                        <div class="radio radio-info radio-inline" style="margin-top: 0; padding-right: 10px;">
+                            <input type="radio" id="mlle" name="civility" value="mlle" style="padding-left: 5px;" {% if user.civility == 'mlle' %}checked{% endif %}>
+                            <label for="mlle">Mlle &nbsp</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" name="lastname" value="{{ user.lastname }}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Prenom</label>
+                        <input type="text" name="firstname" value="{{ user.firstname }}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pseudo</label>
+                        <input type="text" name="pseudo" value="{{ user.pseudo }}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea rows="4" cols="50" name="bio" class="form-control">{{ user.bio }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" name="email" value="{{ user.email }}" class="form-control">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-primary" style="width:263px;"> Enregistrer vos modifications</button>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-4">
+                            <button type="#" class="btn btn-primary" style="width:262px;"><a href="{{ path("user_profile") }}" style="color:white;">Revenir au profil</a></button>
+                        </div>
+                    </div>
+
+                </div>       
+            </div>   
+        </form>
+    </div><!-- /.container -->			
+
+{% endblock  %}{# empty Twig template #}

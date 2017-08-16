@@ -51,6 +51,11 @@ class UserManager
     {
         $this->session->remove('user'); 
     }
+    
+    public function edit()
+    {
+        $this->session->get('user'); 
+    }
  
     public function getUser()
     {
