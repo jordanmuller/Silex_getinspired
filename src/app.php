@@ -64,6 +64,11 @@ $app['box.controller'] = function() use ($app)
     return new BoxController($app);
 };
 
+$app['liste.controller'] = function() use ($app)
+{
+    return new ListeController($app);
+};
+
 $app['detail.box.controller'] = function() use ($app)
 {
     return new \Controller\DetailBoxController($app);

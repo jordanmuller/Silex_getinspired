@@ -71,8 +71,8 @@ class MovieRepository extends RepositoryAbstract
     public function save(Movie $movie) 
     {
         // les données à enregistrer en BDD
-        $data = ['titre' => $movie->getTitle(),
-                 'productionYear' => $movie->getProductionYear(),
+        $data = ['title' => $movie->getTitle(),
+                 'production_year' => $movie->getProductionYear(),
                  'nationality' => $movie->getNationality(),
                  'synopsis' => $movie->getSynopsis(),
                  'director' => $movie->getDirector(),
@@ -85,7 +85,7 @@ class MovieRepository extends RepositoryAbstract
                 ];
 
         
-        // si la catégorie a un id, on est en update
+        // si le film a un id, on est en update
         // sinon en insert
         $where = !empty($movie->getId())
             ? ['id_movie' => $movie->getId()]
