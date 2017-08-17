@@ -1,0 +1,141 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Listes - Get Inspired' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+{#    <link href="{{asset('css/movies.css')}}" rel="stylesheet" type="text/css" />#}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-6">
+                    {% if liste.id_list is null %}
+                        <h1>Ajouter une liste</h1>
+                    {% else %}
+                        <h1>Modification de la liste</h1>
+                    {% endif %}
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input type="text" id="title" name="title" value="{{ liste.title }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" id="description" rows="7" cols="66" resize="vertical">{{ liste.description }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Affiche</label>
+                            <input type="file" id="picture" name="picture" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 1</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 2</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 3</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 4</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 5</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 6</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 7</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 8</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 9</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Film 10</label>
+                            <select id="movie" name="movie[]" class="form-control">
+                                <option value="" disabled selected>Choisissez un film</option>
+                                {% for movie in movies %}
+                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>                       
+        
+                    </form>
+                </div>  
+            </div>
+        </div>
+{% endblock %}

@@ -124,5 +124,18 @@ class Movie
         $this->price = $price;
         return $this;
     }
+    
+    // On crée cette méthode dans l'objet pour savoir si la photo est située dans le répertoire locale ou à distance
+    // On appelle cette fonction dans twig : movie.hasPhotoLocale
+    public function hasPhotoLocale() 
+    {
+        if (strstr($this->getPoster(), 'http'))
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 }

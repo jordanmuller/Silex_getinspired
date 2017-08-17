@@ -58,6 +58,15 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{path('movies_list')}}">Films</a></li>
                         <li><a href="{{path('box_list')}}">Box</a></li>
+                        
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listes <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('list_register') }}">Créer une liste</a></li>
+                                <li><a href="{{path('lists_list')}}">Voir toutes les listes</a></li>
+                            </ul>
+                        </li>
+                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if user_manager.user %}{# si un utilisateur est connecté #}
@@ -93,6 +102,7 @@
                     {% endfor %}
                 </div>
             </div>
+            
         </div>            
         {% block content %}{% endblock %}
         <footer>

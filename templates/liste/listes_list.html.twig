@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Listes - Get Inspired' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/listes.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+         <section class="affichage">
+            <h1>Listes de films</h1>
+            <div class="row center-block">
+
+                {% for list in listes %}
+                    <a href="{{ path('list_detail', {id: list.id_list})}}"><div class="col-sm-4 liste" style="background: url('{{asset('photos/' ~ list.picture)}}'); background-size: cover;">
+                        <h3>{{ list.title }} </h3>
+                        <p>Par {{ list.userPseudo }}</p>
+                    </div></a>
+                {% endfor %}
+            </div>
+        </section>
+    </div>    
+
+{% endblock %}

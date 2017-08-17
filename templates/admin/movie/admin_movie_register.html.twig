@@ -61,7 +61,11 @@
                         {% if movie.poster is not null %}
                         <div class="form-group">
                             <label>Affiche actuelle</label>
+                            {% if movie.hasPhotoLocale %}
                              <img src="{{asset('photos/' ~ movie.poster)}}" class="img-thumbnail" width="130px" height='170px'>
+                            {% else %}
+                            <img src="{{ movie.poster }}" class="img-thumbnail" width="130px" height='170px'>
+                            {% endif %} 
                              <input type="hidden" name="old_poster" value="{{movie.poster}}" />
                         </div>
                         {% endif %}

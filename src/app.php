@@ -9,6 +9,7 @@
 use Controller\BoxController;
 use Controller\MovieController;
 use Controller\UserController;
+use Repository\ListeRepository;
 use Repository\MovieRepository;
 use Service\BasketManager;
 use Service\UserManager;
@@ -73,13 +74,14 @@ $app['basket.controller'] = function() use ($app)
 
 $app['liste.controller'] = function() use ($app)
 {
-    return new ListeController($app);
+    return new \Controller\ListeController($app);
 };
 
 $app['detail.box.controller'] = function() use ($app)
 {
     return new \Controller\DetailBoxController($app);
 };
+
 ////////////////////////////BACK - OFFICE//////////////////////////////////
 
 $app['admin.box.controller'] = function() use ($app)
@@ -106,6 +108,16 @@ $app['box.repository'] = function() use ($app)
 $app['movie.repository'] = function() use($app)
 {
     return new MovieRepository($app);
+};
+
+$app['liste.repository'] = function() use ($app)
+{
+    return new ListeRepository($app);
+};
+
+$app['review.repository'] = function() use ($app)
+{
+    return new Repository\ReviewRepository($app);
 };
 
 //*************************USER MANAGER***************************//

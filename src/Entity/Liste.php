@@ -9,7 +9,7 @@ class Liste
     private $description;
     private $picture;
     private $user;
-    private $movie;
+    private $movies = [];
     
     function getId_list() {
         return $this->id_list;
@@ -31,8 +31,8 @@ class Liste
         return $this->user;
     }
 
-    function getMovie() {
-        return $this->movie;
+    function getMovies() {
+        return $this->movies;
     }
 
     function setId_list($id_list) {
@@ -60,10 +60,44 @@ class Liste
         return $this;
     }
 
-    function setMovie(Movie $movie) {
-        $this->movie = $movie;
+    function setMovies(array $movies) {
+        $this->movies = $movies;
         return $this;
     }
 
-
+    public function getUserId() 
+    {
+        // Si la propriété catégory qui contient un objet $categry de la classe Category n'est pas null
+        if(!is_null($this->user))
+        {
+            // On récupère l'id grâce à la méthode getId() de la class Category
+            return $this->user->getId_user();
+        }
+    }
+    
+    public function getUserPseudo() 
+    {
+        if(!is_null($this->user))
+        {
+            return $this->user->getPseudo();
+        }
+    }
+    
+    public function getMovieId() 
+    {
+        // Si la propriété catégory qui contient un objet $movie de la classe Category n'est pas null
+        if(!is_null($this->movie))
+        {
+            // On récupère l'id grâce à la méthode getId() de la class Movie
+            return $this->movie->getId();
+        }
+    }
+    
+    public function getMovieTitle() 
+    {
+        if(!is_null($this->movie))
+        {
+            return $this->movie->getTitle();
+        }
+    }
 }

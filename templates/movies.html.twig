@@ -64,7 +64,11 @@
                             </div><div class="row">                        
                         {% endif %}
                                 <div class="col-xs-2">
-                                    <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{ movie.poster }}" alt="Affiche du film"></a>
+                                    {% if movie.hasPhotoLocale %}
+                                        <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{asset('photos/' ~ movie.poster)}}" alt="Affiche du film"></a>                               
+                                    {% else %}
+                                        <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{ movie.poster }}" alt="Affiche du film"></a>
+                                    {% endif %}
                                 </div>
                             {% set compteur = compteur + 1 %}
                     {% endfor %}
