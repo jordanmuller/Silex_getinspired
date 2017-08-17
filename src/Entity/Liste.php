@@ -71,7 +71,7 @@ class Liste
         if(!is_null($this->user))
         {
             // On récupère l'id grâce à la méthode getId() de la class Category
-            return $this->user->getId();
+            return $this->user->getId_user();
         }
     }
     
@@ -85,10 +85,10 @@ class Liste
     
     public function getMovieId() 
     {
-        // Si la propriété catégory qui contient un objet $categry de la classe Category n'est pas null
+        // Si la propriété catégory qui contient un objet $movie de la classe Category n'est pas null
         if(!is_null($this->movie))
         {
-            // On récupère l'id grâce à la méthode getId() de la class Category
+            // On récupère l'id grâce à la méthode getId() de la class Movie
             return $this->movie->getId();
         }
     }

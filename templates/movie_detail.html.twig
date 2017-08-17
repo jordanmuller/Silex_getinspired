@@ -20,6 +20,21 @@
                     <div class="liens">
                         <input type="button" class="form-control btn btn-default" value="Ajouter à ma whishlist">
                         <input type="button" class="form-control btn btn-success" value="Voir la Bande-annonce">
+                        <form method="post">
+                           
+                                <label>Noter le film</label>
+                                
+                                <input type="hidden" name="note" value="" id="note"/>
+                                <img src="design/star_clear.gif" id="clear_stars" title="Sans intérêt c'est trop nul">
+                                <img src="design/star_out.gif" id="star_1" class="star"/>
+                                <img src="design/star_out.gif" id="star_2" class="star"/>
+                                <img src="design/star_out.gif" id="star_3" class="star"/>
+                                <img src="design/star_out.gif" id="star_4" class="star"/>
+                                <img src="design/star_out.gif" id="star_5" class="star"/>
+                                <!-- Ajouter autant d'étoile que nécessaire !-->
+                                <input type="submit" value="Noter" class="bouton"/>
+                            
+                        </form>
                     </div>
                     
                 </div>
@@ -46,4 +61,9 @@
             </div>
         </section>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+            
+    <script src="{{ asset('js/movie_detail.js') }}"></script>
 {% endblock %}

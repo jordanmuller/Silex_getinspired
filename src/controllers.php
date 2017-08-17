@@ -84,6 +84,12 @@ $app
     ;
 
 $app
+    ->get('liste/affichage/{id}', 'liste.controller:ficheListe')
+    ->value('id', null)
+    ->bind('list_detail')
+;
+
+$app
     ->match('/listes/register', 'liste.controller:registerListeAction')
     ->bind('list_register')
 ;

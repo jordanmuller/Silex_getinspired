@@ -74,29 +74,65 @@ class ListeRepository extends RepositoryAbstract
         return $listes;
     }
     
+     public function find($id) 
+    {
+        $query = "SELECT * FROM lists l "
+                . "LEFT JOIN users u ON l.id_user = u.id_user "
+                . "LEFT JOIN list_detail ld ON ld.id_list = l.id_list "
+                . "LEFT JOIN movies m ON m.id_movie = ld.id_movie "
+                . "WHERE l.id_list = :id";
+        
+        $dbList = $this->db->fetchAssoc(
+            $query,
+            [
+                ':id' => $id
+            ]
+        );
+        
+        if(!empty($dbList))
+        {
+            //On crée l'entity à partir de ce que l'on récupère dans la BDD
+            return $this->buildEntity($dbList);
+        }
+    }
+    
     public function save(Liste $liste) 
     {
         // les données à enregistrer en BDD
-        $data = ['title' => $liste->getTitle(),
+        $data = ['list_title' => $liste->getTitle(),
                  'description' => $liste->getDescription(),
                  'picture' => $liste->getPicture(),
-                 'user' => $liste->getUserId(),
-                 'movie' => $liste->getMovieId()
+                 'id_user' => $liste->getUserId()
                 ];
 
         
         // si la liste a un id, on est en update
         // sinon en insert
-        $where = !empty($liste->getId())
-            ? ['id_list' => $liste->getId()]
+        $where = !empty($liste->getId_list())
+            ? ['id_list' => $liste->getId_list()]
             : null
         ;
         
         // appel à la méthode de RepositoryAbstract pour enregistrer
         $this->persist($data, $where);
         
-        if(empty($liste->getId())){
-            $liste->setId($this->db->lastInsertId());
+        if(empty($liste->getId_list())){
+            $liste->setId_list($this->db->lastInsertId());
+        }
+    }
+    
+    public function saveMovies(Liste $list, array $movieIds)
+    {
+        $this->db->delete('list_detail', ['id_list' => $list->getId_list()]);
+        
+        foreach ($movieIds as $movieId) {
+            $this->db->insert(
+                'list_detail', 
+                [
+                    'id_list' => $list->getId_list(),
+                    'id_movie' => $movieId
+                ]
+            );
         }
     }
 }
