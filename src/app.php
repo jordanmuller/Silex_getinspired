@@ -10,6 +10,7 @@ use Controller\BoxController;
 use Controller\MovieController;
 use Controller\UserController;
 use Repository\MovieRepository;
+use Service\BasketManager;
 use Service\UserManager;
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
@@ -28,6 +29,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
     // pour accéder au Usermanager dans les templates twig 
     $twig->addGlobal('user_manager', $app['user.manager']); 
+    $twig->addGlobal('basket_manager', $app['basket.manager']);
     return $twig;
 });
 
@@ -62,6 +64,11 @@ $app['movie.controller'] = function() use ($app)
 $app['box.controller'] = function() use ($app)
 {
     return new BoxController($app);
+};
+
+$app['basket.controller'] = function() use ($app)
+{
+    return new Controller\BasketController($app);
 };
 
 $app['liste.controller'] = function() use ($app)
@@ -107,5 +114,9 @@ $app['user.manager'] = function() use ($app)
     return new UserManager($app['session']); 
 };
 
+$app['basket.manager'] = function() use ($app)
+{
+    return new BasketManager($app['session']); 
+};
 
 return $app;

@@ -110,6 +110,7 @@ class UserRepository extends RepositoryAbstract
             ->setBirthdate($data['birthdate'])    
             ->setPassword($data['password'])
             ->setRole($data['role'])
+            ->setAvatar($data['avatar'])
         ;
         return $user; 
     }

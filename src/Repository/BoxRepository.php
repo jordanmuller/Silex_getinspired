@@ -80,10 +80,18 @@ class BoxRepository extends RepositoryAbstract{
         }
     }
     
+    
     public function delete(Box $box) {
         $this->db->delete(
             'box',
             ['id_box' => $box->getId()]
+        );
+    }
+    
+    public function deleteBasket(Box $box) {
+        $this->db->delete(
+            'box',
+            ['id_box' => $box->getId()] 
         );
     }
     

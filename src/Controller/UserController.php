@@ -189,7 +189,7 @@ class UserController extends ControllerAbstract
     { 
         // $this->app['user.manager']->edit(); 
         
-        $user = $this->app['user.manager']->getUser();//$this->app['user.repository']->findByPseudo($pseudo);
+        $user = $this->app['user.manager']->getUser();
 
         if (!empty($_POST)) 
         {

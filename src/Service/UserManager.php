@@ -61,7 +61,7 @@ class UserManager
     {
         return $this->session->get('user'); 
     }
-    
+
     /**
      * 
      * @return string

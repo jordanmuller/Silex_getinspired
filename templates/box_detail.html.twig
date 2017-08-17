@@ -31,11 +31,25 @@
                                 </div>
                                 {% endfor %}
                             </div>
+                       
                             <div class="row">                                    
                                 <div class="col-sm-12">
-                                    <a href="{{path('box_list')}}" class="pull-right"><span class="glyphicon glyphicon-search" style="font-size: 1em;"></span> Retour aux box</a>
+                                    
+                                    <a href="{{path('box_list')}}" class="pull-right btn btn-primary"><span class="glyphicon glyphicon-search" style="font-size: 1em;"></span> Retour aux box</a>
+
+                                    
+                                    <form method="post">
+                                        <select name="quantity" id="quantity" class="pull-right btn btn-primary" placeholder="Quantité" style="margin-right: 10px; height:39px;">
+                                            <option value="" >Quantité</option> 
+                                            {% for nb in 1..10 %}
+                                                <option value="{{ nb }}">{{ nb }}</option> 
+                                            {% endfor %} 
+                                        </select>
+                                        <button type="submit" class="pull-right btn btn-primary" style="margin-right: 10px;">Ajouter</button>
+                                    </form>
                                 </div>
                             </div>
+
                         </div>
                     </div>
             </div><!-- /.row -->

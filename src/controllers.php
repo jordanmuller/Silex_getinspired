@@ -34,13 +34,24 @@ $app
 ;
 
 $app
-    ->get('/box/{id}', 'box.controller:detailBoxAction')
+    ->match('/box/{id}', 'box.controller:detailBoxAction')
     ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
     ->bind('box_detail')
 ;
 
+/************************** BASKET ************************************/
+$app
+->match('/utilisateur/panier', 'basket.controller:basketAction')
+->bind('basket')
+;
+
+$app
+->match('/utilisateur/panier/supprimer/{id_box}', 'basket.controller:deleteBasket')
+->bind('basket_delete')
+;
 
 /************************** USER ************************************/
+
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')
 ->bind('user_register')
