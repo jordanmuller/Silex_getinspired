@@ -24,6 +24,7 @@ class BoxAdminController extends ControllerAbstract {
         if(!is_null($id)){
             // on va chercher la box en BDD
             $box = $this->app['box.repository']->find($id);
+            $boxMovies = $this->app['movie.repository']->findByBoxId($id);
             
             if(!$box instanceof Box){
                 $this->app->abort(404);
@@ -32,6 +33,7 @@ class BoxAdminController extends ControllerAbstract {
         else{
             // nouvelle catégorie
             $box = new Box();
+            $boxMovies = [];
         } 
         
         $movies = $this->app['movie.repository']->findAll();
@@ -86,7 +88,8 @@ class BoxAdminController extends ControllerAbstract {
             'admin/box/box_register.html.twig',
             [
                 'box' => $box,
-                'movies' => $movies
+                'movies' => $movies,
+                'boxMovies' => $boxMovies
             ]
         );
     }

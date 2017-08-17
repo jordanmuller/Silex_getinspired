@@ -22,8 +22,7 @@ $app
     ->bind('movies_list')
 ;
 $app
-    ->get('/film/{id}', 'movie.controller:ficheMovie')
-    ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
+    ->match('/film/{id}', 'movie.controller:ficheMovie')
     ->bind('movie_detail')
 ;
 
@@ -35,7 +34,6 @@ $app
 
 $app
     ->get('/box/{id}', 'box.controller:detailBoxAction')
-    ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
     ->bind('box_detail')
 ;
 
@@ -87,6 +85,7 @@ $app
     ->match('/listes/register', 'liste.controller:registerListeAction')
     ->bind('list_register')
 ;
+
 
 //******************************  ADMIN  *************************************//
 $app
