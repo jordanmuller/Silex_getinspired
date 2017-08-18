@@ -41,13 +41,14 @@ div.liens input {
 }
 
 .comments-list li {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     display: block;
     position: relative;
 }
 
 /* Avatar */
 .comments-list .comment-avatar {
+    margin: 10px 0;
     width: 40px;
     height: 40px;
     float: left;

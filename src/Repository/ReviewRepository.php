@@ -21,7 +21,7 @@ class ReviewRepository extends RepositoryAbstract
                 . 'JOIN movies m ON m.id_movie = r.id_movie '
                 . 'JOIN users u ON u.id_user = r.id_user '
                 . 'WHERE m.id_movie = :id '
-                . 'ORDER BY r.date_enregistrement ASC LIMIT 0, 5',
+                . 'ORDER BY r.date_enregistrement DESC LIMIT 0, 5',
                 
         [
                 ':id' => $id
