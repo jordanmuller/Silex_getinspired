@@ -68,10 +68,8 @@ class MovieController extends ControllerAbstract
             $review = new Review();
             $review->setMovie($movie);
             $review->setUser($user);
-            $review->setNote($note);
             
-            $errors = []; 
-        
+            $errors = [];        
             
             $now = new \DateTime();
             

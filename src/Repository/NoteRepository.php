@@ -46,7 +46,8 @@ class NoteRepository extends RepositoryAbstract
                 . 'FROM movie_note mn '
                 . 'JOIN movies m ON m.id_movie = mn.id_movie '
                 . 'JOIN users u ON u.id_user = mn.id_user '
-                . 'WHERE m.id_movie = :id ',
+                . 'WHERE m.id_movie = :id '
+                . 'GROUP BY mn.id_user ',
                     
             [
                 ':id' => $id
