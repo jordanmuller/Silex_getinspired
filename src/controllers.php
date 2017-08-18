@@ -49,6 +49,16 @@ $app
 ->bind('basket_delete')
 ;
 
+$app
+->match('utilisateur/panier/vider', 'basket.controller:emptyBasket')
+->bind('basket_empty')
+;
+
+$app
+->match('utilisateur/panier/payer', 'basket.controller:payBasket')
+->bind('basket_pay')
+;
+
 /************************** USER ************************************/
 
 $app
