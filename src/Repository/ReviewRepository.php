@@ -76,6 +76,7 @@ class ReviewRepository extends RepositoryAbstract
         $user
             ->setId_user($data['id_user'])
             ->setPseudo($data['pseudo'])
+            ->setAvatar($data['avatar'])
                 
         ;
         
