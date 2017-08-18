@@ -10,12 +10,10 @@ class BasketController extends ControllerAbstract
     {
   
         $basket = $this->app['basket.manager']->get();
-        echo '<pre>'; var_dump($_POST); echo '</pre>';
         return $this->render(
             'basket.html.twig',
                 [
                     'basket' => $basket,
-                    //'box' => $box
                 ]
         );
     }
