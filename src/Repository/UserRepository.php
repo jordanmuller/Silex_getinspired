@@ -120,7 +120,6 @@ class UserRepository extends RepositoryAbstract
         $this->db->delete(
             'users', 
              ['id_user' => $user->getId_user()]
-        );  
-        
+        );         
     }
 }

@@ -1,10 +1,10 @@
 $('.color option:eq(1)').prop('selected', true).css('backgroundColor','black');
 
   $('a').children('i').hover(function() {
-    $('table').css('transform', 'scale(0.8)').css('transition', 'all 1s');
+   /* $('table').css('transform', 'scale(0.8)').css('transition', 'all 1s');
 	$('#totalAmount').css('transform', 'scale(0.8)').css('transition', 'all 1s');
 	$('#mainContent').css('backgroundColor','rgba(211,211,211,0.6)');
-	$('.hide').slideDown('slow');
+	$('.hide').slideDown('slow'); */
   }, function() {
     // on mouseout, reset the background colour
     $('table').css('transform', '');

@@ -80,7 +80,6 @@ class BoxRepository extends RepositoryAbstract{
         }
     }
     
-    
     public function delete(Box $box) {
         $this->db->delete(
             'box',
