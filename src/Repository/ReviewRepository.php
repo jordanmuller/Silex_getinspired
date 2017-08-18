@@ -67,6 +67,8 @@ class ReviewRepository extends RepositoryAbstract
         }
     }
     
+    
+    
     private function buildEntity(array $data)
     {
         $user = new User();
@@ -74,6 +76,7 @@ class ReviewRepository extends RepositoryAbstract
         $user
             ->setId_user($data['id_user'])
             ->setPseudo($data['pseudo'])
+            ->setAvatar($data['avatar'])
                 
         ;
         

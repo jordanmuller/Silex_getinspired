@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Entity\Review;
+use Entity\Note;
 
 class MovieController extends ControllerAbstract
 {
@@ -22,8 +23,41 @@ class MovieController extends ControllerAbstract
         // On récupère l'utilisateur en cours
         $user = $this->app['user.manager']->getUser();       
         
+        
+        // GESTION DES NOTES
+        $notes = $this->app['note.repository']->findByMovies($id);
+        if(isset($_POST['rating']))
+        {
+            $note = new Note();
+            $note->setMovie($movie);
+            $note->setUser($user);
+            
+            $errors = [];
+            
+            $note->setNote($_POST['rating']);
+            
+            if(empty($_POST['rating']))
+            {
+                 $errors['rating'] = 'Vous devez saisir une note'; 
+            }
+            
+            if(empty($errors))
+            { 
+                $this->app['note.repository']->save($note);
+                $message = '<strong>Votre note a bien été enregistrée</strong>';
+                $this->addFlashMessage($message, 'success');
+                
+            }
+            else
+            {
+                $message = '<strong>Le formulaire contient des erreurs</strong>'; 
+                $message .='<br>' . implode('<br>', $errors); 
+                $this->addFlashMessage($message, 'error'); 
+            }
+        }
+        
         // GESTION DES COMMENTAIRES
-        // 
+        
         // affichage des commentaires
         $reviews = $this->app['review.repository']->findByMovies($id);
         
@@ -34,7 +68,8 @@ class MovieController extends ControllerAbstract
             $review = new Review();
             $review->setMovie($movie);
             $review->setUser($user);
-
+            $review->setNote($note);
+            
             $errors = []; 
         
             
@@ -72,7 +107,8 @@ class MovieController extends ControllerAbstract
             [
                 'movie' => $movie,
                 'reviews' => $reviews,
-                'user' => $user
+                'user' => $user,
+                'notes' => $notes
             ]
         );
     }
