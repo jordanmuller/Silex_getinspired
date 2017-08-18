@@ -68,6 +68,12 @@ class Review
         }
     }
     
+    public function getUserAvatar() {
+        if(!is_null($this->user)) {
+            return $this->user->getAvatar();
+        }
+    }
+    
     public function getIdMovie() {
         if(!is_null($this->movie))
         {

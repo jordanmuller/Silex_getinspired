@@ -38,13 +38,28 @@
                         </form>
                     {% endif %}
                     
-                    {% for review in reviews %}
-                        <ul>
-                            <li>Pseudo: {{ review.userPseudo }}</li>
-                            <li>Commentaire: {{ review.content }}</li>
-                            <li>Date: {{ review.date_enregistrement }}</li>
-                        </ul>
+                    <ul id="comments-list" class="comments-list">
+                    {# on boucle pour afficher les commentaires #}
+                    {% for review in reviews %}                        
+			<li>
+                            <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar"><img src="{{ asset('img/' ~ review.Useravatar) }}" alt=""></div>
+                                <!--Container du comment -->
+                                <div class="comment-box">
+                                        <div class="comment-head">
+                                                <p class="comment-name">{{ review.Userpseudo }}</p>
+                                                <span>{{ review.date_enregistrement|date('d/m/Y H:i') }}</span>
+                                                <p class="rating">Note: </p>
+                                        </div>
+                                        <div class="comment-content">
+                                            {{ review.content }}
+                                        </div>
+                                </div>
+                            </div>
+                        <li>
                     {% endfor %}
+                    </ul>
                 </div>
                 <div class="col-sm-3">
                     <h4>Informations sur {{ movie.title }}</h4>
@@ -67,6 +82,6 @@
 {% endblock %}
 
 {% block javascripts %}
-            
+    {{ parent() }}    
     <script src="{{ asset('js/movie_detail.js') }}"></script>
 {% endblock %}
