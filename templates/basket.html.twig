@@ -10,12 +10,14 @@
 {% endblock %} 
 
 {% block content %}
-	
+    
+    <div class="container">
+	<h1 style="color:white; width:1140px;">Votre panier</h1><hr/>
+    </div>
+    
 	<div id="mainContent">
-            <div id="header">
-                <h3>Votre panier</h3>
-            </div>
             <div id="basket">
+                <form method="post">
                 <table>
                     <tr>
                         <th>Box</th>
@@ -26,7 +28,7 @@
                     </tr>
                     {% for element in basket %}
                     <tr>
-                        <td>{{ element.box.title }}</td>
+                        <td><input name="title" class="title" value="{{ element.box.title }}"></td>
 
                         <td><input name="price" class="price" value="{{ element.box.price }}" />€</td>
                         <td>
@@ -41,25 +43,22 @@
                 </table>
                 <div id="totalAmount">
                     <div class="left">
-                        <h1>A payer</h1>
+                        <h2>A payer</h2>
                         <p style=" font-size: 12px;">TVA incluse</p>
                     </div>
                     <div class="right">
-                        <input name="total" id="total" value="{{ basket_manager.total }}" />€
+                        <input name="total" id="total" value="{{ basket_manager.total }}"/>€
                     </div>
-                </div>
-                <div class="btn btn-primary col-sm-offset-8 col-sm-4" style="width: 263px;">
-                    <a href=""><span style="color: white; padding: 10px; ">Buy</span><i class="fa fa-shopping-cart" style="color: white;"></i></a>
-                </div>
+                </div>                
+                   <button type="submit" class="btn btn-primary"><span style="color: white; padding: 10px; ">Buy</span><i class="fa fa-shopping-cart" style="color: white;"></i></button>
+                </form>
             </div>	
-            <div class="hide">
-           
-            </div>
-	</div>
-                  
+	</div> 
+               
 {% endblock  %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/basket.js') }}"></script>
 {% endblock  %}
+
