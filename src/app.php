@@ -120,6 +120,11 @@ $app['review.repository'] = function() use ($app)
     return new Repository\ReviewRepository($app);
 };
 
+$app['note.repository'] = function() use($app)
+{
+    return new Repository\NoteRepository($app);
+};
+
 //*************************USER MANAGER***************************//
 $app['user.manager'] = function() use ($app)
 {
