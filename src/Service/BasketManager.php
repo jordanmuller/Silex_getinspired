@@ -3,6 +3,7 @@
 namespace Service;
 
 use Entity\Box;
+use Entity\Order;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class BasketManager
@@ -19,10 +20,12 @@ class BasketManager
     public function initBasket()
     {
         if (!$this->session->has('basket')) {
+            // On passe un tableau vide en argement dans le contenu de $_SESSION['basket'][]
             $this->session->set('basket', []);
         }
     }
-
+    
+    // On obtient $_SESSION['basket']['box']
     public function addBox(Box $box, $qt = 1)
     {
         $this->initBasket();
@@ -66,8 +69,23 @@ class BasketManager
             
             unset($basket[$idBox]);
             
+            // On crée une nouvelle session
             $this->session->set('basket', $basket);
         }
     }
-
+    
+    // Fonction pour vider entièrement le panier
+    public function removeAll() 
+    {
+        if ($this->session->has('basket'))
+        {
+            $basket = $this->session->get('basket');
+            
+            unset($basket);
+            // la méthode ->set() prend une variable ou un tableau en argument si le panier est vide
+            $this->session->set('basket', []);
+        }
+    }
+    
+    
 }

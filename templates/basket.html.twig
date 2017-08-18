@@ -17,7 +17,7 @@
     
 	<div id="mainContent">
             <div id="basket">
-                <form method="post">
+                <form method="post" action="{{path('basket_pay')}}">
                 <table>
                     <tr>
                         <th>Box</th>
@@ -50,7 +50,8 @@
                         <input name="total" id="total" value="{{ basket_manager.total }}"/>€
                     </div>
                 </div>                
-                   <button type="submit" class="btn btn-primary"><span style="color: white; padding: 10px; ">Buy</span><i class="fa fa-shopping-cart" style="color: white;"></i></button>
+                    <button type="submit" class="btn btn-primary"><span style="color: white; padding: 10px; ">Buy</span><i class="fa fa-shopping-cart" style="color: white;"></i></button>
+                    <a href="{{path('basket_empty')}}">Vider le panier</a>
                 </form>
             </div>	
 	</div> 

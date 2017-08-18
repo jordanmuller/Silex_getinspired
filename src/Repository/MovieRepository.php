@@ -146,6 +146,7 @@ class MovieRepository extends RepositoryAbstract
         return $movies;
     }
     
+    // On récupère tous les films dont les id sont égaux à ceux de la table detail_box
     public function findByBoxId($id) 
     {
         $dbMovies = $this->db->fetchAll(

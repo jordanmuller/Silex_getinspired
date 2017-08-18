@@ -125,6 +125,11 @@ $app['note.repository'] = function() use($app)
     return new Repository\NoteRepository($app);
 };
 
+$app['order.repository'] = function() use($app) 
+{
+    return new Repository\OrderRepository($app);
+};
+
 //*************************USER MANAGER***************************//
 $app['user.manager'] = function() use ($app)
 {

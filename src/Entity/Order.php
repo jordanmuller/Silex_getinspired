@@ -4,7 +4,7 @@ namespace Entity;
 
 class Order {
     private $id_order;
-    private $id_user;
+    private $user;
     private $price;
     private $register_date;
     private $state;
@@ -34,8 +34,8 @@ class Order {
         return $this;
     }
 
-    public function setId_user($id_user) {
-        $this->id_user = $id_user;
+    public function setUser(User $user) {
+        $this->user = $user;
         return $this;
     }
 
@@ -54,4 +54,13 @@ class Order {
         return $this;
     }
     
+    // getIdUser() appartient à l'Entity Order
+    public function getIdUser() 
+    {
+        if(!is_null($this->user))
+        {
+            // ->getId_user() appartient à l'entity User
+            return $this->user->getId_user();
+        }
+    }
 }
