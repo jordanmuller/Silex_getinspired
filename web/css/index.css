@@ -32,7 +32,10 @@ span.glyphicon {
 
 /************ SECTION VISUAL ******************/
 section.visual {
-    padding: 20px;
-    padding-top: 40px;
+    padding: 20px;  
     background: #DF691A;
+}
+
+.text-center {
+    margin: 5px;
 }

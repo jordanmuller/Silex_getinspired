@@ -126,7 +126,6 @@ $app
 ->bind('box_register')
 ;
 
-
 //*****************************BACK OFFICE*********************************//
 
 // crée un groupe de routes
@@ -143,7 +142,6 @@ $admin->before(function () use ($app)
         $app->abort(403, 'Accès refusé'); 
     }
 });
-
 
 //*************************  ADMIN  *****************************//
 /******  BOX  *******/

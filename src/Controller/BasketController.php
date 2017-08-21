@@ -69,7 +69,7 @@ class BasketController extends ControllerAbstract
             {
                 $errors['price'] = 'Il doit y avoir un prix'; 
             }
-            //echo '<pre>'; var_dump($errors); echo '</pre>';
+            
             if(empty($errors))
             { 
                 $this->app['order.repository']->save($order);
@@ -77,6 +77,7 @@ class BasketController extends ControllerAbstract
                 $this->addFlashMessage($message, 'success');
                 
                 // on repasse l'id du film dans la route movie_detail comme stipulé dans controllers
+                $basket = $this->app['basket.manager']->removeAll();
                 return $this->redirectRoute('basket');
             }
             else
@@ -84,13 +85,8 @@ class BasketController extends ControllerAbstract
                 $message = '<strong>Le formulaire contient des erreurs</strong>'; 
                 $message .='<br>' . implode('<br>', $errors); 
                 $this->addFlashMessage($message, 'error'); 
-                
-                
+
             }            
         }
-        
-        
-        
-        
     }
 }
