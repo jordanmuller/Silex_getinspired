@@ -15,7 +15,6 @@
         {% endblock %}
     </head>
     <body>
-
         {% if user_manager.admin %}
         <nav class="navbar navbar-inverse">
             <div class="container">            
@@ -34,6 +33,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{path('admin_movies')}}">Gestion Films</a></li>
                         <li><a href="{{path('box_list_admin')}}">Gestion Box</a></li>
+                        <li><a href="{{path('admin_listes')}}">Gestion Listes</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                          
@@ -122,7 +122,6 @@
                 </ul>
             </div>
         </footer>
-
         {% block javascripts %}
             {# CDN jQuery #}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

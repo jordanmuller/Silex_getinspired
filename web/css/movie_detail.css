@@ -151,6 +151,31 @@ span.moyenne{
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
 }
+
+.comment-foot{
+    float: right;
+}
+
+.btn-signale-comment, .btn-signale-comment:hover{   
+    color: black;
+    height: 30px;
+    margin: 5px;
+    border: 1px;
+    padding: 5px;
+}
+
+.btn-delete-comment{
+    color: white;
+    background-color: #D9534F;
+    height: 30px;
+    margin: 5px;
+    border: 1px;
+    padding: 5px;
+}
+
+.signale{
+    border: 1px solid red;
+}
 /***************** STAR RATING ***********************/
 
 fieldset, label { margin: 0; padding: 0; }

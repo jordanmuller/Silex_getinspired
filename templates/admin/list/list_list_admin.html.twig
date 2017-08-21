@@ -1,0 +1,47 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Box Admin - ' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/admin/box_list_admin.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Gestion Listes</h1>
+        
+        <div class="row">
+            <table class="table table-striped table-hover table-admin">
+                <thead>
+                    <tr>
+                        <th>Id</th>  
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Auteur</th>
+                        <th class="action" colspan="2">Actions</th>
+                    </tr>
+                </thead><hr>
+                <tbody>
+                {% for liste in listes %}
+                    <tr>
+                        <td>{{ liste.id_list }}</td>  
+                        <td>{{ liste.title }}</td>  
+                        <td>{{ liste.description|raw }}</td>
+                        <td><img src="{{asset('photos/' ~ liste.picture)}}" alt="Image de la liste" class="img-responsive"></td>
+                        <td>{{ liste.userPseudo }}</td>
+                        <td>
+                            <a href="{{ path('list_register', {id: liste.id_list}) }}" class="btn btn-primary">Modifier</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('list_delete_admin', {id: liste.id_list}) }}" class="btn btn-danger">Supprimer</a>
+                        </td> 
+                    </tr>
+                {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock  %}
+

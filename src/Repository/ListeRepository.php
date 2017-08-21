@@ -135,4 +135,13 @@ class ListeRepository extends RepositoryAbstract
             );
         }
     }
+    
+    public function delete(Liste $liste) 
+    {
+        // Méthode delete de Doctrine, 1er argument le nom de la table, deuxieme argument le champ correspondant pour entrainer la suppression
+        $this->db->delete(
+            'lists',
+            ['id_list' => $liste->getId_list()]
+        );
+    }
 }
