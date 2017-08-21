@@ -10,10 +10,9 @@ class User {
     private $firstname; 
     private $pseudo; 
     private $email;
-    private $birthdate_day; 
-    private $birthdate_month; 
-    private $birthdate_year; 
+    private $birthdate; 
     private $password; 
+    private $role; 
     
     function getId_user() {
         return $this->id_user;
@@ -39,61 +38,64 @@ class User {
         return $this->email;
     }
 
-    function getBirthdate_day() {
-        return $this->birthdate_day;
-    }
-
-    function getBirthdate_month() {
-        return $this->birthdate_month;
-    }
-
-    function getBirthdate_year() {
-        return $this->birthdate_year;
+    function getBirthdate() {
+        return $this->birthdate;
     }
 
     function getPassword() {
         return $this->password;
     }
 
+    function getRole() {
+        return $this->role;
+    }
+
     function setId_user($id_user) {
         $this->id_user = $id_user;
+        return $this;
     }
 
     function setCivility($civility) {
         $this->civility = $civility;
+        return $this;
     }
 
     function setLastname($lastname) {
         $this->lastname = $lastname;
+        return $this;
     }
 
     function setFirstname($firstname) {
         $this->firstname = $firstname;
+        return $this;
     }
 
     function setPseudo($pseudo) {
         $this->pseudo = $pseudo;
+        return $this;
     }
 
     function setEmail($email) {
         $this->email = $email;
+        return $this;
     }
 
-    function setBirthdate_day($birthdate_day) {
-        $this->birthdate_day = $birthdate_day;
-    }
-
-    function setBirthdate_month($birthdate_month) {
-        $this->birthdate_month = $birthdate_month;
-    }
-
-    function setBirthdate_year($birthdate_year) {
-        $this->birthdate_year = $birthdate_year;
+    function setBirthdate($birthdate) {
+        $this->birthdate = $birthdate;
+        return $this;
     }
 
     function setPassword($password) {
         $this->password = $password;
+        return $this;
     }
+
+    function setRole($role) {
+        $this->role = $role;
+        return $this;
+    }
+
+        
     
     public function isAdmin()
     {
