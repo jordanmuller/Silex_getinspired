@@ -40,7 +40,7 @@ footer ul.list-inline {
     margin: 0;
 }
 
-footer a, footer a:hover {
+a, a:hover {
     text-decoration: none;
     color: #fff;
 }
