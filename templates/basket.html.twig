@@ -49,9 +49,12 @@
                     <div class="right">
                         <input name="total" id="total" value="{{ basket_manager.total }}"/>€
                     </div>
-                </div>                
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:10px;"><span><i class="fa fa-shopping-cart" style="color: white;"></i>  Buy </span></button>
-                    <a href="{{path('basket_empty')}}" class="pull-right" style="color:white; background-color: #df691a; margin-top: 10px; padding: 9px;"><span><i class="glyphicon glyphicon-refresh" style="color: white;"></i>  Vider le panier</span></a>
+                </div> 
+                    {% if basket is not empty  %}
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:10px;"><span><i class="fa fa-shopping-cart" style="color: white;"></i> Buy</span></button>
+                    <a href="{{path('basket_empty')}}" class="pull-right" style="color:white; background-color: #df691a; margin-top: 10px; padding: 9px;"><span><i class="glyphicon glyphicon-refresh" style="color: white;"></i> Vider le panier</span></a>
+                    {% endif %}
+                    <a href="{{path('box_list')}}" class="pull-left" style="color:white; background-color: #df691a; margin-top: 10px; padding: 9px;"><span><i class="glyphicon glyphicon-arrow-left" style="color: white;"></i> Retour au Box</span></a>
                 </form>
             </div>	
 	</div> 

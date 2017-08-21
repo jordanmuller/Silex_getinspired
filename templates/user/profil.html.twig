@@ -15,8 +15,10 @@
             <div class="col-sm-offset-1 col-sm-4">
                 <div class="container-fluid">
                     {% if user.avatar is not empty %}
-                            <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width:200px;" >
-                        {% endif %}
+                        <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width:200px;" >
+                    {% else %}
+                        <img src="{{ asset('img/profil.png') }}" class="img-thumbnail" style="height:200px; width: 200px;">
+                    {% endif %}
                 </div> 
                 <div><br/> 
                     <label for="file" class="btn btn-tertiary btn-primary  js-labelFile" style="margin-left: 15px;">
