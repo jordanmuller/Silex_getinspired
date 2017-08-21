@@ -14,23 +14,37 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <img src="{{ asset("img/carlito's way.png")}}" alt="Fight Club" class="img-responsive">                                          
-                        <div class="carousel-caption inscription">    
-                            <h2>Vous ne savez pas quoi regardez ?</h2>
-                            <h1> Rejoignez Get Inspired</h1>
-                            <p>Découvrez, commentez, partagez vos films préférés avec toute la communauté</p>
-                            <div><a href="{{ path('user_register')}}"><button type="button" class="btn btn-primary btn-lg">Inscrivez-vous maintenant !</button></a></div>
-                            <a href="{{ path('user_login')}}"<button type="button" class="btn btn-default btn-md">Déjà inscrit ? Connectez-vous !</button></a>                          
-                        </div>
+                    <div class="carousel-caption inscription">    
+                        <h2>Vous ne savez pas quoi regardez ?</h2>
+                        {% if not user_manager.user %}
+                        <h1> Rejoignez Get Inspired</h1>
+                        {% endif %}
+                        {% if user_manager.user %}
+                        <h1>Welcome to <span style="color: #df691a; font-weight: bold;">Get Inspired !</span></h1>
+                        {% endif %}
+                        <p>Découvrez, commentez, partagez vos films préférés avec toute la communauté</p>
+                        {% if not user_manager.user %}
+                        <div><a href="{{ path('user_register')}}"><button type="button" class="btn btn-primary btn-lg">Inscrivez-vous maintenant !</button></a></div>
+                        <a href="{{ path('user_login')}}"<button type="button" class="btn btn-default btn-md">Déjà inscrit ? Connectez-vous !</button></a>
+                        {% endif %}                          
+                    </div>
                 </div>
 
                 <div class="item">
                     <img src="{{ asset('img/spiderman_homecoming.jpg')}}" alt="Spiderman Homecoming" class="img-responsive">
                     <div class="carousel-caption inscription">                  
                         <h2>Vous ne savez pas quoi regardez ?</h2>
+                        {% if not user_manager.user %}
                         <h1> Rejoignez Get Inspired</h1>
+                        {% endif %}
+                        {% if user_manager.user %}
+                        <h1>Welcome to <span style="color: #df691a; font-weight: bold;">Get Inspired !</span></h1>
+                        {% endif %}
                         <p>Découvrez, commentez, partagez vos films préférés avec toute la communauté</p>
+                        {% if not user_manager.user %}
                         <div><a href="{{ path('user_register')}}"><button type="button" class="btn btn-primary btn-lg">Inscrivez-vous maintenant !</button></a></div>
                         <a href="{{ path('user_login')}}"<button type="button" class="btn btn-default btn-md">Déjà inscrit ? Connectez-vous !</button></a>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -38,10 +52,17 @@
                     <img src="{{ asset('img/gollum.jpg')}}" alt="Le Seigneur des Anneaux" class="img-responsive">
                     <div class="carousel-caption inscription">                  
                         <h2>Vous ne savez pas quoi regardez ?</h2>
+                        {% if not user_manager.user %}
                         <h1> Rejoignez Get Inspired</h1>
+                        {% endif %}
+                        {% if user_manager.user %}
+                        <h1>Welcome to <span style="color: #df691a; font-weight: bold;">Get Inspired !</span></h1>
+                        {% endif %}
                         <p>Découvrez, commentez, partagez vos films préférés avec toute la communauté</p>
+                        {% if not user_manager.user %}
                         <div><a href="{{ path('user_register')}}"><button type="button" class="btn btn-primary btn-lg">Inscrivez-vous maintenant !</button></a></div>
                         <a href="{{ path('user_login')}}"<button type="button" class="btn btn-default btn-md">Déjà inscrit ? Connectez-vous !</button></a>
+                        {% endif %}
                     </div>
                 </div>
                 
@@ -50,21 +71,35 @@
                     <img src="{{ asset('img/matrix.jpg')}}" alt="Pulp Fiction" class="img-responsive">
                     <div class="carousel-caption inscription">                  
                         <h2>Vous ne savez pas quoi regardez ?</h2>
+                        {% if not user_manager.user %}
                         <h1> Rejoignez Get Inspired</h1>
+                        {% endif %}
+                        {% if user_manager.user %}
+                        <h1>Welcome to <span style="color: #df691a; font-weight: bold;">Get Inspired !</span></h1>
+                        {% endif %}
                         <p>Découvrez, commentez, partagez vos films préférés avec toute la communauté</p>
+                        {% if not user_manager.user %}
                         <div><a href="{{ path('user_register')}}"><button type="button" class="btn btn-primary btn-lg">Inscrivez-vous maintenant !</button></a></div>
                         <a href="{{ path('user_login')}}"<button type="button" class="btn btn-default btn-md">Déjà inscrit ? Connectez-vous !</button></a>
+                        {% endif %}
                     </div>
                 </div>
 
                 <div class="item">
                     <img src="{{ asset('img/mad_max.jpg')}}" alt="Mad Max" class="img-responsive">
-                    <div class="carousel-caption inscription">                  
+                    <div class="carousel-caption inscription">
                         <h2>Vous ne savez pas quoi regardez ?</h2>
+                        {% if not user_manager.user %}
                         <h1> Rejoignez Get Inspired</h1>
+                        {% endif %}
+                        {% if user_manager.user %}
+                        <h1>Welcome to <span style="color: #df691a; font-weight: bold;">Get Inspired !</span></h1>
+                        {% endif %}
                         <p>Découvrez, commentez, partagez vos films préférés avec toute la communauté</p>
+                        {% if not user_manager.user %}
                         <div><a href="{{ path('user_register')}}"><button type="button" class="btn btn-primary btn-lg">Inscrivez-vous maintenant !</button></a></div>
                         <a href="{{ path('user_login')}}"<button type="button" class="btn btn-default btn-md">Déjà inscrit ? Connectez-vous !</button></a>
+                        {% endif %}
                     </div>
                 </div>
                 
@@ -112,7 +147,7 @@
                     <h2 class="text-center">Les films les mieux notés</h2>
                 </div>
                 <div class="col-sm-6">
-                    <h2 class="text-center">Les derniers Mini-Feedbacks</h2>
+                    <h2 class="text-center">Les dernières Inspirations</h2>
                 </div>
             </div>
         </div>

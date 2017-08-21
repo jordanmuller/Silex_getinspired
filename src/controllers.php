@@ -92,6 +92,11 @@ $app
 ;
 
 $app
+->match('/utilisateur/password/desinscription', 'user.controller:desinscriptionAction')
+->bind('user_profile_desinscription')
+;
+
+$app
 ->get('/utilisateur/suppression', 'user.controller:deleteAction')
 ->bind('user_profile_delete')
 ;
