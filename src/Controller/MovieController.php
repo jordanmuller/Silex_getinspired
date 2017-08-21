@@ -25,36 +25,13 @@ class MovieController extends ControllerAbstract
         
         
         // GESTION DES NOTES
+        
+        // affichage de la moyennes
+        $moyennes = $this->app['note.repository']->moyenneByMovie($id);
+//        echo '<pre>'; var_dump($moyennes); echo '</pre>';
+        
         $notes = $this->app['note.repository']->findByMovies($id);
-        if(isset($_POST['rating']))
-        {
-            $note = new Note();
-            $note->setMovie($movie);
-            $note->setUser($user);
-            
-            $errors = [];
-            
-            $note->setNote($_POST['rating']);
-            
-            if(empty($_POST['rating']))
-            {
-                 $errors['rating'] = 'Vous devez saisir une note'; 
-            }
-            
-            if(empty($errors))
-            { 
-                $this->app['note.repository']->save($note);
-                $message = '<strong>Votre note a bien été enregistrée</strong>';
-                $this->addFlashMessage($message, 'success');
-                
-            }
-            else
-            {
-                $message = '<strong>Le formulaire contient des erreurs</strong>'; 
-                $message .='<br>' . implode('<br>', $errors); 
-                $this->addFlashMessage($message, 'error'); 
-            }
-        }
+        
         
         // GESTION DES COMMENTAIRES
         
@@ -64,6 +41,42 @@ class MovieController extends ControllerAbstract
         
         if(!empty($_POST))
         {
+            if(!$this->app['user.manager']->getUser()){
+                $message = '<strong>Vous devez être connecté pour poster un commentaire/noter un film</strong>';
+                $this->addFlashMessage($message, 'error');  
+                return $this->redirectRoute('user_login');              
+            }
+            
+            if(!empty($_POST['rating']))
+            {
+                $note = new Note();
+                $note->setMovie($movie);
+                $note->setUser($user);
+
+                $errors = [];
+
+                $note->setNote($_POST['rating']);
+
+                if(empty($_POST['rating']))
+                {
+                     $errors['rating'] = 'Vous devez saisir une note'; 
+                }
+
+                if(empty($errors))
+                { 
+                    $this->app['note.repository']->save($note);
+                    $message = '<strong>Votre note a bien été enregistrée</strong>';
+                    $this->addFlashMessage($message, 'success');
+
+                }
+                else
+                {
+                    $message = '<strong>Le formulaire contient des erreurs</strong>'; 
+                    $message .='<br>' . implode('<br>', $errors); 
+                    $this->addFlashMessage($message, 'error'); 
+                }
+            }
+
             // enregistrement d'un nouveau commentaire
             $review = new Review();
             $review->setMovie($movie);
@@ -84,7 +97,7 @@ class MovieController extends ControllerAbstract
             }                      
                         
             if(empty($errors))
-            { 
+            {                
                 $this->app['review.repository']->save($review);
                 $message = '<strong>Votre commentaire a bien été enregistré</strong>';
                 $this->addFlashMessage($message, 'success');
@@ -106,7 +119,8 @@ class MovieController extends ControllerAbstract
                 'movie' => $movie,
                 'reviews' => $reviews,
                 'user' => $user,
-                'notes' => $notes
+                'notes' => $notes,
+                'moyennes' => $moyennes,
             ]
         );
     }

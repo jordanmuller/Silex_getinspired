@@ -28,8 +28,11 @@ div.liens input {
     margin-bottom: 10px;
 }
 
-#myModalLabel {
-    color: white;
+.star-rating{
+    color: #FFCD35;
+}
+span.moyenne{
+    font-size: 1.5em;
 }
 
 /* CSS des COMMENTAIRES  */
