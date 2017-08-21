@@ -42,6 +42,12 @@ class BasketController extends ControllerAbstract
     
     public function payBasket() 
     {
+        if(!$this->app['user.manager']->getUser())
+        {
+          $message = '<strong>Vous devez être connecté pour payer votre commande</strong>'; 
+          $this->addFlashMessage($message, 'error'); 
+          return $this->redirectRoute('user_login');
+        }
         // On récupère la session en cours l'objet $user grâce à user.manager
         $user = $this->app['user.manager']->getUser();
         
