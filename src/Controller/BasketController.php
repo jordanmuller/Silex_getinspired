@@ -44,8 +44,8 @@ class BasketController extends ControllerAbstract
     {
         // On récupère la session en cours l'objet $user grâce à user.manager
         $user = $this->app['user.manager']->getUser();
-        
-        echo '<pre>'; var_dump($_POST); echo '</pre>';
+        echo '<pre>'; var_dump($user); echo '</pre>';
+        //echo '<pre>'; var_dump($_POST); echo '</pre>';
         
         // Enregistrement d'une nouvelle commande
         if (!empty($_POST))
