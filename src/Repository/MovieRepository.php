@@ -26,7 +26,6 @@ class MovieRepository extends RepositoryAbstract
             ->setGender($data['gender'])
             ->setTrailer($data['trailer'])
             ->setPoster($data['poster'])
-            ->setMark($data['mark'])
             ->setPrice($data['price'])
         ;
 
@@ -80,7 +79,6 @@ class MovieRepository extends RepositoryAbstract
                  'gender' => $movie->getGender(),
                  'trailer' => $movie->getTrailer(),
                  'poster' => $movie->getPoster(),
-                 'mark' => $movie->getMark(),
                  'price' => $movie->getPrice()
                 ];
 

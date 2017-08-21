@@ -10,4 +10,9 @@ button{
     width:204px;
 }
 
+.btn-filtre, .btn-filtre:hover {
+    color: #DF691A;
+}
+
+
 
