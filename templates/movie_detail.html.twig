@@ -1,0 +1,105 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Films - Get Inspired' %}
+    
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/movie_detail.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-3 image">
+                    {% if movie.hasPhotoLocale %}
+                        <div><img src="{{asset('photos/' ~ movie.poster)}}" alt="Icone du film" class="img-thumbnail"></div>
+                    {% else %}
+                    <div><img src="{{ movie.poster }}" alt="Icone du film" class="img-thumbnail"></div>
+                    {% endif %}
+                    
+                    {% if user_manager.user %}{# si un utilisateur est connecté #}
+                    <div class="liens">
+                        <input type="button" class="form-control btn btn-default" value="Ajouter à ma whishlist">                        
+                    </div>                    
+                    {% endif %}
+                    
+                </div>
+                <div class="col-sm-6">
+                    <h1>{{ movie.title}}</h1>
+                    <h2>Un film réalisé par <span>{{ movie.director }}</span> ({{movie.productionYear}})</h2><br>
+                    <div>{{ movie.trailer|raw }}</div><br>
+                    
+                    {% if user_manager.user %}{# si un utilisateur est connecté #}
+
+                        <h4>Laissez une note et un commentaire</h4>
+                        <form method="POST">
+
+                            <fieldset class="rating pull-left">
+                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                <input type="radio" id="star3" name="rat    ing" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>        
+                            </fieldset>
+
+                            <div class="form-group">
+                                <textarea name="content" id="content" rows="4" cols="57" resize="vertical"></textarea>
+                            </div>
+
+                             <button type="submit" class="btn btn-primary commentaire">Valider</button>
+
+                        </form>
+                    {% endif %}
+                    
+                    <ul id="comments-list" class="comments-list">
+                    {% for review in reviews %}                        
+                        <li>
+                            <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar"><img src="{{ asset('img/' ~ review.Useravatar) }}" alt=""></div>
+                                <!--Container du comment -->
+                                <div class="comment-box">
+                                        <div class="comment-head">
+                                                <p class="comment-name">{{ review.Userpseudo }}</p>
+                                                <span>{{ review.date_enregistrement|date('d/m/Y H:i') }}</span>
+                                                {% for note in notes %}
+                                                    {# si l'id user de l'objet note correspond à l'id user de l'objet review alors on affiche uniquement cette note #}
+                                                    {% if note.IdUser == review.IdUser %}
+                                                        <p class="rating">Note: {{ note.note }}</p>
+                                                    {% endif %}
+                                                {% endfor %}
+                                        </div>
+                                        <div class="comment-content">
+                                            {{ review.content }}
+                                        </div>
+                                </div>
+                            </div>
+                        <li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Informations sur {{ movie.title }}</h4>
+                    <hr>
+                    <p><span>Casting</span> :<br> {{ movie.actors }}</p>
+                    <br>
+                    
+                    <p>Réalisé par <span>{{ movie.director }}</span></p>
+                    <p>Nationalité : {{ movie.nationality }}</p>
+                    <p>Genre : {{movie.gender}}</p>
+                    <br>
+                    
+                    <h4>Synopsis</h4>
+                    <hr>
+                    <p>{{movie.synopsis|raw}}</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

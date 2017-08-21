@@ -1,0 +1,26 @@
+a.ajout-box{
+    font-size: 20px;
+}
+
+.table-admin{
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.table-admin thead tr th{
+    font-size: 20px;
+    padding: 10px;
+}
+
+.table-admin thead tr th.action{
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.table-admin tbody tr td{
+    font-size: 15px;
+    padding: 10px;
+    min-width: 80px;
+    vertical-align: middle;
+}
+

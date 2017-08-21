@@ -14,7 +14,52 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
-//******************************FRONT********************************//
+//****************************** FRONT OFFICE ********************************//
+
+/***************************** MOVIES *************************************/
+$app
+    ->get('/films/affichage', 'movie.controller:listAction')
+    ->bind('movies_list')
+;
+$app
+    ->match('/film/{id}', 'movie.controller:ficheMovie')
+    ->bind('movie_detail')
+;
+
+/***************************** BOX *************************************/
+$app
+    ->get('/box/affichage', 'box.controller:listBoxAction')
+    ->bind('box_list')
+;
+
+$app
+    ->match('/box/{id}', 'box.controller:detailBoxAction')
+    ->value('id', null) // value() donne une valeur par défaut au paramètre URL id
+    ->bind('box_detail')
+;
+
+/************************** BASKET ************************************/
+$app
+->match('/utilisateur/panier', 'basket.controller:basketAction')
+->bind('basket')
+;
+
+$app
+->match('/utilisateur/panier/supprimer/{id_box}', 'basket.controller:deleteBasket')
+->bind('basket_delete')
+;
+
+$app
+->match('utilisateur/panier/vider', 'basket.controller:emptyBasket')
+->bind('basket_empty')
+;
+
+$app
+->match('utilisateur/panier/payer', 'basket.controller:payBasket')
+->bind('basket_pay')
+;
+
+/************************** USER ************************************/
 
 $app
 ->match('/utilisateur/inscription', 'user.controller:registerAction')
@@ -29,6 +74,107 @@ $app
 $app
 ->match('/utilisateur/deconnexion', 'user.controller:logoutAction')
 ->bind('user_logout')
+;
+
+$app
+->match('/utilisateur/profil', 'user.controller:profileAction')
+->bind('user_profile')
+;
+
+$app
+->match('/utilisateur/edit_profil/{pseudo}', 'user.controller:editAction')
+->bind('user_profile_edit')
+;
+
+$app
+->match('/utilisateur/password_profil/{pseudo}', 'user.controller:passwordAction')
+->bind('user_profile_password')
+;
+
+$app
+->get('/utilisateur/suppression', 'user.controller:deleteAction')
+->bind('user_profile_delete')
+;
+
+/************************* LISTE *************************************/
+
+$app
+    ->get('listes/affichage', 'liste.controller:listAction')
+    ->bind('lists_list')
+    ;
+
+$app
+    ->get('liste/affichage/{id}', 'liste.controller:ficheListe')
+    ->value('id', null)
+    ->bind('list_detail')
+;
+
+$app
+    ->match('/listes/register', 'liste.controller:registerListeAction')
+    ->bind('list_register')
+;
+
+
+//******************************  ADMIN  *************************************//
+$app
+->match('/admin/box/register', 'box.controller:registerBoxAction')
+->bind('box_register')
+;
+
+
+//*****************************BACK OFFICE*********************************//
+
+// crée un groupe de routes
+$admin = $app['controllers_factory'];
+
+// toutes les routes définies par $admin
+// auront une URL commençant par /admin sans avoir à l'ajouter dans chaque route
+$app->mount('/admin', $admin);
+
+$admin->before(function () use ($app)
+{
+    if(!$app['user.manager']->isAdmin())
+    {
+        $app->abort(403, 'Accès refusé'); 
+    }
+});
+
+
+//*************************  ADMIN  *****************************//
+/******  BOX  *******/
+$admin
+->get('/box/list', 'admin.box.controller:listBoxAction')
+->bind('box_list_admin')
+;
+
+$admin
+->match('/box/register/{id}', 'admin.box.controller:registerBoxAction')
+->value('id', null)
+->bind('box_register')
+;
+
+$admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
+->assert('id', '\d+') // id doit être un nombre
+->bind('box_delete_admin')
+;
+
+/********************** MOVIES *********************************/
+
+$admin
+    ->get('/films/', 'admin.movie.controller:listAction')
+    ->bind('admin_movies')
+;
+
+$admin
+->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
+->value('id', null)
+->bind('admin_movie_register')
+;
+
+$admin
+    ->get('/film/suppression/{id}', 'admin.movie.controller:deleteAction')
+    ->assert('id', '\d+')
+    ->bind('admin_movie_delete')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

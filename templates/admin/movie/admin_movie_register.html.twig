@@ -1,0 +1,89 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Ajouter un film' %}
+    
+    {% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/admin/admin_movies.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-6">
+                    {% if movie.id is null %}
+                        <h1>Ajouter un film</h1>
+                    {% else %}
+                        <h1>Modification d'un film</h1>
+                    {% endif %}
+                    <form method="post" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input type="text" id="title" name="title" value="{{ movie.title }}" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Année</label>
+                            <input type="text" id="production_year" name="production_year" value="{{ movie.productionYear }}" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Nationalité</label>
+                            <input type="text" id="nationality" name="nationality" value="{{ movie.nationality }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Synopsis</label>
+                            <textarea name="synopsis" id="synopsis" rows="7" cols="66" resize="vertical">{{ movie.synopsis }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Réalisateur</label>
+                            <input type="text" id="director" name="director" value="{{ movie.director }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Acteurs</label>
+                            <input type="text" id="actors" name="actors" value="{{ movie.actors }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <input type="text" id="gender" name="gender" value="{{ movie.gender }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bande annonce</label>
+                            <input type="text" id="trailer" name="trailer" value="{{ movie.trailer }}" class="form-control">
+                        </div>
+                        
+                        {% if movie.poster is not null %}
+                        <div class="form-group">
+                            <label>Affiche actuelle</label>
+                            {% if movie.hasPhotoLocale %}
+                             <img src="{{asset('photos/' ~ movie.poster)}}" class="img-thumbnail" width="130px" height='170px'>
+                            {% else %}
+                            <img src="{{ movie.poster }}" class="img-thumbnail" width="130px" height='170px'>
+                            {% endif %} 
+                             <input type="hidden" name="old_poster" value="{{movie.poster}}" />
+                        </div>
+                        {% endif %}
+                        
+                        <div class="form-group">
+                            <label>Affiche</label>
+                            <input type="file" id="poster" name="poster" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Prix</label>
+                            <input type="text" name="price" value="{{ movie.price }}" class="form-control">
+                        </div>        
+
+                        <button type="submit" class="btn btn-primary form-control">Enregistrer</button>                       
+        
+                    </form>
+                </div>  
+            </div>
+        </div>
+{% endblock %}

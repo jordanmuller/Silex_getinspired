@@ -2,7 +2,17 @@
 
 // Les namespaces que l'on a créé
 
+
 // Les namespaces natifs à Silex, que l'on rajoute selon l'application
+
+
+use Controller\BoxController;
+use Controller\MovieController;
+use Controller\UserController;
+use Repository\ListeRepository;
+use Repository\MovieRepository;
+use Service\BasketManager;
+use Service\UserManager;
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -18,7 +28,9 @@ $app->register(new TwigServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
-
+    // pour accéder au Usermanager dans les templates twig 
+    $twig->addGlobal('user_manager', $app['user.manager']); 
+    $twig->addGlobal('basket_manager', $app['basket.manager']);
     return $twig;
 });
 
@@ -38,28 +50,95 @@ $app->register(new SessionServiceProvider());
 
 //*************************CONTROLLERS***************************//
 
-/////////////////////////////FRONT////////////////////////////////
+/////////////////////////////FRONT - OFFICE////////////////////////////////
 
 $app['user.controller'] = function() use ($app)
 {
-    return new Controller\UserController($app); 
+    return new UserController($app); 
 };
 
-////////////////////////////BACK//////////////////////////////////
+$app['movie.controller'] = function() use ($app)
+{
+    return new MovieController($app);
+};
 
+$app['box.controller'] = function() use ($app)
+{
+    return new BoxController($app);
+};
 
-//*************************REPOSITORIES***************************//
+$app['basket.controller'] = function() use ($app)
+{
+    return new Controller\BasketController($app);
+};
+
+$app['liste.controller'] = function() use ($app)
+{
+    return new \Controller\ListeController($app);
+};
+
+$app['detail.box.controller'] = function() use ($app)
+{
+    return new \Controller\DetailBoxController($app);
+};
+
+////////////////////////////BACK - OFFICE//////////////////////////////////
+
+$app['admin.box.controller'] = function() use ($app)
+{
+    return new Controller\Admin\BoxAdminController($app);
+};
+
+$app['admin.movie.controller'] = function() use($app) {
+  return new \Controller\Admin\MovieAdminController($app);  
+};
+
+//*************************REPOSITORIES APPEL A LA BDD ***************************//
 
 $app['user.repository'] = function() use ($app)
 {
     return new \Repository\UserRepository($app); 
 };
 
+$app['box.repository'] = function() use ($app)
+{
+    return new \Repository\BoxRepository($app); 
+};
+
+$app['movie.repository'] = function() use($app)
+{
+    return new MovieRepository($app);
+};
+
+$app['liste.repository'] = function() use ($app)
+{
+    return new ListeRepository($app);
+};
+
+$app['review.repository'] = function() use ($app)
+{
+    return new Repository\ReviewRepository($app);
+};
+
+$app['note.repository'] = function() use($app)
+{
+    return new Repository\NoteRepository($app);
+};
+
+$app['order.repository'] = function() use($app) 
+{
+    return new Repository\OrderRepository($app);
+};
+
 //*************************USER MANAGER***************************//
 $app['user.manager'] = function() use ($app)
 {
-    return new \Service\UserManager($app['session']); 
+    return new UserManager($app['session']); 
 };
 
+$app['basket.manager'] = function() use ($app)
+{
+    return new BasketManager($app['session']); 
+};
 
 return $app;

@@ -1,0 +1,65 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Basket' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/basket.css')}}" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
+{% endblock %} 
+
+{% block content %}
+    
+    <div class="container">
+	<h1 style="color:white; width:1140px;">Votre panier</h1><hr/>
+    </div>
+    
+	<div id="mainContent">
+            <div id="basket">
+                <form method="post" action="{{path('basket_pay')}}">
+                <table>
+                    <tr>
+                        <th>Box</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                        <th>Prix total</th>
+                        <th></th>
+                    </tr>
+                    {% for element in basket %}
+                    <tr>
+                        <td><input name="title" class="title" value="{{ element.box.title }}"></td>
+
+                        <td><input name="price" class="price" value="{{ element.box.price }}" />€</td>
+                        <td>
+                            <i class="fa fa-minus" title="Decrease Qty"></i>
+                            <input class="qty" value="{{ element.qt }}" name="qty" maxlength="" />
+                            <i class="fa fa-plus" title="Increase Qty"></i>
+                        </td>
+                        <td><input name="cost" class="cost" value=" {{ element.box.price * element.qt }} " />€</td>
+                        <td class="last"><a href="{{ path('basket_delete', {id_box: element.box.id}) }}"><i class="fa fa-trash-o" title="Delete Item"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div id="totalAmount">
+                    <div class="left">
+                        <h2>A payer</h2>
+                        <p style=" font-size: 12px;">TVA incluse</p>
+                    </div>
+                    <div class="right">
+                        <input name="total" id="total" value="{{ basket_manager.total }}"/>€
+                    </div>
+                </div>                
+                    <button type="submit" class="btn btn-primary"><span style="color: white; padding: 10px; ">Buy</span><i class="fa fa-shopping-cart" style="color: white;"></i></button>
+                    <a href="{{path('basket_empty')}}">Vider le panier</a>
+                </form>
+            </div>	
+	</div> 
+               
+{% endblock  %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/basket.js') }}"></script>
+{% endblock  %}
+

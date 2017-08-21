@@ -1,0 +1,52 @@
+div.col-sm-9.liste {
+    padding-bottom: 100px;
+}
+
+div.liste {
+    margin: 15px;
+}
+div.liste h1, div.liste p {
+     text-shadow: 2px 2px #000;
+     margin-top: 0px;
+    
+}
+
+section.affichage {
+    background: #fff;
+    padding: 0 20px;
+}
+
+div.description, p.texte {
+    color: #aaa
+}
+
+.img-thumbnail {
+    background: #eee;
+    width: 150px;
+    height: 150px;
+}
+hr.movie {
+    margin: 10px;
+    border-color: #eee;
+    border-style: dashed;
+}
+
+div.row.film {
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+div.row.film h2 {
+    margin: 0;
+    color: #000;
+}
+
+div.row.film p.director {
+    margin: 0;
+    color: #000;
+}
+
+div.row.film p {
+    margin-top: 20px;
+}
+

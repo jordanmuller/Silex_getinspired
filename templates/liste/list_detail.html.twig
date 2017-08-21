@@ -1,0 +1,48 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Liste Detail - Get Inspired' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/liste_detail.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <section class="affichage">
+            <div class="row">
+                <div class="col-sm-9 liste" style="background: url('{{asset('photos/' ~ liste.picture)}}'); background-size: cover;">
+                    <h1>{{liste.title}}</h1>
+                    <p>Une liste faite par {{liste.userPseudo}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 description">
+                    <p>{{liste.description}}</p>
+                    <hr>
+                </div>
+            </div>
+
+            {% for movie in movies %}
+                <div class="row film">
+                    <div class="col-sm-2 affiche">
+                        {% if movie.hasPhotoLocale %}
+                            <img src="{{asset('photos/' ~ movie.poster)}}" class="img-thumbnail" >
+                        {% else %}
+                            <img src="{{movie.poster}}" alt="Affiche du film" class="img-thumbnail">
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-7">
+                        <h2>{{movie.title}}</h2>
+                        <p class="director">De {{movie.director}}</p>
+                        <p>{{movie.synopsis|raw}}</p>
+                    </div>
+                </div>
+                <hr class="movie">
+            {%endfor%}
+
+        </section>
+    </div>
+{% endblock %}
+
+

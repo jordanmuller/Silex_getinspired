@@ -1,0 +1,64 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Box - ' %}
+
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/box_detail.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %} 
+
+{% block content %}
+    <div class="container">
+        <h1 style="text-align:center;">Découvrez nos Box</h1><hr/>  
+
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="row"> 
+                    <div class="panel panel-default panel-box">
+                        <div class="panel-heading"><p><strong>{{ box.title }}</strong></p></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <p>{{ box.content|nl2br }}</p>
+                                </div>                                
+                                <div class="col-sm-3">
+                                    <p class="text-right"><strong>{{ box.price }}€</strong></p>
+                                </div> 
+                            </div>
+                            <div class="row"> 
+                                {% for movie in movies %}
+                                <div class="col-sm-3">
+                                    <p><strong><a href="{{ path('movie_detail', {id: movie.id}) }}" ><img src="{{ movie.poster }}" class="img-responsive poster"></a></strong></p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                       
+                            <div class="row">                                    
+                                <div class="col-sm-12">
+                                    
+                                    <a href="{{path('box_list')}}" class="pull-left btn btn-primary"><span class="glyphicon glyphicon-search" style="font-size: 1em;"></span> Retour aux box</a>
+
+                                    
+                                    <form method="post">
+                                        
+                                        
+                                        <button type="submit" class="pull-right btn btn-primary" style="margin-right: 10px;">Ajouter</button>
+                                       
+                                        <select name="quantity" id="quantity" class="pull-right btn btn-primary" placeholder="Quantité" style="margin-right: 10px; height:39px;">
+                                            <option value="1" >1</option> 
+                                            {% for nb in 2..10 %}
+                                                <option value="{{ nb }}">{{ nb }}</option> 
+                                            {% endfor %} 
+                                        </select>
+                                        
+                                        <p class="pull-right" style="margin-right: 10px; background-color: #df691a; padding: 9px;">Quantité : </p>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div><!-- /.row -->
+        </div><!-- /.col-sm-9 -->
+    </div>
+{% endblock  %}

@@ -1,8 +1,9 @@
 body {
   box-sizing: border-box;
+  padding-bottom: 100px;
 }
 /*** NAVBAR ***/
-nav.navbar.navbar-default {
+nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     font-size: 1.3em;
     height: 60px;
     margin: 0;
@@ -29,7 +30,66 @@ span.glyphicon.glyphicon-search {
     font-size: 1.3em;
 }
 
-footer {
-    padding: 20px;
-    background: #191970;
+
+footer {   
+    padding: 10px;
+    background: #546575;
+}
+
+footer ul.list-inline {
+    margin: 0;
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+/******  FLASH MESSAGE  ******/
+.flash-msg{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+/***** FORM GENERAL *******/
+form{
+    margin-bottom: 30px;
+}
+
+textarea{
+    resize: vertical;
+}
+
+.btn-tertiary {
+  color: white;
+  background-color: #df691a;
+  padding: 0;
+  line-height: 40px;
+  width: 200px;
+  display: block;
+}
+
+/* input file style */
+.input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.input-file + .js-labelFile {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.input-file + .js-labelFile .icon:before {
+  content: "\f093";
+}
+.input-file + .js-labelFile.has-file .icon:before {
+  content: "\f00c";
+  color: #5AAC7B;
 }
