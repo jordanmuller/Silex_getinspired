@@ -50,7 +50,7 @@ class ListeController extends ControllerAbstract
         $movies = $this->app['movie.repository']->findAll();
         
         if(!is_null($id)){
-            // on va chercher la catégorie en BDD
+            // on va chercher la liste en BDD
             $liste = $this->app['liste.repository']->find($id);
             
             if(!$liste instanceof Liste){
@@ -61,10 +61,22 @@ class ListeController extends ControllerAbstract
             $liste = new Liste();
             $liste->setUser($user);
         } 
+        
         $errors = []; 
+        $picture_bdd = '';
         
         if(!empty($_POST))
         {
+            if(!empty($_POST['old_poster']))
+            {
+              $picture_bdd = $_POST['old_poster'];
+            }
+            
+            if(empty($_FILES['picture']['name']) || empty($_POST['old_picture']))
+            {
+                $errors['picture'] = 'Attention, Vous devez ajouter une photo à votre liste';
+            }
+            
             // vérification si l'utilisateur a chargé une image
             if(!empty($_FILES['picture']['name']))
             {
@@ -126,7 +138,7 @@ class ListeController extends ControllerAbstract
                 $errors['content'] = 'La description doit avoir un minimum de 50 caractères';
             }
             
-            if(empty($_POST['film']))
+            
             
             
             if(empty($errors))

@@ -105,12 +105,12 @@ $app
 
 $app
     ->get('liste/affichage/{id}', 'liste.controller:ficheListe')
-    ->value('id', null)
     ->bind('list_detail')
 ;
 
 $app
-    ->match('/listes/register', 'liste.controller:registerListeAction')
+    ->match('/listes/register/{id}', 'liste.controller:registerListeAction')
+    ->value('id', null)
     ->bind('list_register')
 ;
 
@@ -166,15 +166,27 @@ $admin
 ;
 
 $admin
-->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
-->value('id', null)
-->bind('admin_movie_register')
+    ->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
+    ->value('id', null)
+    ->bind('admin_movie_register')
 ;
 
 $admin
     ->get('/film/suppression/{id}', 'admin.movie.controller:deleteAction')
     ->assert('id', '\d+')
     ->bind('admin_movie_delete')
+;
+
+/**************************** LISTES  *****************************/
+$admin 
+    ->match('/listes/', 'admin.list.controller:listListeAction')
+    ->bind('admin_listes')
+;
+
+$admin
+    ->match('/listes/suppression/{id}', 'admin.list.controller:deleteAction')
+    ->assert('id', '\d+') // id doit être un nombre
+    ->bind('list_delete_admin')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
