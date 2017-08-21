@@ -177,6 +177,10 @@ class UserController extends ControllerAbstract
     
     public function profileAction()
     {
+        if(!$this->app['user.manager']->getUser())
+        {
+           return $this->redirectRoute('user_login');
+        }
         return $this->render(
             'user/profil.html.twig',
             [

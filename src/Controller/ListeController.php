@@ -39,6 +39,13 @@ class ListeController extends ControllerAbstract
     
     public function registerListeAction($id = null)
     {
+        if(!$this->app['user.manager']->getUser())
+        {
+          $message = '<strong>Vous devez être connecté pour créer une liste</strong>'; 
+          $this->addFlashMessage($message, 'error'); 
+          return $this->redirectRoute('user_login');
+        }
+        
         $user = $this->app['user.manager']->getUser(); 
         $movies = $this->app['movie.repository']->findAll();
         

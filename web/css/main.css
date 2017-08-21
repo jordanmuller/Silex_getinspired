@@ -1,5 +1,6 @@
 body {
   box-sizing: border-box;
+  padding-bottom: 100px;
 }
 /*** NAVBAR ***/
 nav.navbar.navbar-default, nav.navbar.navbar-inverse {
@@ -29,10 +30,14 @@ span.glyphicon.glyphicon-search {
     font-size: 1.3em;
 }
 
-footer {
-   
-    padding: 20px;
+
+footer {   
+    padding: 10px;
     background: #546575;
+}
+
+footer ul.list-inline {
+    margin: 0;
 }
 
 footer a, footer a:hover {
