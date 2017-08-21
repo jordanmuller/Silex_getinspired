@@ -28,8 +28,11 @@ div.liens input {
     margin-bottom: 10px;
 }
 
-#myModalLabel {
-    color: white;
+.star-rating{
+    color: #FFCD35;
+}
+span.moyenne{
+    font-size: 1.5em;
 }
 
 /* CSS des COMMENTAIRES  */
@@ -147,6 +150,31 @@ div.liens input {
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
+}
+
+.comment-foot{
+    float: right;
+}
+
+.btn-signale-comment, .btn-signale-comment:hover{   
+    color: black;
+    height: 30px;
+    margin: 5px;
+    border: 1px;
+    padding: 5px;
+}
+
+.btn-delete-comment{
+    color: white;
+    background-color: #D9534F;
+    height: 30px;
+    margin: 5px;
+    border: 1px;
+    padding: 5px;
+}
+
+.signale{
+    border: 1px solid red;
 }
 /***************** STAR RATING ***********************/
 

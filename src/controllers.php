@@ -114,14 +114,6 @@ $app
     ->bind('list_register')
 ;
 
-
-//******************************  ADMIN  *************************************//
-$app
-->match('/admin/box/register', 'box.controller:registerBoxAction')
-->bind('box_register')
-;
-
-
 //*****************************BACK OFFICE*********************************//
 
 // crée un groupe de routes
