@@ -32,7 +32,7 @@ class ListeController extends ControllerAbstract
             'liste/list_detail.html.twig',
             [
                 'liste' => $liste,
-                 'movies' => $movies
+                'movies' => $movies
             ]
         );
     }
@@ -72,7 +72,7 @@ class ListeController extends ControllerAbstract
               $picture_bdd = $_POST['old_poster'];
             }
             
-            if(empty($_FILES['picture']['name']) || empty($_POST['old_picture']))
+            if(empty($_FILES['picture']['name']) && empty($_POST['old_picture']))
             {
                 $errors['picture'] = 'Attention, Vous devez ajouter une photo à votre liste';
             }
