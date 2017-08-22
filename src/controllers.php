@@ -150,6 +150,25 @@ $admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
 ->bind('box_delete_admin')
 ;
 
+/********** REQUETE AJAX REVIEWS **************/
+$app
+    // on appelle la méthode addSignaleAjax dans review.controller
+    ->post('/reviews/addSignale', 'review.controller:addSignaleAjax')
+    ->bind('add_signale_ajax')
+;
+
+$app
+    // on appelle la méthode addSignaleAjax dans review.controller
+    ->post('/reviews/removeSignale', 'review.controller:removeSignaleAjax')
+    ->bind('remove_signale_ajax')
+;
+
+$app
+    // on appelle la méthode addSignaleAjax dans review.controller
+    ->post('/reviews/deleteComment', 'review.controller:deleteCommentAjax')
+    ->bind('delete_comment_ajax')
+;
+
 /********************** MOVIES *********************************/
 
 $admin

@@ -9,6 +9,7 @@ class Review
     private $movie;
     private $content;
     private $date_enregistrement;
+    private $signale;
     
     public function getId_review() {
         return $this->id_review;
@@ -28,6 +29,10 @@ class Review
     
     public function getDate_enregistrement() {
         return $this->date_enregistrement;
+    }
+    
+    public function getSignale() {
+        return $this->signale;
     }
     
     public function setId_review($id_review) {
@@ -53,8 +58,15 @@ class Review
     public function setDate_enregistrement($date_enregistrement) {
         $this->date_enregistrement = $date_enregistrement;
         return $this;
+    }    
+
+    public function setSignale($signale) {
+        if (!empty($signale)) {
+            $this->signale = $signale;
+        }
+        return $this;
     }
-    
+        
     public function getIdUser() {
         if(!is_null($this->user))
         {
