@@ -91,4 +91,21 @@ class NoteRepository extends RepositoryAbstract
             $note->setId_movie_note($this->db->lastInsertId());
         }
     }
+    
+    public function moyenneByMovie($id)
+    {
+        $moyennes = $this->db->fetchAll(
+            'SELECT ROUND(AVG(mn.note),1) AS moyenne '
+                . 'FROM movie_note mn '
+                . 'JOIN movies m ON m.id_movie = mn.id_movie '
+                . 'WHERE m.id_movie = :id '
+                . 'GROUP BY mn.id_movie',
+                
+            [
+                ':id' => $id
+            ]
+        );
+        
+        return $moyennes;
+    }
 }

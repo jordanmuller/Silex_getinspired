@@ -92,8 +92,8 @@ class UserController extends ControllerAbstract
             }
             elseif(!preg_match('/^[a-zA-Z0-9_-]{6,20}$/', $_POST['password']))
             {
-                $errors['password'] = 'Le mot de passe doit faire entre 6 et 20 carcatères'
-                . ' et ne contient que des lettres, des chiffres, ou les carctères _ et -'
+                $errors['password'] = 'Le mot de passe doit faire entre 6 et 20 caractères'
+                . ' et ne doit contenir que des lettres, des chiffres, ou les caractères _ et -'
                 ;
             }
             
@@ -188,6 +188,13 @@ class UserController extends ControllerAbstract
             ]
         ); 
     }  
+    
+    public function desinscriptionAction()
+    {
+        return $this->render(
+            'user/desinscription.html.twig' 
+        ); 
+    }
     
     public function editAction($pseudo)
     { 

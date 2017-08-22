@@ -26,7 +26,6 @@ class MovieRepository extends RepositoryAbstract
             ->setGender($data['gender'])
             ->setTrailer($data['trailer'])
             ->setPoster($data['poster'])
-            ->setMark($data['mark'])
             ->setPrice($data['price'])
         ;
 
@@ -80,7 +79,6 @@ class MovieRepository extends RepositoryAbstract
                  'gender' => $movie->getGender(),
                  'trailer' => $movie->getTrailer(),
                  'poster' => $movie->getPoster(),
-                 'mark' => $movie->getMark(),
                  'price' => $movie->getPrice()
                 ];
 
@@ -146,7 +144,7 @@ class MovieRepository extends RepositoryAbstract
         return $movies;
     }
     
-    // On récupère tous les films dont les id sont égaux à ceux de la table detail_box
+    // On récupère tous les films dont les id sont égaux à ceux de la table detail_box où la valeur id_box(multiples) 
     public function findByBoxId($id) 
     {
         $dbMovies = $this->db->fetchAll(
@@ -172,6 +170,7 @@ class MovieRepository extends RepositoryAbstract
         
     }
     
+    // On récupère toutes les films dont les id sont égaux avec ceux de la table list_detail
     public function findByListeId($id) 
     {
         $dbMovies = $this->db->fetchAll(

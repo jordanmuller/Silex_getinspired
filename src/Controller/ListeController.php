@@ -32,7 +32,7 @@ class ListeController extends ControllerAbstract
             'liste/list_detail.html.twig',
             [
                 'liste' => $liste,
-                 'movies' => $movies
+                'movies' => $movies
             ]
         );
     }
@@ -49,9 +49,11 @@ class ListeController extends ControllerAbstract
         $user = $this->app['user.manager']->getUser(); 
         $movies = $this->app['movie.repository']->findAll();
         
+        // Si l'id n'est pas null on est dans le cadre d'une modification (update)
         if(!is_null($id)){
-            // on va chercher la catégorie en BDD
+            // on va chercher la liste en BDD
             $liste = $this->app['liste.repository']->find($id);
+            $listeMovies = $this->app['movie.repository']->findByListeId($id);
             
             if(!$liste instanceof Liste){
                 $this->app->abort(404);
@@ -59,12 +61,25 @@ class ListeController extends ControllerAbstract
         }
         else{
             $liste = new Liste();
+            $listeMovies = [];
             $liste->setUser($user);
         } 
+        
         $errors = []; 
+        $picture_bdd = '';
         
         if(!empty($_POST))
         {
+            if(!empty($_POST['old_poster']))
+            {
+              $picture_bdd = $_POST['old_poster'];
+            }
+            
+            if(empty($_FILES['picture']['name']) && empty($_POST['old_picture']))
+            {
+                $errors['picture'] = 'Attention, Vous devez ajouter une photo à votre liste';
+            }
+            
             // vérification si l'utilisateur a chargé une image
             if(!empty($_FILES['picture']['name']))
             {
@@ -126,7 +141,7 @@ class ListeController extends ControllerAbstract
                 $errors['content'] = 'La description doit avoir un minimum de 50 caractères';
             }
             
-            if(empty($_POST['film']))
+            
             
             
             if(empty($errors))
@@ -149,8 +164,10 @@ class ListeController extends ControllerAbstract
             [
                 'liste' => $liste,
                 'user' => $user,
-                'movies' => $movies
+                'movies' => $movies,
+                'listeMovies' => $listeMovies
             ]
         );
     }
+    
 }

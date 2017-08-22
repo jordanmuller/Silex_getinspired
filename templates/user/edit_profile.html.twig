@@ -19,8 +19,10 @@
                     <div class="container-fluid">
                         {% if user.avatar is not empty %}
                             <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width: 200px;"><br/><br/>
+                        {% else %}
+                            <img src="{{ asset('img/profil.png') }}" class="img-thumbnail" style="height:200px; width: 200px;"><br/><br/>
                         {% endif %}
-                        
+                            
                         <div class="form-group">
                             <input type="file" name="avatar" id="file" class="input-file">
                             <label for="file" class="btn btn-tertiary btn-primary  js-labelFile">

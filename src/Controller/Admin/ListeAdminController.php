@@ -1,18 +1,36 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Controller\Admin;
 
-/**
- * Description of ListeAdminController
- *
- * @author Hello
- */
-class ListeAdminController {
-    //put your code here
+use Controller\ControllerAbstract;
+use Entity\Liste;
+
+class ListeAdminController extends ControllerAbstract
+{
+    public function listListeAction()
+    {
+        $listes = $this->app['liste.repository']->findAll();
+        
+        return $this->render(
+            'admin/list/list_list_admin.html.twig',
+            [
+                'listes' => $listes
+            ]
+        );
+    }
+    
+    public function deleteAction($id) {
+        $liste = $this->app['liste.repository']->find($id);
+        //echo '<pre>'; var_dump($liste); echo '</pre>';
+        if(!$liste instanceof Liste){
+            $this->app->abort(404);
+        }
+        
+        
+        $this->app['liste.repository']->delete($liste);
+                
+        $this->addFlashMessage('La liste a été supprimée');            
+        return $this->redirectRoute('admin_listes');
+        
+    }
 }

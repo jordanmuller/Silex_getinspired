@@ -86,6 +86,4 @@ class BasketManager
             $this->session->set('basket', []);
         }
     }
-    
-    
 }
