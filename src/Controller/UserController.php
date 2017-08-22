@@ -196,6 +196,13 @@ class UserController extends ControllerAbstract
         ); 
     }
     
+    public function backProfile()
+    {
+        return $this->render(
+            'user/profil.html.twig' 
+        ); 
+    }
+    
     public function editAction($pseudo)
     { 
         // $this->app['user.manager']->edit(); 

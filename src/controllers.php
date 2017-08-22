@@ -82,6 +82,11 @@ $app
 ;
 
 $app
+->match('/utilisateur/profil', 'user.controller:backProfile')
+->bind('back_profile')
+;
+
+$app
 ->match('/utilisateur/edit_profil/{pseudo}', 'user.controller:editAction')
 ->bind('user_profile_edit')
 ;
