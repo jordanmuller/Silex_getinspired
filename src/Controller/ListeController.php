@@ -46,6 +46,7 @@ class ListeController extends ControllerAbstract
           return $this->redirectRoute('user_login');
         }
         
+        //On récupère l'objet user de la session utilisateur en cours
         $user = $this->app['user.manager']->getUser(); 
         $movies = $this->app['movie.repository']->findAll();
         

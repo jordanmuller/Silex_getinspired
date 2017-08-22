@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-sm-9 liste" style="background: url('{{asset('photos/' ~ liste.picture)}}'); background-size: cover;">
                     <h1>{{liste.title}}</h1>
-                    <p>Une liste faite par <a href="{{path('user_profile')}}">{{liste.userPseudo}}</a></p>
+                    <p>Une liste faite par <a href="{{path('user_profile', {pseudo : liste.userPseudo})}}">{{liste.userPseudo}}</a></p>
                 </div>
             </div>
             <div class="row">

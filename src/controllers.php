@@ -16,6 +16,7 @@ $app->get('/', function () use ($app) {
 
 //****************************** FRONT OFFICE ********************************//
 
+
 /***************************** MOVIES *************************************/
 $app
     ->get('/films/affichage', 'movie.controller:listAction')
@@ -77,12 +78,12 @@ $app
 ;
 
 $app
-->match('/utilisateur/profil', 'user.controller:profileAction')
+->match('/utilisateur/profil/{pseudo}/', 'user.controller:profileAction')
 ->bind('user_profile')
 ;
 
 $app
-->match('/utilisateur/edit_profil/{pseudo}', 'user.controller:editAction')
+->match('/utilisateur/edition/{pseudo}/', 'user.controller:editAction')
 ->bind('user_profile_edit')
 ;
 

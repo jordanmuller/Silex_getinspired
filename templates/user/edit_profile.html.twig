@@ -80,7 +80,7 @@
                             <button type="submit" class="btn btn-primary" style="width:263px;"> Enregistrer vos modifications</button>
                         </div>
                         <div class="col-sm-offset-2 col-sm-4">
-                            <button type="#" class="btn btn-primary" style="width:262px;"><a href="{{ path("user_profile") }}" style="color:white;">Revenir au profil</a></button>
+                            <button type="#" class="btn btn-primary" style="width:262px;"><a href="{{ path("user_profile", {pseudo: user.pseudo}) }}" style="color:white;">Revenir au profil</a></button>
                         </div>
                     </div>
 

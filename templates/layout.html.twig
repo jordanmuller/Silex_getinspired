@@ -79,7 +79,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if user_manager.user %}{# si un utilisateur est connecté #}
                         <li>
-                            <a href="{{ path('user_profile') }}">{{ user_manager.userName }}</a>
+                            <a href="{{ path('user_profile', {pseudo: user_manager.user.pseudo}) }}">{{ user_manager.userName }}</a>
                         </li>
                         <li>
                             <a href="{{ path('user_logout')}}">Se déconnecter</a>

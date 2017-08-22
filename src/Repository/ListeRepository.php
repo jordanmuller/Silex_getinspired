@@ -144,4 +144,26 @@ class ListeRepository extends RepositoryAbstract
             ['id_list' => $liste->getId_list()]
         );
     }
+    
+    // On récupère les listes et leurs détails selon l'id_user
+    public function findByUserPseudo($pseudo) 
+    {
+        $dbListes = $this->db->fetchAll(
+            "SELECT l.*, u.* FROM lists l "
+            . "JOIN users u ON l.id_user = u.id_user "
+            . "WHERE u.pseudo = :pseudo",
+                [":pseudo" => $pseudo]
+        );
+        
+        $listes = [];
+        
+        foreach($dbListes AS $dbListe)
+        {
+            $liste = $this->buildEntity($dbListe);
+            
+            $listes[] = $liste;
+        }
+        
+        return $listes;
+    }
 }
