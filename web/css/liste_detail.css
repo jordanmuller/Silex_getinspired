@@ -3,7 +3,7 @@ div.col-sm-9.liste {
 }
 
 div.liste {
-    margin: 15px;
+    margin-top: 5px;
 }
 div.liste h1, div.liste p {
      text-shadow: 2px 2px #000;
@@ -55,3 +55,6 @@ a, a:hover {
     color: #fff;
 }
 
+h1{
+    font-weight: bold;
+}
