@@ -49,9 +49,11 @@ class ListeController extends ControllerAbstract
         $user = $this->app['user.manager']->getUser(); 
         $movies = $this->app['movie.repository']->findAll();
         
+        // Si l'id n'est pas null on est dans le cadre d'une modification (update)
         if(!is_null($id)){
             // on va chercher la liste en BDD
             $liste = $this->app['liste.repository']->find($id);
+            $listeMovies = $this->app['movie.repository']->findByListeId($id);
             
             if(!$liste instanceof Liste){
                 $this->app->abort(404);
@@ -59,6 +61,7 @@ class ListeController extends ControllerAbstract
         }
         else{
             $liste = new Liste();
+            $listeMovies = [];
             $liste->setUser($user);
         } 
         
@@ -161,8 +164,10 @@ class ListeController extends ControllerAbstract
             [
                 'liste' => $liste,
                 'user' => $user,
-                'movies' => $movies
+                'movies' => $movies,
+                'listeMovies' => $listeMovies
             ]
         );
     }
+    
 }

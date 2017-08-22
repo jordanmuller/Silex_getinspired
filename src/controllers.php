@@ -114,8 +114,7 @@ $app
 ;
 
 $app
-    ->match('/listes/register/{id}', 'liste.controller:registerListeAction')
-    ->value('id', null)
+    ->match('/listes/register/', 'liste.controller:registerListeAction')
     ->bind('list_register')
 ;
 
@@ -183,6 +182,13 @@ $admin
     ->match('/listes/suppression/{id}', 'admin.list.controller:deleteAction')
     ->assert('id', '\d+') // id doit être un nombre
     ->bind('list_delete_admin')
+;
+
+$admin
+    ->match('/listes/modification/{id}', 'liste.controller:registerListeAction')
+    ->assert('id', '\d+')
+    // On précise un bind et une URL différents de ceux de "Créer une liste" 
+    ->bind('list_modif')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
