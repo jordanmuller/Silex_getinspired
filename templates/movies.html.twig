@@ -11,57 +11,50 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-            <h3 class="text-center">Filtres</h3>
-            <hr />
-                
-                   
-                        <a href="{{ path("movies_list") }}" class="btn btn-filtre form-control">Tous les films</a>
+                <a href="{{ path("movies_list") }}" class="btn btn-filtre form-control" style="margin-top: 20px;">Tous les films</a><br/><br/>
 
-                        <form method="get" action="">
-                            <div class="form-group">
-                                <label for="title">Titre</label><br/>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Titre..."  />
-                            </div><br/>
+                <form method="get" action="">
+                    <div class="form-group">
+                        <label for="title">Titre</label><br/>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Titre..."  />
+                    </div><br/>
 
-                            <div class="form-group">
-                                <label for="actors">Acteurs</label><br/>
-                                <input type="text" class="form-control" id="actors" name="actors" placeholder="Acteurs..."  />
-                            </div><br/>
+                    <div class="form-group">
+                        <label for="actors">Acteurs</label><br/>
+                        <input type="text" class="form-control" id="actors" name="actors" placeholder="Acteurs..."  />
+                    </div><br/>
 
-                            <div class="form-group">
-                                <label for="production_year">Année</label><br/>
-                                <input type="text" class="form-control" id="production_year" name="production_year" placeholder="Année de production..." />
-                            </div><br/>
+                    <div class="form-group">
+                        <label for="production_year">Année</label><br/>
+                        <input type="text" class="form-control" id="production_year" name="production_year" placeholder="Année de production..." />
+                    </div><br/>
 
-                            <div class="form-group">
-                                <label for="gender">Genre</label><br/>
-                                {# {% while($gender = $genders->fetch(PDO::FETCH_ASSOC)) %} #}
-                                <select id="gender" name="gender" class="form-control" style="text-align: center; color:lightgrey;">
-                                        <option value="" >Genre...</option>
-                                        {% set newArray = [] %}
-                                        {% for movie in movies %}
-                                        {% if movie.gender not in newArray %}
-                                            <option style="color:grey;">{{movie.gender}}</option>
-                                        {% set newArray = newArray|merge([movie.gender]) %}
-                                       
-                                        {% endif %}
-                                        
-                                        {#<option value="Comédie" style="color:grey;">Comédie</option>
-                                        <option value="Comédie_dramatique" style="color:grey;">Comédie dramatique</option>
-                                        <option value="Comédié_musicale" style="color:grey;">Comédié musicale</option>
-                                        <option value="Drame" style="color:grey;">Drame</option>
-                                        <option value="Historique" style="color:grey;">Historique</option>
-                                        <option value="Musical" style="color:grey;">Musical</option>
-                                        <option value="science_fiction" style="color:grey;">Science fiction</option>
-                                        <option value="western" style="color:grey;" >Western</option>#}
-                                        {% endfor %}
-                                </select>
-                            </div><br/><br/>
-                            <button type="submit" name="filtrer" class="btn btn-primary form-control">Filtrer</button>
-                        </form>
-                    
-                
-                <hr />
+                    <div class="form-group">
+                        <label for="gender">Genre</label><br/>
+                        {# {% while($gender = $genders->fetch(PDO::FETCH_ASSOC)) %} #}
+                        <select id="gender" name="gender" class="form-control" style="text-align: center; color:lightgrey;">
+                                <option value="" >Genre...</option>
+                                {% set newArray = [] %}
+                                {% for movie in movies %}
+                                {% if movie.gender not in newArray %}
+                                    <option style="color:grey;">{{movie.gender}}</option>
+                                {% set newArray = newArray|merge([movie.gender]) %}
+
+                                {% endif %}
+
+                                {#<option value="Comédie" style="color:grey;">Comédie</option>
+                                <option value="Comédie_dramatique" style="color:grey;">Comédie dramatique</option>
+                                <option value="Comédié_musicale" style="color:grey;">Comédié musicale</option>
+                                <option value="Drame" style="color:grey;">Drame</option>
+                                <option value="Historique" style="color:grey;">Historique</option>
+                                <option value="Musical" style="color:grey;">Musical</option>
+                                <option value="science_fiction" style="color:grey;">Science fiction</option>
+                                <option value="western" style="color:grey;" >Western</option>#}
+                                {% endfor %}
+                        </select>
+                    </div><br/>
+                    <button type="submit" name="filtrer" class="btn btn-primary form-control">Filtrer</button>
+                </form>
             </div>
             
             <div class="col-sm-9">
@@ -75,7 +68,7 @@
                                     {% if movie.hasPhotoLocale %}
                                         <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{asset('photos/' ~ movie.poster)}}" alt="Affiche du film"></a>                               
                                     {% else %}
-                                        <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{ movie.poster }}" alt="Affiche du film"></a>
+                                        <a href="{{ path('movie_detail', {id: movie.id}) }}"><img src="{{ movie.poster }}" style="height:220px; width:150px; padding: 0px;" alt="Affiche du film"></a>
                                     {% endif %}
                                 </div>
                             {% set compteur = compteur + 1 %}

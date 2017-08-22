@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title 'Desinscirption' %}
+    
+{% block content %}
+
+    <div class="container">
+        <div class="starter-template">
+            <h1 style="text-align:center;">Voulez-vous vraiment vous désinscrire ?</h1><hr/>
+        </div>
+    </div><!-- /.container -->
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+                <img src="{{ asset('img/gollum-desinscription-1.jpg') }}" class="img-responsive" style="height:300px; width:750px;">
+            </div>
+            <div class="col-sm-offset-4 col-sm-4" style="margin-top:20px;">
+                <div><a href="{{ path('user_profile_delete')}}"><button type="button" class="btn btn-danger btn-lg"><span><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Confirmation de la désinscription</button></a></div>
+            </div>
+        </div> 
+        
+    </div><!-- /.container -->		
+    
+
+{% endblock  %}{# empty Twig template #}

@@ -15,7 +15,7 @@ $('.color option:eq(1)').prop('selected', true).css('backgroundColor','black');
 	
 	$('.fa-minus').click(function() {
 		var val_input = $(this).closest('tr').find('.qty');
-		if (val_input.val() <= 0) { return; }
+		if (val_input.val() < 2) { return; }
 		val_input.val(parseInt(val_input.val() - 1));
 		
 		var price = $(this).closest('tr').find('.price');

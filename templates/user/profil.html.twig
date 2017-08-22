@@ -1,22 +1,30 @@
 {% extends "layout.html.twig" %}
 
-{% block title 'Profile' %}
+{% block title 'Profil' %}
+    
+{% block stylesheets %}
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <link href="{{asset('css/profil.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+   
     
 {% block content %}
 
     <div class="container">
         <div class="starter-template">
-            <h1 style="text-align:center;"><span class="glyphicon glyphicon-user" style="margin-right: 20px;"></span>Profil</h1><hr/>
+            <h1 style="text-align:center;">Votre Profil</h1><hr/>
         </div>
     </div><!-- /.container -->
 
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-1 col-sm-4">
-                <div class="container-fluid">
+                <div class="container">
                     {% if user.avatar is not empty %}
-                            <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width:200px;" >
-                        {% endif %}
+                        <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width:200px;" >
+                    {% else %}
+                        <img src="{{ asset('img/profil.png') }}" class="img-thumbnail" style="height:200px; width: 200px;">
+                    {% endif %}
                 </div> 
                 <div><br/> 
                     <label for="file" class="btn btn-tertiary btn-primary  js-labelFile" style="margin-left: 15px;">
@@ -32,15 +40,17 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <ul class="list-group" >
-                        <li class="list-group-item active" style="text-align: center; margin: 1px;"><h4>Vos informations</h4></li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Civilité : {{ user.civility }}</span></li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Nom : {{ user.lastname }}</li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Prenom : {{ user.firstname }}</li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Pseudo : {{ user.pseudo }}</li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Mail : {{ user.email }}</li>
-                        <li class="list-group-item active" style="padding: 20px; margin: 1px;">Bio : {{ user.bio }}</li>
+                        <li class="list-group-item active" style="text-align: center; margin: 1px; background-color: #df691a; border-color: #df691a;"><h4>Vos informations</h4></li>
+                        <li class="list-group-item active">Civilité : {{ user.civility }}</span></li>
+                        <li class="list-group-item active">Nom : {{ user.lastname }}</li>
+                        <li class="list-group-item active">Prenom : {{ user.firstname }}</li>
+                        <li class="list-group-item active">Pseudo : {{ user.pseudo }}</li>
+                        <li class="list-group-item active">Mail : {{ user.email }}</li>
+                        <li class="list-group-item active">Bio : {{ user.bio }}</li>
                         <br/>
-                        <a href="{{ path("user_profile_delete") }}" style="margin-left:130px;">Voulez-vous vous désinscrire de GetInspired?</a>
+                        {# <div><a href="{{ path('user_profile_delete')}}"><button type="button" class="btn btn-danger btn-lg"><span><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Confirmation de la désinscription</button></a></div>#}
+                        <a href="{{ path("user_profile_desinscription") }}"><button type="button" class="btn btn-warning btn-lg form-control" style="padding-bottom: 35px; color:white;"><span style="color:white;"><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Voulez-vous vous désinscrire de GetInspired?</a></div>
+                        {# <a href="{{ path("user_profile_delete") }}" style="margin-left:130px;">Voulez-vous vous désinscrire de GetInspired?</a> #}
                     </ul>
                 </div>
             </div>       

@@ -97,6 +97,9 @@ $app['admin.movie.controller'] = function() use($app) {
   return new \Controller\Admin\MovieAdminController($app);  
 };
 
+$app['admin.list.controller'] = function() use($app) {
+    return new \Controller\Admin\ListeAdminController($app);
+};
 //*************************REPOSITORIES APPEL A LA BDD ***************************//
 
 $app['user.repository'] = function() use ($app)

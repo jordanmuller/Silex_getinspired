@@ -19,8 +19,10 @@
                     <div class="container-fluid">
                         {% if user.avatar is not empty %}
                             <img src="{{ asset('img/' ~ user.avatar) }}" class="img-thumbnail" style="height:200px; width: 200px;"><br/><br/>
+                        {% else %}
+                            <img src="{{ asset('img/profil.png') }}" class="img-thumbnail" style="height:200px; width: 200px;"><br/><br/>
                         {% endif %}
-                        
+                            
                         <div class="form-group">
                             <input type="file" name="avatar" id="file" class="input-file">
                             <label for="file" class="btn btn-tertiary btn-primary  js-labelFile">
@@ -75,10 +77,10 @@
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <button type="submit" class="btn btn-primary" style="width:263px;"> Enregistrer vos modifications</button>
+                            <button type="#" class="btn btn-primary" style="width:262px;"><a href="{{ path("user_profile") }}" style="color:white;"><span><i class="glyphicon glyphicon-arrow-left" style="color: white;"></i> Revenir au profil</a></button>
                         </div>
                         <div class="col-sm-offset-2 col-sm-4">
-                            <button type="#" class="btn btn-primary" style="width:262px;"><a href="{{ path("user_profile") }}" style="color:white;">Revenir au profil</a></button>
+                            <button type="submit" class="btn btn-primary" style="width:263px;"> Enregistrer vos modifications</button>
                         </div>
                     </div>
 

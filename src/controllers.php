@@ -92,6 +92,11 @@ $app
 ;
 
 $app
+->match('/utilisateur/password/desinscription', 'user.controller:desinscriptionAction')
+->bind('user_profile_desinscription')
+;
+
+$app
 ->get('/utilisateur/suppression', 'user.controller:deleteAction')
 ->bind('user_profile_delete')
 ;
@@ -105,12 +110,11 @@ $app
 
 $app
     ->get('liste/affichage/{id}', 'liste.controller:ficheListe')
-    ->value('id', null)
     ->bind('list_detail')
 ;
 
 $app
-    ->match('/listes/register', 'liste.controller:registerListeAction')
+    ->match('/listes/register/', 'liste.controller:registerListeAction')
     ->bind('list_register')
 ;
 
@@ -130,7 +134,6 @@ $admin->before(function () use ($app)
         $app->abort(403, 'Accès refusé'); 
     }
 });
-
 
 //*************************  ADMIN  *****************************//
 /******  BOX  *******/
@@ -177,15 +180,34 @@ $admin
 ;
 
 $admin
-->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
-->value('id', null)
-->bind('admin_movie_register')
+    ->match('/film/enregistrement/{id}', 'admin.movie.controller:registerAction')
+    ->value('id', null)
+    ->bind('admin_movie_register')
 ;
 
 $admin
     ->get('/film/suppression/{id}', 'admin.movie.controller:deleteAction')
     ->assert('id', '\d+')
     ->bind('admin_movie_delete')
+;
+
+/**************************** LISTES  *****************************/
+$admin 
+    ->match('/listes/', 'admin.list.controller:listListeAction')
+    ->bind('admin_listes')
+;
+
+$admin
+    ->match('/listes/suppression/{id}', 'admin.list.controller:deleteAction')
+    ->assert('id', '\d+') // id doit être un nombre
+    ->bind('list_delete_admin')
+;
+
+$admin
+    ->match('/listes/modification/{id}', 'liste.controller:registerListeAction')
+    ->assert('id', '\d+')
+    // On précise un bind et une URL différents de ceux de "Créer une liste" 
+    ->bind('list_modif')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
