@@ -24,6 +24,7 @@ class BoxAdminController extends ControllerAbstract {
         if(!is_null($id)){
             // on va chercher la box en BDD
             $box = $this->app['box.repository']->find($id);
+            // On va chercher les films contenus dans la box en BDD
             $boxMovies = $this->app['movie.repository']->findByBoxId($id);
             
             if(!$box instanceof Box){

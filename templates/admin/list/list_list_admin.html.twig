@@ -32,7 +32,7 @@
                         <td><img src="{{asset('photos/' ~ liste.picture)}}" alt="Image de la liste" class="img-responsive"></td>
                         <td>{{ liste.userPseudo }}</td>
                         <td>
-                            <a href="{{ path('list_register', {id: liste.id_list}) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('list_modif', {id: liste.id_list}) }}" class="btn btn-primary">Modifier</a>
                         </td>
                         <td>
                             <a href="{{ path('list_delete_admin', {id: liste.id_list}) }}" class="btn btn-danger">Supprimer</a>

@@ -48,7 +48,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[0] is defined and movie.id == listeMovies[0].id %}selected{% endif %}>{{ movie.title }}</option> 
                                 {% endfor %}
                             </select>
                         </div>
@@ -58,7 +58,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[1] is defined and movie.id == listeMovies[1].id %}selected{% endif %}>{{ movie.title }}</option> 
                                 {% endfor %}
                             </select>
                         </div>
@@ -68,7 +68,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[2] is defined and movie.id == listeMovies[2].id %}selected{% endif %}>{{ movie.title }}</option> 
                                 {% endfor %}
                             </select>
                         </div>
@@ -78,7 +78,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[3] is defined and movie.id == listeMovies[3].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -88,7 +88,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[4] is defined and movie.id == listeMovies[4].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -98,7 +98,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[5] is defined and movie.id == listeMovies[5].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -108,7 +108,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[6] is defined and movie.id == listeMovies[6].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -118,7 +118,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[7] is defined and movie.id == listeMovies[7].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -128,7 +128,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[8] is defined and movie.id == listeMovies[8].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -138,7 +138,7 @@
                             <select id="movie" name="movie[]" class="form-control">
                                 <option value="" disabled selected>Choisissez un film</option>
                                 {% for movie in movies %}
-                                    <option value="{{ movie.id }}" {#{% if movies.id == detail_box.id_movie %}selected{% endif %}#}>{{ movie.title }}</option> 
+                                    <option value="{{ movie.id }}" {% if listeMovies[9] is defined and movie.id == listeMovies[9].id %}selected{% endif %}>{{ movie.title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
