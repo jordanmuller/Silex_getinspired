@@ -1,0 +1,10 @@
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
+    border-color: #4e5d6c;
+}
+
+li.list-group-item.active{
+    padding: 20px; 
+    margin: 1px; 
+    background-color: #4e5d6c;
+}

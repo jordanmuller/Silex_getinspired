@@ -83,7 +83,12 @@ $app
 ;
 
 $app
-->match('/utilisateur/edition/{pseudo}/', 'user.controller:editAction')
+->match('/utilisateur/profil/{pseudo}', 'user.controller:backProfile')
+->bind('back_profile')
+;
+
+$app
+->match('/utilisateur/edit_profil/{pseudo}', 'user.controller:editAction')
 ->bind('user_profile_edit')
 ;
 
@@ -152,6 +157,25 @@ $admin
 $admin->get('/box/suppression/{id}', 'admin.box.controller:deleteAction')
 ->assert('id', '\d+') // id doit être un nombre
 ->bind('box_delete_admin')
+;
+
+/********** REQUETE AJAX REVIEWS **************/
+$app
+    // on appelle la méthode addSignaleAjax dans review.controller
+    ->post('/reviews/addSignale', 'review.controller:addSignaleAjax')
+    ->bind('add_signale_ajax')
+;
+
+$app
+    // on appelle la méthode addSignaleAjax dans review.controller
+    ->post('/reviews/removeSignale', 'review.controller:removeSignaleAjax')
+    ->bind('remove_signale_ajax')
+;
+
+$app
+    // on appelle la méthode addSignaleAjax dans review.controller
+    ->post('/reviews/deleteComment', 'review.controller:deleteCommentAjax')
+    ->bind('delete_comment_ajax')
 ;
 
 /********************** MOVIES *********************************/

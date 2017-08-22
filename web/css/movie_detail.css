@@ -156,7 +156,7 @@ span.moyenne{
     float: right;
 }
 
-.btn-signale-comment, .btn-signale-comment:hover{   
+.btn-signale-comment{   
     color: black;
     height: 30px;
     margin: 5px;
@@ -164,9 +164,8 @@ span.moyenne{
     padding: 5px;
 }
 
-.btn-delete-comment{
+.btn-delete-comment, .btn-designale-comment{
     color: white;
-    background-color: #D9534F;
     height: 30px;
     margin: 5px;
     border: 1px;
@@ -175,6 +174,11 @@ span.moyenne{
 
 .signale{
     border: 1px solid red;
+}
+
+.delete-by-admin{
+    color: white !important; 
+    background-color: #E8806E !important;
 }
 /***************** STAR RATING ***********************/
 

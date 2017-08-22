@@ -87,6 +87,10 @@ $app['detail.box.controller'] = function() use ($app)
     return new \Controller\DetailBoxController($app);
 };
 
+$app['review.controller'] = function() use ($app)
+{
+    return new \Controller\ReviewController($app);
+};
 ////////////////////////////BACK - OFFICE//////////////////////////////////
 
 $app['admin.box.controller'] = function() use ($app)

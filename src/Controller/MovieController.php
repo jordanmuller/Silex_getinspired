@@ -89,7 +89,8 @@ class MovieController extends ControllerAbstract
             
             $review
                ->setContent($_POST['content'])
-               ->setDate_enregistrement($now->format('Y-m-d H:i:s'))                    
+               ->setDate_enregistrement($now->format('Y-m-d H:i:s'))
+//               ->setSignale($_POST['signale'])
             ;
             
             if(empty($_POST['content']))

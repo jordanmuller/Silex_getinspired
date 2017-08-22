@@ -208,6 +208,28 @@ class UserController extends ControllerAbstract
         ); 
     }
     
+    public function backProfile($pseudo)
+    {
+        if($pseudo){
+            $listes = $this->app['liste.repository']->findByUserPseudo($pseudo);
+        }else{
+             $listes = $this->app['liste.repository']->findByUserPseudo($user->getPseudo());
+        }
+        
+        // Si l'utilisateur n'est pas connecté on ne peut pas voir son profil
+        if(!$this->app['user.manager']->getUser())
+        {
+           return $this->redirectRoute('user_login');
+        }
+        return $this->render(
+            'user/profil.html.twig',
+            [
+                'user' => $this->app['user.manager']->getUser(),
+                'listes' => $listes
+            ]
+        ); 
+    }
+    
     public function editAction($pseudo)
     { 
         // $this->app['user.manager']->edit(); 

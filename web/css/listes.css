@@ -1,5 +1,6 @@
 h1 {
-    color: #000;
+    color: white;
+    text-align: center;
 }
 
 a, a:hover {
@@ -12,10 +13,10 @@ div.liste {
     background: rgba(0,0,0,0.4);
     box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
     filter: grayscale(1);
-        -webkit-filter: grayscale(1);
-        -moz-filter: grayscale(1);
-        -o-filter: grayscale(1);
-        -ms-filter: grayscale(1);   
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -o-filter: grayscale(1);
+    -ms-filter: grayscale(1);   
     width: 30%;
     margin: 15px;
     height: 190px;
@@ -37,6 +38,6 @@ div.liste:hover
 }
 
 section.affichage {
-    background: #fff;
+    background: #4e5d6c;
     padding: 20px;
 }

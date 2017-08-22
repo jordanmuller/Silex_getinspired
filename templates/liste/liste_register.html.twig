@@ -9,14 +9,15 @@
 
 {% block content %}
     <div class="container">
+        {% if liste.id_list is null %}
+        <h1 style="text-align: center;">Ajouter une liste</h1><hr/>
+        {% else %}
+            <h1 style="text-align: center;">Modification de la liste</h1><hr/>
+        {% endif %}
+        
             <div class="row">
                 <div class="col-sm-offset-3 col-sm-6">
-                    {% if liste.id_list is null %}
-                        <h1>Ajouter une liste</h1>
-                        
-                    {% else %}
-                        <h1>Modification de la liste</h1>
-                    {% endif %}
+                    
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Titre</label>

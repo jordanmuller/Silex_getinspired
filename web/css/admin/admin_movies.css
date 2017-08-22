@@ -1,23 +1,23 @@
-section h1 {
-    margin-bottom: 30px;
+a.ajout-box{
+    font-size: 20px;
+}
+
+.table-admin{
+    background: rgba(255, 255, 255, 0.3);
+}
+
+th{
+    font-size: 20px;
+}
+
+.table-admin tbody tr td{
+    font-size: 15px;
+    padding: 10px;
+    min-width: 80px;
+    vertical-align: middle;
 }
 
 img {
-    width: 50px;
-    height: 100px;
-}
-
-.table-admin {
-   background: rgba(255, 255, 255, 0.3);
-}
-
-.table-admin tr th {
-    font-size: 20px;
-    padding: 10px;
-}
-
-table.table-admin tr td {
-    vertical-align: middle;
-    padding: 10px;
-    font-size: 15px;
-}
+    width: 150px;
+    height: 200px;
+    }   

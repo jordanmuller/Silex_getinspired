@@ -9,16 +9,16 @@
 
 {% block content %}
     <div class="container">
-        <section class="affichage">
+        <section class="affichage" style="margin-top: 50px;">
             <div class="row">
-                <div class="col-sm-9 liste" style="background: url('{{asset('photos/' ~ liste.picture)}}'); background-size: cover;">
+                <div class="col-sm-12 liste" style="background: url('{{asset('photos/' ~ liste.picture)}}'); height:435px; background-size: cover;">
                     <h1>{{liste.title}}</h1>
                     <p>Une liste faite par <a href="{{path('user_profile', {pseudo : liste.userPseudo})}}">{{liste.userPseudo}}</a></p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-9 description">
-                    <p>{{liste.description}}</p>
+                <div class="col-sm-12 description">
+                    <p style="font-size:20px; margin-top:10px;">{{liste.description}}</p>
                     <hr>
                 </div>
             </div>
@@ -27,12 +27,12 @@
                 <div class="row film">
                     <div class="col-sm-2 affiche">
                         {% if movie.hasPhotoLocale %}
-                            <img src="{{asset('photos/' ~ movie.poster)}}" class="img-thumbnail" >
+                            <img src="{{asset('photos/' ~ movie.poster)}}" class="img-responsive" >
                         {% else %}
-                            <img src="{{movie.poster}}" alt="Affiche du film" class="img-thumbnail">
+                            <img src="{{movie.poster}}" alt="Affiche du film" class="img-responsive">
                         {% endif %}
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <h2>{{movie.title}}</h2>
                         <p class="director">De {{movie.director}}</p>
                         <p>{{movie.synopsis|raw}}</p>

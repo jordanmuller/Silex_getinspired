@@ -3,7 +3,6 @@ img {
    width: 130px;
    min-height: 7px;
    min-width: 3px;
-   padding: 5px;
 }
 
 button{
@@ -39,7 +38,7 @@ a:link {
 }
 
 .col-sm-9 img:hover{
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -moz-transform: scale(1.25);
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
 }

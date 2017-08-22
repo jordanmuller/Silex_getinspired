@@ -9,6 +9,11 @@ nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     margin: 0;
 }
 
+nav.navbar.navbar-inverse {
+    background: #000;
+    
+}
+
 div.navbar-header {
     margin-right: 30px !important;
 }
@@ -18,12 +23,19 @@ ul.nav.navbar-nav li a, div.navbar-header {
   padding-top: 20px;
 }
 
-a.navbar-brand {
+a.navbar-brand, span.navbar-brand {
     font-size: 1.5em;
     font-weight: bold;
     font-style: italic;
     margin-right: 20px;
     padding: 0;
+}
+
+span.navbar-brand img.logo {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    bottom: 10px;
 }
 
 span.glyphicon.glyphicon-search {

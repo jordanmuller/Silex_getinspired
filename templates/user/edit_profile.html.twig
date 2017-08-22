@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="starter-template">
-            <h1 style="text-align:center;"><span class="glyphicon glyphicon-user" style="margin-right: 20px;"></span>Modifier votre profil</h1><hr/>
+            <h1 style="text-align:center;">Modifier votre profil</h1><hr/>
         </div>
     </div><!-- /.container -->
 
@@ -75,14 +75,10 @@
                         <input type="text" name="email" value="{{ user.email }}" class="form-control">
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <button type="submit" class="btn btn-primary" style="width:263px;"> Enregistrer vos modifications</button>
-                        </div>
-                        <div class="col-sm-offset-2 col-sm-4">
-                            <button type="#" class="btn btn-primary" style="width:262px;"><a href="{{ path("user_profile", {pseudo: user.pseudo}) }}" style="color:white;">Revenir au profil</a></button>
-                        </div>
-                    </div>
+                    <div class="btn-group">
+                        <a href="{{path('back_profile', {pseudo: user.pseudo})}}" class="btn" style="color:white; background-color: #df691a; padding: 10px; margin-right: 56px; width: 250px;"><i class="glyphicon glyphicon-arrow-left" style="color: white;"></i> Revenir au profil</a>
+                        <button type="submit" class="btn btn-primary" style="padding:10px; width:250px;"> Enregistrer vos modifications</button>
+                    </div>   
 
                 </div>       
             </div>   
