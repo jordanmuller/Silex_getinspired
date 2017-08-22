@@ -1,3 +1,7 @@
+a.ajout-box{
+    font-size: 20px;
+}
+
 section h1 {
     margin-bottom: 30px;
 }
@@ -14,6 +18,7 @@ img {
 .table-admin tr th {
     font-size: 20px;
     padding: 10px;
+    text-align: center;
 }
 
 table.table-admin tr td {
