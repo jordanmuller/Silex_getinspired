@@ -16,7 +16,7 @@ class ReviewRepository extends RepositoryAbstract
     public function findByMovies($id) 
     {
         $dbReviews = $this->db->fetchAll(
-            'SELECT r.content, r.date_enregistrement, u.pseudo, u.avatar, u.id_user, m.id_movie, r.id_review '
+            'SELECT r.content, r.date_enregistrement, u.pseudo, u.avatar, u.id_user, m.id_movie, r.id_review, r.signale '
                 . 'FROM reviews r '
                 . 'JOIN movies m ON m.id_movie = r.id_movie '
                 . 'JOIN users u ON u.id_user = r.id_user '
@@ -48,8 +48,12 @@ class ReviewRepository extends RepositoryAbstract
             'id_user'  => $review->getIdUser(),
             'id_movie'  => $review->getIdMovie(),
             'content'  => $review->getContent(),
-            'date_enregistrement' => $review->getDate_enregistrement()
+            'date_enregistrement' => $review->getDate_enregistrement()            
         ];
+        
+        if (!empty($review->getSignale())) {
+            $data['signale'] = $review->getSignale();
+        }
         
         // si le commentaire a un id, on est en update
         // sinon en insert
@@ -68,6 +72,14 @@ class ReviewRepository extends RepositoryAbstract
     }
     
     
+    public function setSignaleReview($id_review, $signale = false, $content = false) {
+        $data = [];
+        $data['signale'] = ($signale) ? 'true' : 'false' ;
+        (!empty($content)) ? $data['content'] = $content : null;
+        
+        $this->db->update($this->getTable(),$data,
+                ['id_review' => $id_review]);
+    }    
     
     private function buildEntity(array $data)
     {
@@ -95,6 +107,7 @@ class ReviewRepository extends RepositoryAbstract
             ->setMovie($movie)
             ->setContent($data['content'])
             ->setDate_enregistrement($data['date_enregistrement'])
+            ->setSignale($data['signale'])
         ;
         return $review; 
     }
