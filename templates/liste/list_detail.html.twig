@@ -24,7 +24,7 @@
             </div>
 
             {% for movie in movies %}
-                <div class="row film">
+                <a href="{{path('movie_detail', {id: movie.id})}}"><div class="row film">
                     <div class="col-sm-2 affiche">
                         {% if movie.hasPhotoLocale %}
                             <img src="{{asset('photos/' ~ movie.poster)}}" class="img-responsive" >
@@ -37,7 +37,7 @@
                         <p class="director">De {{movie.director}}</p>
                         <p>{{movie.synopsis|raw}}</p>
                     </div>
-                </div>
+                    </div></a>
                 <hr class="movie">
             {%endfor%}
 
