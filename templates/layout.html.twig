@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Le favicon, s'il n'y en a pas ne pas laisser le champ -->
-        <link rel="icon" href="{{ asset('img/logo.png')}}">
+        <link rel="icon" href="{{ asset('img/logo_site.png')}}">
         <title>{% block title '' %}GetInspired - Accueil</title>
         
         {% block stylesheets %}
@@ -53,8 +53,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <span class="navbar-brand"><img src="{{ asset('img/logo_site.png')}}" alt="Logo" class="logo"></span>
                     <a class="navbar-brand" href="{{path('homepage')}}">Get Inspired</a>                    
-                    <a href=""><span class="glyphicon glyphicon-search"></span></a>  
                  </div>
           
                 <!-- Collect the nav links, forms, and other content for toggling -->

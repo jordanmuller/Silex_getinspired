@@ -11,7 +11,10 @@ nav.navbar.navbar-default, nav.navbar.navbar-inverse {
 
 nav.navbar.navbar-inverse {
     background: #000;
-    
+}
+
+nav.navbar.navbar-inverse a.navbar-brand {
+    margin-left: 55px;
 }
 
 div.navbar-header {
@@ -35,6 +38,7 @@ span.navbar-brand img.logo {
     height: 40px;
     width: 40px;
     position: relative;
+    margin-right: 20px;
     bottom: 10px;
 }
 

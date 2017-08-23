@@ -57,13 +57,13 @@
             {% for list in listes %}
                 <div class="row">
                     <a href="{{ path('list_detail', {id: list.id_list})}}">
-                        <div class="col-sm-10 liste" style="background: url('{{asset('photos/' ~ list.picture)}}'); background-size: cover;">
+                        <div class="col-sm-offset-2 col-sm-10 liste" style="background: url('{{asset('photos/' ~ list.picture)}}'); background-size: cover; height:400px; width:800px;">
                             <h3>{{ list.title }} </h3>
                             <p>Par {{ list.userPseudo }}</p>
                         </div>
                     </a>
-                    <div class="col-sm-2">
-                        <a href="{{ path('list_user_modif', {id: list.id_list}) }}" class="btn btn-primary">Modifier</a>
+                    <div class="col-sm-12">
+                        <a href="{{ path('list_user_modif', {id: list.id_list}) }}" class="btn btn-primary form-control" style="width:800px; margin-left: 180px;">Modifier</a><br/><br/>
                     </div>
                  </div>
             {% endfor %}
