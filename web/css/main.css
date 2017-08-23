@@ -9,6 +9,10 @@ nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     margin: 0;
 }
 
+nav.navbar.navbar-inverse{
+    background-color: black;
+}
+
 div.navbar-header {
     margin-right: 30px !important;
 }
@@ -38,6 +42,12 @@ footer {
 
 footer ul.list-inline {
     margin: 0;
+    text-align:center;
+}
+
+footer a, footer a:hover {
+    text-decoration: none;
+    color: #FFF;
 }
 
 a, a:hover {

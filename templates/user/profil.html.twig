@@ -27,14 +27,10 @@
                     {% endif %}
                 </div> 
                 <div><br/> 
-                    <label for="file" class="btn btn-tertiary btn-primary  js-labelFile" style="margin-left: 15px;">
-                        <a href="{{ path("user_profile_edit",{'pseudo':user.pseudo}) }}" style="color:white;"> Modifier votre profil</a>    
-                    </label>
+                    <a href="{{path("user_profile_edit",{'pseudo':user.pseudo}) }}" class="btn" style="color:white; background-color: #df691a; padding: 10px; margin-left: 15px;; width: 200px;"> Modifier votre profil</a>
                 </div>
                 <div><br/> 
-                    <label for="file" class="btn btn-tertiary btn-primary  js-labelFile" style="margin-left: 15px;">
-                        <a href="{{ path("user_profile_password",{'pseudo':user.pseudo}) }}" style="color:white;"> Modifier votre mot de passe</a>    
-                    </label>
+                    <a href="{{ path("user_profile_password",{'pseudo':user.pseudo}) }}" class="btn" style="color:white; background-color: #df691a; padding: 10px; margin-left: 15px;; width: 200px;"> Modifier votre mot de passe</a>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -48,9 +44,9 @@
                         <li class="list-group-item active">Mail : {{ user.email }}</li>
                         <li class="list-group-item active">Bio : {{ user.bio }}</li>
                         <br/>
-                        {# <div><a href="{{ path('user_profile_delete')}}"><button type="button" class="btn btn-danger btn-lg"><span><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Confirmation de la désinscription</button></a></div>#}
-                        <a href="{{ path("user_profile_desinscription") }}"><button type="button" class="btn btn-warning btn-lg form-control" style="padding-bottom: 35px; color:white;"><span style="color:white;"><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Voulez-vous vous désinscrire de GetInspired?</a></div>
-                        {# <a href="{{ path("user_profile_delete") }}" style="margin-left:130px;">Voulez-vous vous désinscrire de GetInspired?</a> #}
+                        {#<a href="{{ path("user_profile_desinscription") }}"><button type="button" class="btn btn-warning btn-lg form-control" style="padding-bottom: 35px; color:white;"><span style="color:white;"><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Voulez-vous vous désinscrire de GetInspired?</a></div>#}                        
+                        <a href="{{ path("user_profile_desinscription") }}" class="btn" style="color:white; background-color: #F0AD4E; padding: 10px; width: 553px;"><i class="glyphicon glyphicon-log-out" style="color: white;"></i> Voulez-vous vous désinscrire de GetInspired?</a>
+
                     </ul>
                 </div>
             </div>       

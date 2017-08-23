@@ -6,7 +6,7 @@ $(function(){
         var id_review = $this.data('id');
        
         // On fait une requête ajax en mode post qui pointe sur l'url en question, l'url est la route qui ponte vers le controller
-        $.post('/silex/Silex_getinspired/web/index_dev.php/reviews/addSignale', {
+        $.post('/Silex_getinspired/web/index_dev.php/reviews/addSignale', {
             // En PHP, on récupère $_POST['id_review'] => var id_review
              id_review : id_review
         }, function(resultat){
@@ -23,7 +23,7 @@ $(function(){
         var id_review = $this.data('id');
        
         // On fait une requête ajax en mode post qui pointe sur l'url en question, l'url est la route qui ponte vers le controller
-        $.post('/silex/Silex_getinspired/web/index_dev.php/reviews/removeSignale', {
+        $.post('/Silex_getinspired/web/index_dev.php/reviews/removeSignale', {
             // En PHP, on récupère $_POST['id_review'] => var id_review
              id_review : id_review
         }, function(resultat){
@@ -40,7 +40,7 @@ $(function(){
         var id_review = $this.data('id');
        
         // On fait une requête ajax en mode post qui pointe sur l'url en question, l'url est la route qui ponte vers le controller
-        $.post('/silex/Silex_getinspired/web/index_dev.php/reviews/deleteComment', {
+        $.post('/Silex_getinspired/web/index_dev.php/reviews/deleteComment', {
             // En PHP, on récupère $_POST['id_review'] => var id_review
              id_review : id_review
         }, function(resultat){

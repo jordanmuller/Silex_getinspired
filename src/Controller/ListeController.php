@@ -70,9 +70,9 @@ class ListeController extends ControllerAbstract
         
         if(!empty($_POST))
         {
-            if(!empty($_POST['old_poster']))
+            if(!empty($_POST['old_picture']))
             {
-              $picture_bdd = $_POST['old_poster'];
+              $picture_bdd = $_POST['old_picture'];
             }
             
             if(empty($_FILES['picture']['name']) && empty($_POST['old_picture']))
