@@ -10,12 +10,13 @@
 {% block content %}
     <div class="container">
             <div class="row">
+                {% if movie.id is null %}
+                <h1 style="text-align:center;">Ajouter un film</h1><hr/>
+                {% else %}
+                <h1 style="text-align:center;">Modification d'un film</h1><hr/>
+                {% endif %}
                 <div class="col-sm-offset-3 col-sm-6">
-                    {% if movie.id is null %}
-                        <h1>Ajouter un film</h1>
-                    {% else %}
-                        <h1>Modification d'un film</h1>
-                    {% endif %}
+                    
                     <form method="post" enctype="multipart/form-data">
                         
                         <div class="form-group">

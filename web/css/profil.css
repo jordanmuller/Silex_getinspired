@@ -7,6 +7,7 @@ li.list-group-item.active{
     padding: 20px; 
     margin: 1px; 
     background-color: #4e5d6c;
+    border-color: #4e5d6c;  
 }
 
 div.row a, div.row a:hover {
