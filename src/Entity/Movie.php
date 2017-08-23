@@ -16,7 +16,8 @@ class Movie
     private $poster;
     private $mark;
     private $price;
-    
+    private $avg;
+            
     function getId() {
         return $this->id;
     }
@@ -137,5 +138,16 @@ class Movie
             return true;
         }
     }
+    
+    public function getAvg() {
+        return $this->avg;
+    }
+
+    public function setAvg($avg) {
+        $this->avg = $avg;
+        return $this;
+    }
+
+
 
 }

@@ -142,9 +142,6 @@ class ListeController extends ControllerAbstract
                 $errors['content'] = 'La description doit avoir un minimum de 50 caractères';
             }
             
-            
-            
-            
             if(empty($errors))
             { 
                 $this->app['liste.repository']->save($liste); 

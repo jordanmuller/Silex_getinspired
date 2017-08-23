@@ -42,12 +42,14 @@ class NoteRepository extends RepositoryAbstract
     public function findByMovies($id) 
     {
         $dbNotes = $this->db->fetchAll(
-            'SELECT * '
-                . 'FROM movie_note mn '
+            'SELECT * FROM movie_note mn '
                 . 'JOIN movies m ON m.id_movie = mn.id_movie '
                 . 'JOIN users u ON u.id_user = mn.id_user '
                 . 'WHERE m.id_movie = :id '
-                . 'GROUP BY mn.id_user ',
+                . 'AND id_movie_note = ('
+                    . 'SELECT MAX(id_movie_note) '
+                    . 'FROM movie_note '
+                    . 'WHERE id_user = mn.id_user)',
                     
             [
                 ':id' => $id
@@ -108,4 +110,5 @@ class NoteRepository extends RepositoryAbstract
         
         return $moyennes;
     }
+    
 }

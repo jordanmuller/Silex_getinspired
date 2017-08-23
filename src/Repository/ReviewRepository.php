@@ -23,7 +23,7 @@ class ReviewRepository extends RepositoryAbstract
                 . 'WHERE m.id_movie = :id '
                 . 'ORDER BY r.date_enregistrement DESC LIMIT 0, 5',
                 
-        [
+            [
                 ':id' => $id
             ]
         );
@@ -110,5 +110,27 @@ class ReviewRepository extends RepositoryAbstract
             ->setSignale($data['signale'])
         ;
         return $review; 
+    }   
+    
+    public function findLastComments() {
+        $dbReviews = $this->db->fetchAll(
+            'SELECT r.*, u.*, m.*'
+                . 'FROM reviews r '
+                . 'JOIN movies m ON m.id_movie = r.id_movie '
+                . 'JOIN users u ON u.id_user = r.id_user '
+                . 'WHERE r.content != "Le commentaire à été supprimé par l\'administrateur du site"'                
+                . 'ORDER BY r.date_enregistrement DESC LIMIT 0, 5'                
+        );
+        
+        $reviews = [];
+        
+        foreach($dbReviews AS $dbReview)
+        {
+            $review = $this->buildEntity($dbReview);
+            
+            $reviews[] = $review;
+        }
+        
+        return $reviews;
     }
 }

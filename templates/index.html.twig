@@ -145,9 +145,32 @@
             <div class="row">
                 <div class="col-sm-offset-2 col-sm-3">
                     <h2 class="text-center">Les films les mieux notés</h2>
+                    {% for movie in movies %}
+                        <img src="{{ movie.poster }}" alt="icone du film" class="img-thumbnail">
+                        <h3>{{ movie.title }}</h3>
+                        <p>{{ movie.avg }}</p>
+                    {% endfor %}
                 </div>
                 <div class="col-sm-offset-2 col-sm-3">
                     <h2 class="text-center">Les dernières Inspirations</h2>
+                    {% for review in reviews %}
+                        {% if review.content != 'Le commentaire à été supprimé par l\'administrateur du site' %}
+                            <li>
+                                <div class="comment-main-level">                                    
+                                    <!--Container du comment -->
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <p class="comment-name">{{ review.Userpseudo }}</p>
+                                            <span>{{ review.date_enregistrement|date('d/m/Y H:i') }}</span>                                            
+                                        </div>
+                                        <div class="comment-content">                                          
+                                            {{ review.content }}
+                                        </div>                                                                            
+                                    </div>
+                                </div>
+                            <li>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

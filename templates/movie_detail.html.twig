@@ -109,6 +109,11 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-    {{ parent() }} {# reprend le contenu du bloc parent #}    
+    {{ parent() }} {# reprend le contenu du bloc parent #}
+    <script>
+        var addSignaleUrl = '{{ path('add_signale_ajax') }}';
+        var removeSignaleUrl = '{{ path('remove_signale_ajax') }}';
+        var deleteCommentUrl = '{{ path('delete_comment_ajax') }}';
+    </script>
     <script src="{{ asset('js/movie_detail.js') }}"></script>
 {% endblock %}

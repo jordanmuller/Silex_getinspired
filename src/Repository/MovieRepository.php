@@ -28,6 +28,10 @@ class MovieRepository extends RepositoryAbstract
             ->setPoster($data['poster'])
             ->setPrice($data['price'])
         ;
+        
+        if (isset($data['moyenne'])) {
+            $movie->setAvg($data['moyenne']);
+        }
 
         // Après on renvoie l'objet $category et ses valeurs
         return $movie;
@@ -149,8 +153,8 @@ class MovieRepository extends RepositoryAbstract
     {
         $dbMovies = $this->db->fetchAll(
             'SELECT m.* FROM movies m '
-                . 'JOIN detail_box db ON m.id_movie = db.id_movie'
-                . ' WHERE db.id_box = :id',
+                . 'JOIN detail_box db ON m.id_movie = db.id_movie '
+                . 'WHERE db.id_box = :id',
                 
         [
                 ':id' => $id
@@ -180,6 +184,27 @@ class MovieRepository extends RepositoryAbstract
             [
                 ':id' => $id
             ]
+        );
+        
+        $movies = [];
+        
+        foreach($dbMovies AS $dbMovie)
+        {
+            $movie = $this->buildEntity($dbMovie);
+            
+            $movies[] = $movie;
+        }
+        
+        return $movies;
+    }
+    
+    public function findByNotes() {
+        $dbMovies = $this->db->fetchAll(
+            'SELECT m.*, ROUND(AVG(mn.note),1) AS moyenne '
+                . 'FROM movie_note mn '
+                . 'JOIN movies m ON m.id_movie = mn.id_movie '
+                . 'GROUP BY mn.id_movie '
+                . 'ORDER BY moyenne DESC LIMIT 0, 5'                
         );
         
         $movies = [];

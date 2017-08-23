@@ -16,7 +16,7 @@ class MovieController extends ControllerAbstract
                 ['movies' => $movies]
               
         );
-    }
+    }   
     
     public function ficheMovie($id) 
     {
