@@ -39,7 +39,6 @@ class MovieController extends ControllerAbstract
         // affichage des commentaires
         $reviews = $this->app['review.repository']->findByMovies($id);
         
-        
         if(!empty($_POST))
         {
             if(!$this->app['user.manager']->getUser()){

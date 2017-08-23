@@ -56,7 +56,11 @@
                         <li>
                             <div class="comment-main-level">
                                 <!-- Avatar -->
-                                <div class="comment-avatar"><img src="{{ asset('img/' ~ review.Useravatar) }}" alt=""></div>
+                                {% if review.Useravatar is not empty %}
+                                    <div class="comment-avatar"><img src="{{ asset('img/' ~ review.Useravatar) }}" alt="Avatar"></div>
+                                {% else %}
+                                    <div class="comment-avatar"><img src="{{ asset('img/profil.png') }}" alt="Avatar"></div>
+                                {% endif %}
                                 <!--Container du comment -->
                                 <div class="comment-box">
                                         <div class="comment-head">
@@ -70,7 +74,9 @@
                                                 {% endfor %}
                                         </div>
                                         <div class="comment-content 
+                                             {# Si la review est égale à true et user est admin, alors on ajoute la classe signal #}
                                              {% if review.signale == 'true' and user_manager.admin %}signale{% endif %}
+                                             {# Si le contenu de la review est égale au texte, alors on rajoute la classe delete-by-admin #}
                                              {% if review.content == 'Le commentaire à été supprimé par l\'administrateur du site' %}delete-by-admin{% endif %}">
                                             {{ review.content }}
                                         </div>
@@ -86,7 +92,7 @@
                                         </div>
                                 </div>
                             </div>
-                        <li>
+                        </li>
                     {% endfor %}
                     </ul>
                 </div>

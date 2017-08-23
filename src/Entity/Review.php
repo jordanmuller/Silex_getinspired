@@ -92,6 +92,13 @@ class Review
             return $this->movie->getId();
         }
     }
+    
+    public function getTitleMovie() {
+        if(!is_null($this->movie))
+        {
+            return $this->movie->getTitle();
+        }
+    }
 
 
 }

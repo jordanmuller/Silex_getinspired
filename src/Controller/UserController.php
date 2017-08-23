@@ -346,7 +346,9 @@ class UserController extends ControllerAbstract
                 
                 $this->app['user.repository']->save($user);
                 $this->addFlashMessage('Vos modifications ont bien été enregistrées'); 
-                return $this->redirectRoute('user_profile');
+                $pseudo = $this->app['user.manager']->getUser()->getPseudo();
+                    
+                return $this->redirectRoute('user_profile', array('pseudo' => $pseudo));
             }
             else
             {
@@ -391,8 +393,10 @@ class UserController extends ControllerAbstract
             {
                 $user->setPassword($this->app['user.manager']->encodePassword($_POST['password'])); 
                 $this->app['user.repository']->save($user);
-                $this->addFlashMessage('Vos modifications ont bien été enregistrées'); 
-                return $this->redirectRoute('user_profile');
+                $this->addFlashMessage('Votre mot de passe a bien été modifié'); 
+                $pseudo = $this->app['user.manager']->getUser()->getPseudo();
+                    
+                return $this->redirectRoute('user_profile', array('pseudo' => $pseudo));
             }
             else
             {
