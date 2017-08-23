@@ -119,7 +119,7 @@ class ReviewRepository extends RepositoryAbstract
                 . 'JOIN movies m ON m.id_movie = r.id_movie '
                 . 'JOIN users u ON u.id_user = r.id_user '
                 . 'WHERE r.content != "Le commentaire à été supprimé par l\'administrateur du site"'                
-                . 'ORDER BY r.date_enregistrement DESC LIMIT 0, 5'                
+                . 'ORDER BY r.date_enregistrement DESC LIMIT 0, 4'                
         );
         
         $reviews = [];

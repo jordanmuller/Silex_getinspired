@@ -140,39 +140,48 @@
         </div>
     </section>
                     
-    <section class="visual">
-        <div class="container-fluid">
+    <section class="visual_1">
+        <div class="container">
+            <h2 class="text-center">Les films les mieux notés</h2>
             <div class="row">
-                <div class="col-sm-offset-2 col-sm-3">
-                    <h2 class="text-center">Les films les mieux notés</h2>
-                    {% for movie in movies %}
-                        <img src="{{ movie.poster }}" alt="icone du film" class="img-thumbnail">
+                
+                {% for movie in movies %}
+                    <div class="col-sm-2">
+                        <img src="{{ movie.poster }}" alt="icone du film" class="img-responsive" style="height:250px; width:175px;">
                         <h3>{{ movie.title }}</h3>
-                        <p>{{ movie.avg }}</p>
-                    {% endfor %}
-                </div>
-                <div class="col-sm-offset-2 col-sm-3">
-                    <h2 class="text-center">Les dernières Inspirations</h2>
-                    {% for review in reviews %}
-                        {% if review.content != 'Le commentaire à été supprimé par l\'administrateur du site' %}
-                            <li>
-                                <div class="comment-main-level">                                    
-                                    <!--Container du comment -->
-                                    <div class="comment-box">
-                                        <div class="comment-head">
-                                            <p class="comment-name">{{ review.Userpseudo }}</p>
-                                            <span>{{ review.date_enregistrement|date('d/m/Y H:i') }}</span>                                            
-                                        </div>
-                                        <div class="comment-content">                                          
-                                            {{ review.content }}
-                                        </div>                                                                            
-                                    </div>
+                        <p><span class="glyphicon glyphicon-star" style="font-size: 30px; margin-top: 10px; "></span> {{ movie.avg }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>            
+    
+    <section class="visual_2">
+        <div class="container">        
+            <h2 class="text-center">Les dernières Inspirations</h2>
+            <div class="row">
+                
+                {% for review in reviews %}
+                    {% if review.content != 'Le commentaire à été supprimé par l\'administrateur du site' %}
+                    <div class="col-sm-3">
+                        <div class="comment-main-level">                                    
+                            <!--Container du comment -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <p class="comment-name">{{ review.Userpseudo }}</p>
+                                    <span>{{ review.date_enregistrement|date('d/m/Y H:i') }}</span>                                            
                                 </div>
-                            <li>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                                <div class="comment-content">                                          
+                                    <p>{{ review.content }}</p>
+                                </div>                                                                            
+                            </div>
+                        </div>
+                    </div>                               
+                    {% endif %}
+                {% endfor %}
+
             </div>
         </div>
     </section>
+    
 {% endblock %}

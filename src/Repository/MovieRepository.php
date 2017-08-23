@@ -204,7 +204,7 @@ class MovieRepository extends RepositoryAbstract
                 . 'FROM movie_note mn '
                 . 'JOIN movies m ON m.id_movie = mn.id_movie '
                 . 'GROUP BY mn.id_movie '
-                . 'ORDER BY moyenne DESC LIMIT 0, 5'                
+                . 'ORDER BY moyenne DESC LIMIT 0, 6'                
         );
         
         $movies = [];
