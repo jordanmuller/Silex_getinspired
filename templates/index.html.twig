@@ -161,6 +161,7 @@
                                     <div class="comment-box">
                                         <div class="comment-head">
                                             <p class="comment-name">{{ review.Userpseudo }}</p>
+                                            <p>About: {{ review.titleMovie }}</p>
                                             <span>{{ review.date_enregistrement|date('d/m/Y H:i') }}</span>                                            
                                         </div>
                                         <div class="comment-content">                                          
@@ -168,7 +169,7 @@
                                         </div>                                                                            
                                     </div>
                                 </div>
-                            <li>
+                            </li>
                         {% endif %}
                     {% endfor %}
                 </div>

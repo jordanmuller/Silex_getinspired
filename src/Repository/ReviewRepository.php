@@ -16,7 +16,7 @@ class ReviewRepository extends RepositoryAbstract
     public function findByMovies($id) 
     {
         $dbReviews = $this->db->fetchAll(
-            'SELECT r.content, r.date_enregistrement, u.pseudo, u.avatar, u.id_user, m.id_movie, r.id_review, r.signale '
+            'SELECT r.content, r.date_enregistrement, u.pseudo, u.avatar, u.id_user, m.id_movie, m.title, r.id_review, r.signale '
                 . 'FROM reviews r '
                 . 'JOIN movies m ON m.id_movie = r.id_movie '
                 . 'JOIN users u ON u.id_user = r.id_user '
@@ -95,7 +95,8 @@ class ReviewRepository extends RepositoryAbstract
         $movie = new Movie();
         
         $movie
-            ->setId($data['id_movie']);
+            ->setId($data['id_movie'])
+            ->setTitle($data['title']);
         
         
         
