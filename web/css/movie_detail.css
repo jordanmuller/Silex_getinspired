@@ -226,3 +226,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 button.commentaire {
     display: block;
 }
+
+section{
+    margin-top:50px; 
+}

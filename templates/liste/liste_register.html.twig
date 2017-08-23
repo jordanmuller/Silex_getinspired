@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label>Image actuelle</label>
 
-                                 <img src="{{asset('img/' ~ liste.picture)}}" class="img-thumbnail" width="130px" height='170px'>
+                                 <img src="{{asset('img/' ~ liste.picture)}}" class="img-responsive">
 
                                  <input type="hidden" name="old_picture" value="{{liste.picture}}" />
                             </div>
@@ -145,7 +145,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>                       
+                        <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Enregistrer</button>                     
         
                     </form>
                 </div>  

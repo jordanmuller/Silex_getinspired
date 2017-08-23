@@ -71,16 +71,16 @@ class ListeController extends ControllerAbstract
         
         if(!empty($_POST))
         {
-            if(!empty($_POST['old_poster']))
+            if(!empty($_POST['old_picture']))
             {
-              $picture_bdd = $_POST['old_poster'];
+              $picture_bdd = $_POST['old_picture'];
             }
             
             if(empty($_FILES['picture']['name']) && empty($_POST['old_picture']))
             {
                 $errors['picture'] = 'Attention, Vous devez ajouter une photo à votre liste';
             }
-            
+                      
             // vérification si l'utilisateur a chargé une image
             if(!empty($_FILES['picture']['name']))
             {
@@ -146,8 +146,18 @@ class ListeController extends ControllerAbstract
             { 
                 $this->app['liste.repository']->save($liste); 
                 $this->app['liste.repository']->saveMovies($liste, $_POST['movie']);
+                if($this->app['user.manager']->getUser()->isAdmin())
+                {
+                    return $this->redirectRoute('admin_listes');
+                }
+                else if($this->app['user.manager']->getUser())
+                {
+                    
+                    $pseudo = $this->app['user.manager']->getUser()->getPseudo();
+                    
+                    return $this->redirectRoute('user_profile', array('pseudo' => $pseudo));
+                }
                 
-                return $this->redirectRoute('homepage');
             }
             else
             {

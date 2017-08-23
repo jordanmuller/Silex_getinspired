@@ -1,10 +1,26 @@
-
-.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
-    border-color: #4e5d6c;
+.list-group-item, .list-group-item.active:hover, .list-group-item.active:focus{
+    background-color: #4e5d6c;
+    border-color: #4e5d6c;  
 }
 
 li.list-group-item.active{
     padding: 20px; 
     margin: 1px; 
     background-color: #4e5d6c;
+    border-color: #4e5d6c;  
+}
+
+div.row a, div.row a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+div.col-sm-10 {
+    margin-bottom: 20px;
+     padding-bottom: 100px;
+}
+
+div.col-sm-2 a.btn.btn-primary {
+    margin-top: 25px;
+    margin-left: 10px;
 }

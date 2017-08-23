@@ -5,12 +5,13 @@
 {% block content %}
     <div class="container">
             <div class="row">
+                {% if box.id is null %}
+                <h1 style="text-align:center;">Ajouter une box</h1><hr/>
+                {% else %}
+                <h1 style="text-align:center;">Modification de la box</h1><hr/>
+                {% endif %}
                 <div class="col-sm-offset-3 col-sm-6">
-                    {% if box.id is null %}
-                        <h1>Ajouter une box</h1>
-                    {% else %}
-                        <h1>Modification de la box</h1>
-                    {% endif %}
+                    
                     <form method="post">
                         
                         <div class="form-group">
@@ -60,7 +61,7 @@
                             <input type="text" id="stock" name="stock" value="{{ box.stock }}" class="form-control">
                         </div>        
 
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>                       
+                        <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Enregistrer</button>
         
                     </form>
                 </div>  
