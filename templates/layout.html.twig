@@ -26,7 +26,6 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{path('homepage')}}">DashBoard</a>                    
-                    <a href=""><span class="glyphicon glyphicon-search"></span></a>  
                  </div><!-- /.navbar-header -->
                     
                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -79,7 +78,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if user_manager.user %}{# si un utilisateur est connecté #}
                         <li>
-                            <a href="{{ path('user_profile') }}">{{ user_manager.userName }}</a>
+                            <a href="{{ path('user_profile', {pseudo: user_manager.user.pseudo}) }}">{{ user_manager.userName }}</a>
                         </li>
                         <li>
                             <a href="{{ path('user_logout')}}">Se déconnecter</a>
@@ -114,7 +113,7 @@
         </div>            
         <div class="contenu">{% block content %}{% endblock %}</div>
         <footer class="footer navbar-fixed-bottom">
-            <div class="container">
+            <div class="container-fluid">
                 
                 <ul class="list-inline">
                     <li><a href="">Conditions d'utilisation</a></li>

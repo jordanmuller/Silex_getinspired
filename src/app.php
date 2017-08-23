@@ -52,6 +52,11 @@ $app->register(new SessionServiceProvider());
 
 /////////////////////////////FRONT - OFFICE////////////////////////////////
 
+$app['index.controller'] = function() use($app)
+{
+   return new \Controller\IndexController($app); 
+};
+
 $app['user.controller'] = function() use ($app)
 {
     return new UserController($app); 

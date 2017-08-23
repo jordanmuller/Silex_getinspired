@@ -11,6 +11,24 @@ class UserRepository extends RepositoryAbstract
         return 'users'; 
     }
     
+    public function find($id) 
+    {
+        $query = "SELECT * FROM users WHERE id_user = :id";
+        
+        $dbUser = $this->db->fetchAssoc(
+            $query,
+            [
+                ':id' => $id
+            ]
+        );
+        
+        if(!empty($dbUser))
+        {
+            return $this->buildEntity($dbUser);
+        }
+    }
+    
+    
     public function findByEmail($email, $idUser = null)
     {
         $query = 'SELECT * FROM users WHERE email = :email';

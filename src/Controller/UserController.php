@@ -143,6 +143,7 @@ class UserController extends ControllerAbstract
     {
         $email = ''; 
         
+        // Formulaire de connexion
         if(!empty($_POST))
         {
             $email = $_POST['email']; 
@@ -153,6 +154,7 @@ class UserController extends ControllerAbstract
             {
                 if($this->app['user.manager']->verifyPassword($_POST['password'], $user->getPassword()))
                 {
+                    // On crée la session
                     $this->app['user.manager']->login($user); 
                     
                     return $this->redirectRoute('homepage');
@@ -175,8 +177,17 @@ class UserController extends ControllerAbstract
         return $this->redirectRoute('homepage');
     }
     
-    public function profileAction()
+    public function profileAction($pseudo)
     {
+        $user = $this->app['user.manager']->getUser();
+              
+        if($pseudo){
+            $listes = $this->app['liste.repository']->findByUserPseudo($pseudo);
+        }else{
+             $listes = $this->app['liste.repository']->findByUserPseudo($user->getPseudo());
+        }
+        
+        // Si l'utilisateur n'est pas connecté on ne peut pas voir son profil
         if(!$this->app['user.manager']->getUser())
         {
            return $this->redirectRoute('user_login');
@@ -184,7 +195,8 @@ class UserController extends ControllerAbstract
         return $this->render(
             'user/profil.html.twig',
             [
-                'user' => $this->app['user.manager']->getUser()
+                'user' => $this->app['user.manager']->getUser(),
+                'listes' => $listes
             ]
         ); 
     }  
@@ -196,10 +208,25 @@ class UserController extends ControllerAbstract
         ); 
     }
     
-    public function backProfile()
+    public function backProfile($pseudo)
     {
+        if($pseudo){
+            $listes = $this->app['liste.repository']->findByUserPseudo($pseudo);
+        }else{
+             $listes = $this->app['liste.repository']->findByUserPseudo($user->getPseudo());
+        }
+        
+        // Si l'utilisateur n'est pas connecté on ne peut pas voir son profil
+        if(!$this->app['user.manager']->getUser())
+        {
+           return $this->redirectRoute('user_login');
+        }
         return $this->render(
-            'user/profil.html.twig' 
+            'user/profil.html.twig',
+            [
+                'user' => $this->app['user.manager']->getUser(),
+                'listes' => $listes
+            ]
         ); 
     }
     

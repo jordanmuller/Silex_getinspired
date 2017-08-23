@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-sm-12 liste" style="background: url('{{asset('photos/' ~ liste.picture)}}'); height:435px; background-size: cover;">
                     <h1>{{liste.title}}</h1>
-                    <p style="font-size:20px;">Une liste faite par <a href="{{path('user_profile')}}">{{liste.userPseudo}}</a></p>
+                    <p>Une liste faite par <a href="{{path('user_profile', {pseudo : liste.userPseudo})}}">{{liste.userPseudo}}</a></p>
                 </div>
             </div>
             <div class="row">
@@ -24,7 +24,7 @@
             </div>
 
             {% for movie in movies %}
-                <div class="row film">
+                <a href="{{path('movie_detail', {id: movie.id})}}"><div class="row film">
                     <div class="col-sm-2 affiche">
                         {% if movie.hasPhotoLocale %}
                             <img src="{{asset('photos/' ~ movie.poster)}}" class="img-responsive" >
@@ -37,7 +37,7 @@
                         <p class="director">De {{movie.director}}</p>
                         <p>{{movie.synopsis|raw}}</p>
                     </div>
-                </div>
+                    </div></a>
                 <hr class="movie">
             {%endfor%}
 

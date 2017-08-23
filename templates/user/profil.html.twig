@@ -49,8 +49,28 @@
 
                     </ul>
                 </div>
-            </div>       
-        </div>                    
-    </div><!-- /.container -->		
+            </div>
+        </div>
+        
+            <h2 class="text-center">Vos listes</h2>
+            <hr>
+            {% for list in listes %}
+                <div class="row">
+                    <a href="{{ path('list_detail', {id: list.id_list})}}">
+                        <div class="col-sm-10 liste" style="background: url('{{asset('photos/' ~ list.picture)}}'); background-size: cover;">
+                            <h3>{{ list.title }} </h3>
+                            <p>Par {{ list.userPseudo }}</p>
+                        </div>
+                    </a>
+                    <div class="col-sm-2">
+                        <a href="{{ path('list_user_modif', {id: list.id_list}) }}" class="btn btn-primary">Modifier</a>
+                    </div>
+                 </div>
+            {% endfor %}
+        
+            
+
+        </div>          
+            <!-- /.container -->		
 
 {% endblock  %}

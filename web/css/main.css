@@ -9,8 +9,9 @@ nav.navbar.navbar-default, nav.navbar.navbar-inverse {
     margin: 0;
 }
 
-nav.navbar.navbar-inverse{
-    background-color: black;
+nav.navbar.navbar-inverse {
+    background: #000;
+    
 }
 
 div.navbar-header {
@@ -22,12 +23,19 @@ ul.nav.navbar-nav li a, div.navbar-header {
   padding-top: 20px;
 }
 
-a.navbar-brand {
+a.navbar-brand, span.navbar-brand {
     font-size: 1.5em;
     font-weight: bold;
     font-style: italic;
     margin-right: 20px;
     padding: 0;
+}
+
+span.navbar-brand img.logo {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    bottom: 10px;
 }
 
 span.glyphicon.glyphicon-search {
@@ -38,6 +46,7 @@ span.glyphicon.glyphicon-search {
 footer {   
     padding: 10px;
     background: #546575;
+    
 }
 
 footer ul.list-inline {
@@ -53,7 +62,10 @@ footer a, footer a:hover {
 a, a:hover {
     text-decoration: none;
     color: #DF691A;
+    
 }
+
+
 
 /******  FLASH MESSAGE  ******/
 .flash-msg{
