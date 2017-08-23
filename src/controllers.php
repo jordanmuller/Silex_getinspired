@@ -124,6 +124,11 @@ $app
     ->bind('list_register')
 ;
 
+$app
+    ->match('/listes/modif/{id}', 'liste.controller:registerListeAction')
+    ->bind('list_user_modif')
+;
+
 //*****************************BACK OFFICE*********************************//
 
 // crée un groupe de routes

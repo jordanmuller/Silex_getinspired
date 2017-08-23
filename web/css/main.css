@@ -46,6 +46,7 @@ span.glyphicon.glyphicon-search {
 footer {   
     padding: 10px;
     background: #546575;
+    
 }
 
 footer ul.list-inline {
@@ -55,7 +56,10 @@ footer ul.list-inline {
 a, a:hover {
     text-decoration: none;
     color: #DF691A;
+    
 }
+
+
 
 /******  FLASH MESSAGE  ******/
 .flash-msg{
