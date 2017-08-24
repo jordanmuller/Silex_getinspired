@@ -82,6 +82,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if user_manager.user %}{# si un utilisateur est connecté #}
                         <li>
+                            {% if user_manager.user.avatar is not empty %}
+                                <img src="{{ asset('img/' ~ user_manager.user.avatar) }}" alt="Avatar" class="img-circle img-responsive" style="height:55px; width:55px; margin-top: 3px;" >
+                            {% else %}
+                                <img src="{{ asset('img/profil.png') }}" alt="Avatar" class="img-circle img-responsive" style="height:55px; width:55px; margin-top: 3px;">
+                            {% endif %}
+                        </li>
+                            
+                        <li>
                             <a href="{{ path('user_profile', {pseudo: user_manager.user.pseudo}) }}">{{ user_manager.userName }}</a>
                         </li>
                         <li>

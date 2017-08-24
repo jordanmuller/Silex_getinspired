@@ -132,6 +132,11 @@ $app
     ->bind('list_user_modif')
 ;
 
+$app
+    ->match('liste/suppression/{id}', 'liste.controller:deleteAction')
+    ->bind('list_delete')
+;
+
 //*****************************BACK OFFICE*********************************//
 
 // crée un groupe de routes

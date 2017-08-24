@@ -178,4 +178,23 @@ class ListeController extends ControllerAbstract
         );
     }
     
+    public function deleteAction($id) {
+        $liste = $this->app['liste.repository']->find($id);
+        //echo '<pre>'; var_dump($liste); echo '</pre>';
+        if(!$liste instanceof Liste){
+            $this->app->abort(404);
+        }
+        
+        
+        $this->app['liste.repository']->delete($liste);
+        if($this->app['user.manager']->getUser())
+        {
+
+            $pseudo = $this->app['user.manager']->getUser()->getPseudo();
+            $this->addFlashMessage('La liste a été supprimée');           
+            return $this->redirectRoute('user_profile', array('pseudo' => $pseudo));
+        }
+        
+    }
+    
 }
