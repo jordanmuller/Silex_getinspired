@@ -6,20 +6,17 @@ use Entity\User;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserManager 
-{
-    
+{   
     /**
      *
      * @var Session
-     */
-    
+     */   
     private $session;
     
     /**
      * 
      * @param Session $session
      */
-    
     public function __construct(Session $session)
     {
         $this->session = $session; 
@@ -59,7 +56,6 @@ class UserManager
  
     public function getUser()
     {
-        // C'est un user Entity, setté dans login()
         return $this->session->get('user'); 
     }
 
@@ -92,8 +88,7 @@ class UserManager
     /**
      * 
      * @return bool
-     */
-    
+     */  
     public function isAdmin()
     {
         return $this->session->has('user') &&  $this->session->get('user')->isAdmin(); 
