@@ -25,7 +25,6 @@ class UserManager
     /**
      * 
      * @param string $plainPassword
-     * @return string $encodePassword
      * @return bool
      */
     
